@@ -39,9 +39,28 @@ body{font-family:var(--fonte);background:var(--bg);color:var(--txt);overflow:hid
 .progress{position:fixed;bottom:0;left:var(--sidebar-w);right:0;height:3px;background:var(--brd);z-index:200;}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--ifrn-verde),var(--ac2));transition:width .4s ease;width:0%;}
 
+/* NAV ARROWS - botões de navegação visíveis */
+.nav-arrows{position:fixed;bottom:24px;right:28px;display:flex;align-items:center;gap:14px;z-index:200;}
+.nav-btn{width:56px;height:56px;border-radius:50%;border:2px solid var(--brd);background:var(--bg2);color:var(--txt);font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--trans);box-shadow:0 2px 10px rgba(0,0,0,.3);}
+.nav-btn:hover{border-color:var(--ac);color:var(--ac);background:rgba(76,175,80,.15);box-shadow:0 4px 16px rgba(76,175,80,.25);}
+.nav-btn:active{transform:scale(.92);}
+.nav-btn.disabled{opacity:.2;pointer-events:none;}
+
+/* CHAPTER INDICATOR - indicador do capítulo */
+.chapter-indicator{position:fixed;bottom:24px;left:var(--sidebar-w);right:0;display:flex;justify-content:center;align-items:center;gap:10px;z-index:199;pointer-events:none;}
+.chapter-dots{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.7);padding:12px 22px;border-radius:24px;pointer-events:all;box-shadow:0 2px 12px rgba(0,0,0,.4);}
+.ch-dot{width:14px;height:14px;border-radius:50%;background:var(--brd);cursor:pointer;transition:all var(--trans);}
+.ch-dot.active{background:var(--ac);transform:scale(1.35);box-shadow:0 0 8px rgba(76,175,80,.5);}
+.ch-dot:hover{background:var(--ac2);}
+.ch-label{font-size:.9rem;color:var(--txt);margin-right:8px;font-weight:700;white-space:nowrap;}
+
+/* SIDEBAR sub-count badge */
+.nav-item .sub-count{margin-left:auto;font-size:.68rem;background:var(--brd);color:var(--txt2);padding:2px 8px;border-radius:10px;font-weight:700;min-width:22px;text-align:center;}
+.nav-item.active .sub-count{background:rgba(76,175,80,.25);color:var(--ac);}
+
 /* SLIDE AREA */
 .slides-area{position:fixed;top:var(--cab-h);left:var(--sidebar-w);right:0;bottom:3px;overflow:hidden;}
-.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px 44px;opacity:0;transform:translateX(30px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;overflow-y:auto;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px 44px 70px;opacity:0;transform:translateX(30px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;overflow-y:auto;}
 .slide.active{opacity:1;transform:translateX(0);pointer-events:all;}
 
 /* SCROLL STYLING */
@@ -154,12 +173,12 @@ kbd{background:var(--bg3);border:1px solid var(--brd);border-radius:3px;padding:
 
 <!-- SIDEBAR -->
 <nav class="sidebar">
-  <div class="nav-item active" data-chapter="0" onclick="goTo(0)"><span>🏠</span> Apresentação</div>
-  <div class="nav-item" data-chapter="1" onclick="goTo(1)"><span>📖</span> Fundamentos do SO</div>
-  <div class="nav-item" data-chapter="2" onclick="goTo(2)"><span>🖥️</span> Principais SOs</div>
-  <div class="nav-item" data-chapter="3" onclick="goTo(3)"><span>📁</span> Pastas e Arquivos</div>
-  <div class="nav-item" data-chapter="4" onclick="goTo(4)"><span>🔧</span> Softwares Utilitários</div>
-  <div class="nav-item" data-chapter="5" onclick="goTo(5)"><span>🎯</span> Atividades e Resumo</div>
+  <div class="nav-item active" data-chapter="0" onclick="goTo(0)"><span>🏠</span> Apresentação<span class="sub-count"></span></div>
+  <div class="nav-item" data-chapter="1" onclick="goTo(1)"><span>📖</span> Fundamentos do SO<span class="sub-count"></span></div>
+  <div class="nav-item" data-chapter="2" onclick="goTo(2)"><span>🖥️</span> Principais SOs<span class="sub-count"></span></div>
+  <div class="nav-item" data-chapter="3" onclick="goTo(3)"><span>📁</span> Pastas e Arquivos<span class="sub-count"></span></div>
+  <div class="nav-item" data-chapter="4" onclick="goTo(4)"><span>🔧</span> Softwares Utilitários<span class="sub-count"></span></div>
+  <div class="nav-item" data-chapter="5" onclick="goTo(5)"><span>🎯</span> Atividades e Resumo<span class="sub-count"></span></div>
 </nav>
 
 <!-- PROGRESS -->
@@ -830,13 +849,111 @@ kbd{background:var(--bg3);border:1px solid var(--brd);border-radius:3px;padding:
 
 </div><!-- /slides-area -->
 
+<!-- NAV ARROWS -->
+<div class="nav-arrows">
+  <button class="nav-btn" id="btnPrev" title="Slide anterior (←)">&#8592;</button>
+  <button class="nav-btn" id="btnNext" title="Próximo slide (→)">&#8594;</button>
+</div>
+
+<!-- CHAPTER DOTS INDICATOR -->
+<div class="chapter-indicator">
+  <div class="chapter-dots" id="chapterDots"></div>
+</div>
+
 <script>
-const slides=document.querySelectorAll('.slide'),navs=document.querySelectorAll('.nav-item'),ctr=document.getElementById('counter'),fill=document.getElementById('fill');
-let cur=0;const total=slides.length;
-function go(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');ctr.textContent=(cur+1)+'/'+total;fill.style.width=((cur+1)/total*100)+'%';const ch=slides[cur].dataset.chapter;navs.forEach(v=>{v.classList.toggle('active',v.dataset.chapter===ch);});slides[cur].scrollTop=0;}
-function goTo(ch){for(let i=0;i<total;i++){if(slides[i].dataset.chapter==ch){go(i);return;}}}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);if(e.key==='Home')go(0);if(e.key==='End')go(total-1);});
-let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});document.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)go(cur+1);if(d>50)go(cur-1);});
+const slides=document.querySelectorAll('.slide'),
+      navs=document.querySelectorAll('.nav-item'),
+      ctr=document.getElementById('counter'),
+      fill=document.getElementById('fill'),
+      btnPrev=document.getElementById('btnPrev'),
+      btnNext=document.getElementById('btnNext'),
+      dotsContainer=document.getElementById('chapterDots');
+
+let cur=0;
+const total=slides.length;
+
+// Build chapter map: { chapterId: [slideIndex, ...] }
+const chapterMap={};
+slides.forEach((s,i)=>{
+  const ch=s.dataset.chapter;
+  if(!chapterMap[ch]) chapterMap[ch]=[];
+  chapterMap[ch].push(i);
+});
+
+// Set sub-count badges in sidebar
+navs.forEach(nav=>{
+  const ch=nav.dataset.chapter;
+  const badge=nav.querySelector('.sub-count');
+  if(badge && chapterMap[ch]){
+    const count=chapterMap[ch].length;
+    badge.textContent=count>1?count:'';
+  }
+});
+
+// Render dots for current chapter
+function renderDots(){
+  const ch=slides[cur].dataset.chapter;
+  const indices=chapterMap[ch]||[];
+  dotsContainer.innerHTML='';
+  if(indices.length<=1){dotsContainer.parentElement.style.opacity='0';return;}
+  dotsContainer.parentElement.style.opacity='1';
+  const posInChapter=indices.indexOf(cur);
+  const label=document.createElement('span');
+  label.className='ch-label';
+  label.textContent=(posInChapter+1)+'/'+indices.length;
+  dotsContainer.appendChild(label);
+  indices.forEach((slideIdx,dotIdx)=>{
+    const dot=document.createElement('span');
+    dot.className='ch-dot'+(slideIdx===cur?' active':'');
+    dot.title='Slide '+(dotIdx+1)+' de '+indices.length;
+    dot.addEventListener('click',()=>go(slideIdx));
+    dotsContainer.appendChild(dot);
+  });
+}
+
+// Update arrow button states
+function updateArrows(){
+  btnPrev.classList.toggle('disabled',cur===0);
+  btnNext.classList.toggle('disabled',cur===total-1);
+}
+
+function go(n){
+  if(n<0||n>=total)return;
+  slides[cur].classList.remove('active');
+  cur=n;
+  slides[cur].classList.add('active');
+  ctr.textContent=(cur+1)+'/'+total;
+  fill.style.width=((cur+1)/total*100)+'%';
+  const ch=slides[cur].dataset.chapter;
+  navs.forEach(v=>{v.classList.toggle('active',v.dataset.chapter===ch);});
+  slides[cur].scrollTop=0;
+  renderDots();
+  updateArrows();
+}
+
+function goTo(ch){
+  for(let i=0;i<total;i++){
+    if(slides[i].dataset.chapter==ch){go(i);return;}
+  }
+}
+
+// Arrow button clicks
+btnPrev.addEventListener('click',()=>go(cur-1));
+btnNext.addEventListener('click',()=>go(cur+1));
+
+// Keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ')go(cur+1);
+  if(e.key==='ArrowLeft')go(cur-1);
+  if(e.key==='Home')go(0);
+  if(e.key==='End')go(total-1);
+});
+
+// Touch swipe
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});
+document.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)go(cur+1);if(d>50)go(cur-1);});
+
 go(0);
 </script>
 </body>
