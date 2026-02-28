@@ -4,327 +4,203 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ETD - Educação em Tecnologias Digitais | IFRN</title>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --if-verde: #2f9e41;
   --ifrn-verde: #539839;
-  --ifrn-verde-medio: #5AC45C;
-  --ifrn-verde-claro: #96D997;
-  --slide-bg-principal: #0a0a0a;
-  --slide-bg-secundario: #111111;
-  --slide-bg-card: #1a1a1a;
-  --slide-texto: #e8e8e8;
-  --slide-texto-sutil: #888888;
-  --slide-titulo: #ffffff;
-  --slide-acento-verde: #4CAF50;
-  --slide-acento-verm: #E53935;
-  --slide-acento-hover: #66BB6A;
-  --slide-borda: #2a2a2a;
-  --border-radius: 12px;
+  --ifrn-vermelho: #b93120;
+  --if-verde: #2f9e41;
+  --if-vermelho: #cd191e;
+  --verde-claro: #5ebb7a;
+  --verde-bg: #f0f7f0;
+
+  --bg: #ffffff;
+  --bg-sec: #f8f9fa;
+  --bg-card: #ffffff;
+  --texto: #2d2d2d;
+  --texto-sec: #5a5a5a;
+  --texto-sutil: #888888;
+  --titulo: #1a1a1a;
+  --borda: #e5e5e5;
+  --borda-hover: #539839;
+  --sombra: 0 2px 12px rgba(0,0,0,0.06);
+  --sombra-hover: 0 8px 30px rgba(83,152,57,0.12);
+  --radius: 10px;
   --transicao: 0.3s ease;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  background: var(--slide-bg-principal);
-  color: var(--slide-texto);
+  font-family: 'Raleway', sans-serif;
+  background: var(--bg-sec);
+  color: var(--texto);
   min-height: 100vh;
 }
 
-/* CABECALHO IFRN */
-.cabecalho-bar {
-  height: 4px;
-  background: linear-gradient(90deg, #2f9e41 0%, #2f9e41 85%, #cd191e 85%, #cd191e 100%);
-}
+/* CABECALHO */
+.top-bar { height: 4px; background: linear-gradient(90deg, var(--if-verde) 0%, var(--if-verde) 85%, var(--if-vermelho) 85%, var(--if-vermelho) 100%); }
 
 .cabecalho {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 14px 30px;
-  background: var(--slide-bg-secundario);
-  border-bottom: 1px solid var(--slide-borda);
+  justify-content: space-between;
+  padding: 12px 40px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--borda);
 }
 
-.cabecalho img { height: 40px; width: auto; }
+.cabecalho-left { display: flex; align-items: center; gap: 16px; }
 
-.cabecalho-text {
-  font-size: 0.7rem;
-  color: var(--slide-texto-sutil);
-  line-height: 1.5;
+.cabecalho-logo {
+  height: 44px; width: auto;
+  background: #fff; padding: 4px; border-radius: 4px;
 }
 
-.cabecalho-text strong {
-  color: var(--slide-texto);
-  font-size: 0.75rem;
-}
+.cabecalho-text { font-size: 0.75rem; color: var(--texto-sec); line-height: 1.5; }
+.cabecalho-text strong { color: var(--titulo); font-size: 0.8rem; font-weight: 700; }
+
+.cabecalho-nav { display: flex; gap: 20px; }
+.cabecalho-nav a { font-size: 0.8rem; color: var(--texto-sec); text-decoration: none; font-weight: 500; transition: color var(--transicao); }
+.cabecalho-nav a:hover { color: var(--ifrn-verde); }
 
 /* HEADER */
 .header {
+  background: linear-gradient(135deg, #1a5e1f 0%, #2f9e41 50%, #539839 100%);
+  color: #fff;
   text-align: center;
-  padding: 50px 20px 35px;
-  border-bottom: 1px solid var(--slide-borda);
+  padding: 50px 24px 40px;
+  position: relative;
 }
 
-.header .institution {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: var(--slide-texto-sutil);
-  margin-bottom: 20px;
-}
+.header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--if-vermelho); }
 
-.header h1 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: var(--slide-titulo);
-  margin-bottom: 8px;
-}
+.header .back { display: inline-block; font-size: 0.8rem; color: rgba(255,255,255,0.7); text-decoration: none; margin-bottom: 16px; transition: color var(--transicao); }
+.header .back:hover { color: #fff; }
 
-.header .destaque {
-  background: linear-gradient(135deg, var(--ifrn-verde), var(--ifrn-verde-medio));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.header h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 8px; }
+.header .subtitle { font-size: 1rem; opacity: 0.85; font-weight: 300; }
+.header .professor { margin-top: 16px; font-size: 0.85rem; opacity: 0.7; }
 
-.header .subtitle {
-  font-size: 1.1rem;
-  color: var(--slide-texto-sutil);
-  font-weight: 300;
-  margin-top: 8px;
-}
+/* MAIN */
+.container { max-width: 1000px; margin: 0 auto; padding: 40px 24px 60px; }
 
-.header .divider {
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--slide-acento-verde), var(--ifrn-verde-medio));
-  border-radius: 2px;
-  margin: 20px auto 0;
+.section-label {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px;
+  color: var(--ifrn-verde); font-weight: 700; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
 }
-
-.header .professor {
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: var(--slide-texto-sutil);
-}
-
-/* MAIN CONTENT */
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px 60px;
-}
-
-/* SECTION TITLE */
-.section-title {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--slide-acento-verde);
-  margin-bottom: 24px;
-  padding-left: 4px;
-}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--borda); }
 
 /* AULA CARDS */
 .aulas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-bottom: 50px;
+  gap: 18px;
+  margin-bottom: 40px;
 }
 
 .aula-card {
-  background: var(--slide-bg-card);
-  border: 1px solid var(--slide-borda);
-  border-radius: var(--border-radius);
-  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius);
+  padding: 24px 22px;
   text-decoration: none;
   color: inherit;
   transition: all var(--transicao);
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.aula-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--slide-acento-verde);
-  opacity: 0;
-  transition: opacity var(--transicao);
+  box-shadow: var(--sombra);
+  border-left: 4px solid transparent;
 }
 
 .aula-card:hover {
-  border-color: var(--slide-acento-verde);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(76, 175, 80, 0.1);
-}
-
-.aula-card:hover::before {
-  opacity: 1;
+  border-left-color: var(--ifrn-verde);
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-hover);
 }
 
 .aula-card .aula-number {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--slide-acento-verde);
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--ifrn-verde); font-weight: 700; margin-bottom: 8px;
 }
 
-.aula-card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--slide-titulo);
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-
-.aula-card p {
-  font-size: 0.9rem;
-  color: var(--slide-texto-sutil);
-  line-height: 1.6;
-  flex-grow: 1;
-}
+.aula-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--titulo); margin-bottom: 8px; line-height: 1.3; }
+.aula-card p { font-size: 0.85rem; color: var(--texto-sec); line-height: 1.6; flex-grow: 1; }
 
 .aula-card .aula-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--slide-borda);
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--borda);
 }
 
 .aula-tag {
-  font-size: 0.7rem;
-  padding: 4px 10px;
-  border-radius: 20px;
-  background: rgba(76, 175, 80, 0.1);
-  color: var(--slide-acento-verde);
-  font-weight: 600;
+  font-size: 0.68rem; padding: 3px 10px; border-radius: 20px; font-weight: 600;
 }
+.aula-tag.active { background: var(--verde-bg); color: var(--ifrn-verde); }
+.aula-tag.soon { background: var(--bg-sec); color: var(--texto-sutil); }
 
-.aula-arrow {
-  font-size: 1.2rem;
-  color: var(--slide-texto-sutil);
-  transition: all var(--transicao);
-}
+.aula-arrow { font-size: 1.1rem; color: var(--texto-sutil); transition: all var(--transicao); }
+.aula-card:hover .aula-arrow { color: var(--ifrn-verde); transform: translateX(3px); }
 
-.aula-card:hover .aula-arrow {
-  color: var(--slide-acento-verde);
-  transform: translateX(4px);
-}
+.aula-card.disabled { opacity: 0.45; pointer-events: none; }
 
-/* DISABLED CARD */
-.aula-card.disabled {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.aula-card.disabled .aula-tag {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--slide-texto-sutil);
-}
-
-/* RESOURCES SECTION */
-.resources {
-  margin-top: 20px;
-}
-
+/* RESOURCES */
 .resource-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  background: var(--slide-bg-card);
-  border: 1px solid var(--slide-borda);
-  border-radius: var(--border-radius);
-  margin-bottom: 10px;
-  text-decoration: none;
-  color: inherit;
-  transition: all var(--transicao);
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--borda);
+  border-radius: var(--radius); margin-bottom: 10px;
+  text-decoration: none; color: inherit; transition: all var(--transicao);
+  box-shadow: var(--sombra);
 }
-
-.resource-item:hover {
-  border-color: var(--slide-acento-verde);
-  transform: translateX(4px);
-}
-
-.resource-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.resource-info h4 {
-  font-size: 1rem;
-  color: var(--slide-titulo);
-  font-weight: 600;
-}
-
-.resource-info p {
-  font-size: 0.8rem;
-  color: var(--slide-texto-sutil);
-}
+.resource-item:hover { border-color: var(--borda-hover); transform: translateX(4px); }
+.resource-icon { font-size: 1.3rem; flex-shrink: 0; }
+.resource-info h4 { font-size: 0.9rem; color: var(--titulo); font-weight: 600; }
+.resource-info p { font-size: 0.75rem; color: var(--texto-sutil); }
 
 /* FOOTER */
 .footer {
-  text-align: center;
-  padding: 30px 20px;
-  border-top: 1px solid var(--slide-borda);
-  font-size: 0.8rem;
-  color: var(--slide-texto-sutil);
+  background: #1a1a1a; color: #aaa; padding: 24px 20px;
+  text-align: center; font-size: 0.75rem;
 }
-
-.footer a {
-  color: var(--slide-acento-verde);
-  text-decoration: none;
-}
-
+.footer a { color: var(--verde-claro); text-decoration: none; }
 .footer a:hover { text-decoration: underline; }
 
-/* RESPONSIVE */
 @media (max-width: 640px) {
-  .header h1 { font-size: 1.8rem; }
+  .header h1 { font-size: 1.7rem; }
   .aulas-grid { grid-template-columns: 1fr; }
-  .container { padding: 24px 16px 40px; }
+  .cabecalho { padding: 10px 16px; }
+  .cabecalho-nav { display: none; }
 }
 </style>
 </head>
 <body>
 
 <!-- CABECALHO IFRN -->
-<div class="cabecalho-bar"></div>
+<div class="top-bar"></div>
 <div class="cabecalho">
-  <img src="../img/logo-ifrn.jpg" alt="Logo IFRN">
-  <div class="cabecalho-text">
-    <strong>Instituto Federal de Educação, Ciência e Tecnologia</strong><br>
-    Rio Grande do Norte
+  <div class="cabecalho-left">
+    <img src="../img/logo-ifrn.jpg" alt="Logo IFRN" class="cabecalho-logo">
+    <div class="cabecalho-text">
+      <strong>Instituto Federal de Educação, Ciência e Tecnologia</strong><br>
+      Rio Grande do Norte
+    </div>
   </div>
+  <nav class="cabecalho-nav">
+    <a href="../">Portal</a>
+    <a href="../ppi/">PPI</a>
+  </nav>
 </div>
 
 <header class="header">
-  <a href="../" style="display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--slide-texto-sutil);text-decoration:none;margin-bottom:16px;transition:color 0.3s;">← Voltar ao portal</a>
-  <h1>Educação em<br><span class="destaque">Tecnologias Digitais</span></h1>
+  <a href="../" class="back">← Voltar ao portal</a>
+  <h1>Educação em Tecnologias Digitais</h1>
   <p class="subtitle">Material de apoio para as aulas</p>
-  <div class="divider"></div>
-  <p class="professor">Prof. Jeferson Queiroga &bull; IFRN &bull; 2026.1</p>
+  <p class="professor">Prof. Jeferson Queiroga — IFRN — 2026.1</p>
 </header>
 
 <main class="container">
 
-  <!-- AULAS -->
-  <p class="section-title">📚 Aulas</p>
+  <p class="section-label">Aulas</p>
   <div class="aulas-grid">
 
     <a href="aula01/" class="aula-card">
@@ -332,7 +208,7 @@ body {
       <h3>Noções Básicas de Sistemas Operacionais e Utilitários</h3>
       <p>Fundamentos, arquitetura interna, kernel, processos, memória, sistemas de arquivos e segurança.</p>
       <div class="aula-footer">
-        <span class="aula-tag">26 slides</span>
+        <span class="aula-tag active">28 slides</span>
         <span class="aula-arrow">→</span>
       </div>
     </a>
@@ -342,7 +218,7 @@ body {
       <h3>Em breve</h3>
       <p>Conteúdo em preparação.</p>
       <div class="aula-footer">
-        <span class="aula-tag">Em breve</span>
+        <span class="aula-tag soon">Em breve</span>
         <span class="aula-arrow">→</span>
       </div>
     </div>
@@ -352,15 +228,14 @@ body {
       <h3>Em breve</h3>
       <p>Conteúdo em preparação.</p>
       <div class="aula-footer">
-        <span class="aula-tag">Em breve</span>
+        <span class="aula-tag soon">Em breve</span>
         <span class="aula-arrow">→</span>
       </div>
     </div>
 
   </div>
 
-  <!-- RECURSOS -->
-  <p class="section-title">📎 Recursos</p>
+  <p class="section-label">Recursos</p>
   <div class="resources">
     <a href="ementa/ementa.pdf" class="resource-item" target="_blank">
       <span class="resource-icon">📄</span>
@@ -374,8 +249,8 @@ body {
 </main>
 
 <footer class="footer">
-  <p>IFRN &bull; Educação em Tecnologias Digitais &bull; 2026.1</p>
-  <p style="margin-top:6px;">Hospedado via <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+  <p>IFRN — Educação em Tecnologias Digitais — 2026.1</p>
+  <p style="margin-top:6px;"><a href="../">← Portal principal</a></p>
 </footer>
 
 </body>
