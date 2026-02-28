@@ -8,10 +8,7 @@
 <style>
 :root {
   --if-verde: #2f9e41;
-  --if-vermelho: #cd191e;
   --ifrn-verde: #539839;
-  --ifrn-vermelho: #b93120;
-  --ifrn-verde-escuro: #369637;
   --ifrn-verde-medio: #5AC45C;
   --ifrn-verde-claro: #96D997;
   --slide-bg-principal: #0a0a0a;
@@ -30,7 +27,7 @@
   --fonte-corpo: 'Open Sans', sans-serif;
   --fonte-codigo: 'Fira Code', monospace;
   --sidebar-largura: 260px;
-  --slide-padding: 60px;
+  --slide-padding: 50px;
   --border-radius: 12px;
   --transicao: 0.3s ease;
 }
@@ -53,20 +50,19 @@ body {
   height: 100vh;
   background: var(--slide-bg-secundario);
   border-right: 1px solid var(--slide-borda);
-  padding: 20px 0;
+  padding: 16px 0;
   overflow-y: auto;
   z-index: 100;
-  transition: transform var(--transicao);
 }
 
 .sidebar-header {
-  padding: 10px 20px 20px;
+  padding: 8px 20px 16px;
   border-bottom: 1px solid var(--slide-borda);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .sidebar-header h3 {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--slide-acento-verde);
@@ -74,14 +70,25 @@ body {
 }
 
 .sidebar-header p {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: var(--slide-texto-sutil);
 }
 
+.sidebar-header .back-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.65rem;
+  color: var(--slide-texto-sutil);
+  text-decoration: none;
+  transition: color var(--transicao);
+}
+
+.sidebar-header .back-link:hover { color: var(--slide-acento-verde); }
+
 .nav-item {
-  padding: 10px 20px;
+  padding: 9px 20px;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--slide-texto-sutil);
   transition: all var(--transicao);
   border-left: 3px solid transparent;
@@ -102,14 +109,14 @@ body {
   font-weight: 600;
 }
 
-.nav-item .nav-icon { font-size: 1rem; }
+.nav-item .nav-icon { font-size: 0.9rem; }
 
 /* SLIDE COUNTER */
 .slide-counter {
   position: fixed;
-  top: 20px;
-  right: 30px;
-  font-size: 0.9rem;
+  top: 16px;
+  right: 24px;
+  font-size: 0.85rem;
   color: var(--slide-texto-sutil);
   z-index: 100;
   font-family: var(--fonte-codigo);
@@ -136,6 +143,7 @@ body {
   transform: translateX(40px);
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
+  overflow-y: auto;
 }
 
 .slide.active {
@@ -145,62 +153,53 @@ body {
 }
 
 .slide-content {
-  max-width: 900px;
+  max-width: 920px;
   width: 100%;
-  text-align: center;
 }
 
 /* TYPOGRAPHY */
 h1 {
   font-family: var(--fonte-titulo);
-  font-size: 3.2rem;
+  font-size: 2.6rem;
   font-weight: 800;
   color: var(--slide-titulo);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   line-height: 1.15;
+  text-align: center;
 }
 
 h2 {
   font-family: var(--fonte-titulo);
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--slide-titulo);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   line-height: 1.2;
+  text-align: center;
 }
 
 h3 {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--slide-acento-verde);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-align: center;
 }
 
-p {
-  font-size: 1.4rem;
-  line-height: 1.7;
+p, .text {
+  font-size: 1.1rem;
+  line-height: 1.75;
   color: var(--slide-texto);
 }
 
-.subtitle {
-  font-size: 1.3rem;
-  color: var(--slide-texto-sutil);
-  font-weight: 300;
-}
-
+.text-center { text-align: center; }
+.subtitle { font-size: 1.15rem; color: var(--slide-texto-sutil); font-weight: 300; text-align: center; }
 .verde { color: var(--slide-acento-verde); }
 .vermelho { color: var(--slide-acento-verm); }
 .sutil { color: var(--slide-texto-sutil); }
-
-.numero-impacto {
-  font-size: 5rem;
-  font-weight: 800;
-  color: var(--slide-acento-verde);
-  line-height: 1;
-  margin-bottom: 10px;
-}
+.bold { font-weight: 700; }
 
 .destaque-texto {
   background: linear-gradient(135deg, var(--ifrn-verde), var(--ifrn-verde-medio));
@@ -210,75 +209,115 @@ p {
   font-weight: 700;
 }
 
+.explicacao {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--slide-texto);
+  text-align: left;
+  max-width: 780px;
+  margin: 16px auto 0;
+}
+
+.explicacao strong { color: var(--slide-titulo); }
+
+.analogia {
+  background: var(--slide-bg-destaque);
+  border-left: 3px solid var(--slide-acento-verde);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  padding: 16px 20px;
+  margin: 16px auto 0;
+  max-width: 780px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--slide-texto);
+}
+
+.analogia .analogia-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--slide-acento-verde);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
 /* CARDS */
 .cards {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .card {
   background: var(--slide-bg-card);
   border: 1px solid var(--slide-borda);
   border-radius: var(--border-radius);
-  padding: 28px 24px;
+  padding: 22px 20px;
   flex: 1;
   min-width: 180px;
   max-width: 280px;
-  text-align: center;
   transition: all var(--transicao);
 }
 
 .card:hover {
   border-color: var(--slide-acento-verde);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
-.card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
-  display: block;
-}
+.card-icon { font-size: 2rem; margin-bottom: 10px; display: block; text-align: center; }
 
 .card h4 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--slide-titulo);
   margin-bottom: 8px;
   font-weight: 700;
+  text-align: center;
 }
 
 .card p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--slide-texto-sutil);
-  line-height: 1.5;
+  line-height: 1.6;
+  text-align: left;
 }
 
-/* DIAGRAM: LAYERS */
+.card p.card-detail {
+  font-size: 0.85rem;
+  color: var(--slide-texto);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* LAYERS DIAGRAM */
 .layers {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100%;
-  max-width: 600px;
+  max-width: 550px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .layer {
-  padding: 18px 40px;
+  padding: 14px 30px;
   text-align: center;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   width: 100%;
   border: 1px solid var(--slide-borda);
   transition: all var(--transicao);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.layer:hover { transform: scale(1.03); }
+.layer:hover { transform: scale(1.02); }
+.layer .layer-desc { font-size: 0.75rem; color: var(--slide-texto-sutil); font-weight: 400; }
 
 .layer:nth-child(1) {
   background: rgba(76, 175, 80, 0.15);
@@ -286,18 +325,9 @@ p {
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   border-color: var(--slide-acento-verde);
 }
-.layer:nth-child(2) {
-  background: rgba(76, 175, 80, 0.10);
-  color: var(--ifrn-verde-claro);
-}
-.layer:nth-child(3) {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--slide-texto);
-}
-.layer:nth-child(4) {
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--slide-texto-sutil);
-}
+.layer:nth-child(2) { background: rgba(76, 175, 80, 0.10); color: var(--ifrn-verde-claro); }
+.layer:nth-child(3) { background: rgba(255, 255, 255, 0.05); color: var(--slide-texto); }
+.layer:nth-child(4) { background: rgba(255, 255, 255, 0.03); color: var(--slide-texto-sutil); }
 .layer:nth-child(5) {
   background: rgba(229, 57, 53, 0.1);
   color: var(--slide-acento-verm);
@@ -310,97 +340,58 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .state {
   background: var(--slide-bg-card);
   border: 2px solid var(--slide-borda);
   border-radius: 50px;
-  padding: 14px 24px;
+  padding: 12px 20px;
   font-weight: 600;
-  font-size: 1rem;
-  transition: all var(--transicao);
+  font-size: 0.9rem;
 }
 
-.state.highlight {
-  border-color: var(--slide-acento-verde);
-  color: var(--slide-acento-verde);
-  background: rgba(76, 175, 80, 0.1);
-}
+.state.highlight { border-color: var(--slide-acento-verde); color: var(--slide-acento-verde); background: rgba(76, 175, 80, 0.1); }
+.arrow { color: var(--slide-acento-verde); font-size: 1.2rem; font-weight: 700; }
 
-.arrow {
-  color: var(--slide-acento-verde);
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-/* MEMORY HIERARCHY */
+/* MEMORY PYRAMID */
 .pyramid {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  margin-top: 30px;
+  gap: 5px;
+  margin-top: 20px;
 }
 
 .pyramid-level {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 16px;
+  justify-content: space-between;
+  padding: 14px 20px;
   border-radius: 8px;
   font-weight: 600;
-  transition: all var(--transicao);
+  font-size: 0.95rem;
 }
 
-.pyramid-level:hover { transform: scale(1.03); }
+.pyramid-level:nth-child(1) { width: 35%; background: rgba(76, 175, 80, 0.2); border: 1px solid var(--slide-acento-verde); color: var(--slide-acento-verde); }
+.pyramid-level:nth-child(2) { width: 50%; background: rgba(76, 175, 80, 0.12); border: 1px solid rgba(76, 175, 80, 0.4); color: var(--ifrn-verde-claro); }
+.pyramid-level:nth-child(3) { width: 70%; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--slide-borda); color: var(--slide-texto); }
+.pyramid-level:nth-child(4) { width: 90%; background: rgba(229, 57, 53, 0.08); border: 1px solid rgba(229, 57, 53, 0.3); color: var(--slide-acento-verm); }
 
-.pyramid-level:nth-child(1) {
-  width: 35%;
-  background: rgba(76, 175, 80, 0.2);
-  border: 1px solid var(--slide-acento-verde);
-  color: var(--slide-acento-verde);
-}
-.pyramid-level:nth-child(2) {
-  width: 50%;
-  background: rgba(76, 175, 80, 0.12);
-  border: 1px solid rgba(76, 175, 80, 0.4);
-  color: var(--ifrn-verde-claro);
-}
-.pyramid-level:nth-child(3) {
-  width: 70%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--slide-borda);
-  color: var(--slide-texto);
-}
-.pyramid-level:nth-child(4) {
-  width: 90%;
-  background: rgba(229, 57, 53, 0.08);
-  border: 1px solid rgba(229, 57, 53, 0.3);
-  color: var(--slide-acento-verm);
-}
-
-.speed-tag {
-  font-size: 0.75rem;
-  padding: 3px 10px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--slide-texto-sutil);
-}
+.speed-tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.08); color: var(--slide-texto-sutil); }
 
 /* VS COMPARISON */
 .vs-grid {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 20px;
+  gap: 16px;
   align-items: start;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100%;
-  max-width: 850px;
+  max-width: 880px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -409,343 +400,133 @@ p {
   background: var(--slide-bg-card);
   border: 1px solid var(--slide-borda);
   border-radius: var(--border-radius);
-  padding: 28px 24px;
+  padding: 24px 20px;
   text-align: left;
 }
 
-.vs-col h4 {
-  font-size: 1.3rem;
-  margin-bottom: 16px;
-  color: var(--slide-titulo);
-  text-align: center;
-}
-
-.vs-col ul {
-  list-style: none;
-  padding: 0;
-}
-
-.vs-col ul li {
-  padding: 6px 0;
-  font-size: 1rem;
-  color: var(--slide-texto);
-  border-bottom: 1px solid var(--slide-borda);
-}
-
+.vs-col h4 { font-size: 1.15rem; margin-bottom: 14px; color: var(--slide-titulo); text-align: center; }
+.vs-col ul { list-style: none; padding: 0; }
+.vs-col ul li { padding: 8px 0; font-size: 0.95rem; color: var(--slide-texto); border-bottom: 1px solid var(--slide-borda); line-height: 1.5; }
 .vs-col ul li:last-child { border-bottom: none; }
+.vs-divider { display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: var(--slide-texto-sutil); align-self: center; }
 
-.vs-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--slide-texto-sutil);
-  align-self: center;
-}
-
-/* LIST ITEMS */
-.items-list {
-  text-align: left;
-  max-width: 700px;
-  margin: 20px auto 0;
-}
-
-.items-list .item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--slide-borda);
-  font-size: 1.15rem;
-}
-
+/* ITEMS LIST */
+.items-list { text-align: left; max-width: 750px; margin: 16px auto 0; }
+.items-list .item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--slide-borda); font-size: 1rem; line-height: 1.6; }
 .items-list .item:last-child { border-bottom: none; }
-
-.item-icon {
-  font-size: 1.4rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
+.item-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
 
 /* CODE BLOCK */
 .code-block {
   background: var(--slide-bg-card);
   border: 1px solid var(--slide-borda);
   border-radius: var(--border-radius);
-  padding: 30px 40px;
+  padding: 24px 30px;
   font-family: var(--fonte-codigo);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: left;
   color: var(--slide-acento-verde);
-  margin-top: 24px;
+  margin-top: 16px;
   line-height: 2;
 }
 
-/* TITLE SLIDE */
-.title-slide {
-  text-align: center;
-}
-
-.title-slide .institution {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: var(--slide-texto-sutil);
-  margin-bottom: 40px;
-}
-
-.title-slide h1 {
-  font-size: 3.5rem;
-  margin-bottom: 10px;
-}
-
-.title-slide .divider {
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--slide-acento-verde), var(--ifrn-verde-medio));
-  border-radius: 2px;
-  margin: 24px auto;
-}
-
-.title-slide .professor {
-  font-size: 1rem;
-  color: var(--slide-texto-sutil);
-  margin-top: 40px;
-}
-
-/* PROGRESS BAR */
-.progress-bar {
-  position: fixed;
-  bottom: 0;
-  left: var(--sidebar-largura);
-  right: 0;
-  height: 3px;
-  background: var(--slide-borda);
-  z-index: 100;
-}
-
-.progress-bar .fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--slide-acento-verde), var(--ifrn-verde-medio));
-  transition: width 0.4s ease;
-}
-
-/* KEYBOARD HINT */
-.keyboard-hint {
-  position: fixed;
-  bottom: 16px;
-  right: 30px;
-  font-size: 0.7rem;
-  color: var(--slide-texto-sutil);
-  z-index: 100;
-  opacity: 0.5;
-}
-
-kbd {
-  background: var(--slide-bg-card);
-  border: 1px solid var(--slide-borda);
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-family: var(--fonte-codigo);
-  font-size: 0.65rem;
-}
-
-/* SCROLLBAR */
-.sidebar::-webkit-scrollbar { width: 4px; }
-.sidebar::-webkit-scrollbar-track { background: transparent; }
-.sidebar::-webkit-scrollbar-thumb { background: var(--slide-borda); border-radius: 2px; }
-
-/* THREE-COL KERNEL */
+/* THREE-COL */
 .three-col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 30px;
+  gap: 14px;
+  margin-top: 20px;
   width: 100%;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 920px;
 }
 
 .three-col .card { max-width: none; }
 
-/* TAG */
-.tag {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-top: 10px;
+/* TAGS */
+.tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-top: 8px; }
+.tag-green { background: rgba(76, 175, 80, 0.15); color: var(--slide-acento-verde); }
+.tag-red { background: rgba(229, 57, 53, 0.15); color: var(--slide-acento-verm); }
+.tag-blue { background: rgba(66, 165, 245, 0.15); color: #42A5F5; }
+
+/* TREE */
+.tree { text-align: center; margin-top: 20px; }
+.tree-root { display: inline-block; background: var(--slide-acento-verde); color: #000; padding: 10px 26px; border-radius: 8px; font-weight: 700; font-size: 1rem; }
+.tree-connector { width: 2px; height: 24px; background: var(--slide-borda); margin: 0 auto; }
+.tree-branches { display: flex; justify-content: center; gap: 16px; position: relative; }
+.tree-branches::before { content: ''; position: absolute; top: 0; left: 25%; right: 25%; height: 2px; background: var(--slide-borda); }
+.tree-branch { text-align: center; }
+.tree-branch-connector { width: 2px; height: 16px; background: var(--slide-borda); margin: 0 auto; }
+.tree-node { background: var(--slide-bg-card); border: 1px solid var(--slide-borda); border-radius: 8px; padding: 8px 14px; font-size: 0.9rem; color: var(--slide-texto); }
+.tree-leaf { margin-top: 6px; font-size: 0.75rem; color: var(--slide-texto-sutil); }
+
+/* BACKUP NUMBERS */
+.backup-strategy { display: flex; gap: 14px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+.backup-item { background: var(--slide-bg-card); border: 1px solid var(--slide-borda); border-radius: var(--border-radius); padding: 20px 18px; text-align: center; flex: 1; min-width: 140px; max-width: 200px; }
+.backup-item .num { font-size: 2.2rem; font-weight: 800; color: var(--slide-acento-verde); }
+.backup-item .label { font-size: 0.85rem; color: var(--slide-texto-sutil); margin-top: 4px; }
+
+/* TWO COL */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.tag-green {
-  background: rgba(76, 175, 80, 0.15);
-  color: var(--slide-acento-verde);
-}
+.two-col .card { max-width: none; }
 
-.tag-red {
-  background: rgba(229, 57, 53, 0.15);
-  color: var(--slide-acento-verm);
-}
+/* TITLE SLIDE */
+.title-slide { text-align: center; }
+.title-slide .institution { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 4px; color: var(--slide-texto-sutil); margin-bottom: 36px; }
+.title-slide h1 { font-size: 3rem; margin-bottom: 8px; }
+.title-slide .divider { width: 80px; height: 4px; background: linear-gradient(90deg, var(--slide-acento-verde), var(--ifrn-verde-medio)); border-radius: 2px; margin: 20px auto; }
+.title-slide .professor { font-size: 0.95rem; color: var(--slide-texto-sutil); margin-top: 36px; }
 
-.tag-blue {
-  background: rgba(66, 165, 245, 0.15);
-  color: #42A5F5;
-}
+/* PROGRESS BAR */
+.progress-bar { position: fixed; bottom: 0; left: var(--sidebar-largura); right: 0; height: 3px; background: var(--slide-borda); z-index: 100; }
+.progress-bar .fill { height: 100%; background: linear-gradient(90deg, var(--slide-acento-verde), var(--ifrn-verde-medio)); transition: width 0.4s ease; }
 
-/* TREE DIAGRAM */
-.tree {
-  text-align: center;
-  margin-top: 30px;
-}
+/* KEYBOARD HINT */
+.keyboard-hint { position: fixed; bottom: 14px; right: 24px; font-size: 0.65rem; color: var(--slide-texto-sutil); z-index: 100; opacity: 0.5; }
+kbd { background: var(--slide-bg-card); border: 1px solid var(--slide-borda); border-radius: 4px; padding: 2px 7px; font-family: var(--fonte-codigo); font-size: 0.6rem; }
 
-.tree-root {
-  display: inline-block;
-  background: var(--slide-acento-verde);
-  color: #000;
-  padding: 12px 30px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.tree-connector {
-  width: 2px;
-  height: 30px;
-  background: var(--slide-borda);
-  margin: 0 auto;
-}
-
-.tree-branches {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  position: relative;
-}
-
-.tree-branches::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 25%;
-  right: 25%;
-  height: 2px;
-  background: var(--slide-borda);
-}
-
-.tree-branch {
-  text-align: center;
-}
-
-.tree-branch-connector {
-  width: 2px;
-  height: 20px;
-  background: var(--slide-borda);
-  margin: 0 auto;
-}
-
-.tree-node {
-  background: var(--slide-bg-card);
-  border: 1px solid var(--slide-borda);
-  border-radius: 8px;
-  padding: 10px 18px;
-  font-size: 0.95rem;
-  color: var(--slide-texto);
-}
-
-.tree-leaf {
-  margin-top: 8px;
-  font-size: 0.8rem;
-  color: var(--slide-texto-sutil);
-}
-
-/* BACKUP STRATEGY */
-.backup-strategy {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-.backup-item {
-  background: var(--slide-bg-card);
-  border: 1px solid var(--slide-borda);
-  border-radius: var(--border-radius);
-  padding: 24px 20px;
-  text-align: center;
-  flex: 1;
-  min-width: 150px;
-  max-width: 200px;
-}
-
-.backup-item .num {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--slide-acento-verde);
-}
-
-.backup-item .label {
-  font-size: 0.9rem;
-  color: var(--slide-texto-sutil);
-  margin-top: 4px;
-}
-
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--slide-borda); border-radius: 2px; }
 </style>
 </head>
 <body>
 
 <!-- SIDEBAR -->
-<nav class="sidebar" id="sidebar">
+<nav class="sidebar">
   <div class="sidebar-header">
-    <h3>📚 ETD</h3>
-    <p>Aula 01 — Sistemas Operacionais</p>
+    <h3>📚 ETD — Aula 01</h3>
+    <p>Sistemas Operacionais e Utilitários</p>
+    <a href="../" class="back-link">← Voltar ao portal ETD</a>
   </div>
-  <div class="nav-item active" data-chapter="0" onclick="goToChapter(0)">
-    <span class="nav-icon">🏠</span> Apresentação
-  </div>
-  <div class="nav-item" data-chapter="1" onclick="goToChapter(1)">
-    <span class="nav-icon">📖</span> Fundamentos Teóricos
-  </div>
-  <div class="nav-item" data-chapter="2" onclick="goToChapter(2)">
-    <span class="nav-icon">🏗️</span> Arquitetura Interna
-  </div>
-  <div class="nav-item" data-chapter="3" onclick="goToChapter(3)">
-    <span class="nav-icon">⚙️</span> Processos
-  </div>
-  <div class="nav-item" data-chapter="4" onclick="goToChapter(4)">
-    <span class="nav-icon">🧠</span> Memória
-  </div>
-  <div class="nav-item" data-chapter="5" onclick="goToChapter(5)">
-    <span class="nav-icon">📁</span> Sistemas de Arquivos
-  </div>
-  <div class="nav-item" data-chapter="6" onclick="goToChapter(6)">
-    <span class="nav-icon">🔌</span> Dispositivos
-  </div>
-  <div class="nav-item" data-chapter="7" onclick="goToChapter(7)">
-    <span class="nav-icon">🖥️</span> GUI vs CLI
-  </div>
-  <div class="nav-item" data-chapter="8" onclick="goToChapter(8)">
-    <span class="nav-icon">🛡️</span> Utilitários e Segurança
-  </div>
-  <div class="nav-item" data-chapter="9" onclick="goToChapter(9)">
-    <span class="nav-icon">🎯</span> Considerações Finais
-  </div>
+  <div class="nav-item active" data-chapter="0" onclick="goToChapter(0)"><span class="nav-icon">🏠</span> Apresentação</div>
+  <div class="nav-item" data-chapter="1" onclick="goToChapter(1)"><span class="nav-icon">📖</span> Fundamentos</div>
+  <div class="nav-item" data-chapter="2" onclick="goToChapter(2)"><span class="nav-icon">🏗️</span> Arquitetura Interna</div>
+  <div class="nav-item" data-chapter="3" onclick="goToChapter(3)"><span class="nav-icon">⚙️</span> Processos</div>
+  <div class="nav-item" data-chapter="4" onclick="goToChapter(4)"><span class="nav-icon">🧠</span> Memória</div>
+  <div class="nav-item" data-chapter="5" onclick="goToChapter(5)"><span class="nav-icon">📁</span> Sistemas de Arquivos</div>
+  <div class="nav-item" data-chapter="6" onclick="goToChapter(6)"><span class="nav-icon">🔌</span> Dispositivos</div>
+  <div class="nav-item" data-chapter="7" onclick="goToChapter(7)"><span class="nav-icon">🖥️</span> GUI vs CLI</div>
+  <div class="nav-item" data-chapter="8" onclick="goToChapter(8)"><span class="nav-icon">🛡️</span> Utilitários e Segurança</div>
+  <div class="nav-item" data-chapter="9" onclick="goToChapter(9)"><span class="nav-icon">🎯</span> Conclusão</div>
 </nav>
 
-<!-- SLIDE COUNTER -->
-<div class="slide-counter" id="slideCounter">1/24</div>
-
-<!-- PROGRESS BAR -->
+<div class="slide-counter" id="slideCounter">1/28</div>
 <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
-
-<!-- KEYBOARD HINT -->
 <div class="keyboard-hint"><kbd>←</kbd> <kbd>→</kbd> para navegar</div>
 
-<!-- SLIDES -->
 <div class="slide-area">
+
+  <!-- ==================== CAPÍTULO 0: APRESENTAÇÃO ==================== -->
 
   <!-- SLIDE 1: TÍTULO -->
   <div class="slide active" data-chapter="0">
@@ -755,74 +536,82 @@ kbd {
       <h1>Noções Básicas de<br><span class="destaque-texto">Sistemas Operacionais</span></h1>
       <div class="divider"></div>
       <p class="subtitle">Capítulo 1 — Fundamentação Técnica e Conceitual</p>
-      <p class="professor">IFRN • 2026.1</p>
+      <p class="professor">Prof. Jeferson Queiroga &bull; IFRN &bull; 2026.1</p>
     </div>
   </div>
 
   <!-- SLIDE 2: OBJETIVOS -->
   <div class="slide" data-chapter="0">
     <div class="slide-content">
-      <h3>Ao final desta aula</h3>
-      <h2>O que você vai dominar</h2>
+      <h3>Ao final desta aula você será capaz de</h3>
+      <h2>Objetivos de Aprendizagem</h2>
       <div class="cards">
         <div class="card">
           <span class="card-icon">🎯</span>
           <h4>Papel do SO</h4>
-          <p>Entender profundamente o papel do sistema operacional</p>
+          <p class="card-detail">Compreender por que todo computador precisa de um sistema operacional e qual sua função como intermediário entre você e o hardware.</p>
         </div>
         <div class="card">
           <span class="card-icon">🔗</span>
-          <h4>HW ↔ SW</h4>
-          <p>Compreender a interação entre hardware e software</p>
+          <h4>Hardware ↔ Software</h4>
+          <p class="card-detail">Explicar como o SO traduz comandos simples do usuário em operações complexas no hardware.</p>
         </div>
         <div class="card">
           <span class="card-icon">🧩</span>
-          <h4>Conceitos</h4>
-          <p>Kernel, processo, memória virtual, sistema de arquivos</p>
+          <h4>Conceitos-chave</h4>
+          <p class="card-detail">Dominar os conceitos de kernel, processo, memória virtual e sistema de arquivos com profundidade técnica.</p>
         </div>
         <div class="card">
           <span class="card-icon">⚡</span>
-          <h4>Implicações</h4>
-          <p>Desempenho e segurança nas decisões internas do SO</p>
+          <h4>Impacto real</h4>
+          <p class="card-detail">Identificar como decisões internas do SO afetam diretamente o desempenho e a segurança do computador.</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ==================== CAPÍTULO 1: FUNDAMENTOS ==================== -->
+
   <!-- SLIDE 3: O QUE É UM SO -->
   <div class="slide" data-chapter="1">
     <div class="slide-content">
-      <h3>Fundamentos</h3>
-      <h1>O que é um<br><span class="destaque-texto">Sistema Operacional</span>?</h1>
-      <p class="subtitle" style="margin-top:20px;">Conjunto de programas que atua como <strong class="verde">intermediário</strong><br>entre o usuário e o hardware</p>
+      <h3>Definição Formal</h3>
+      <h1>O que é um <span class="destaque-texto">Sistema Operacional</span>?</h1>
+      <p class="explicacao">
+        Um Sistema Operacional (SO) é um <strong>conjunto de programas</strong> que atua como intermediário entre o usuário e o hardware do computador. Ele gerencia todos os recursos físicos (processador, memória, disco) e lógicos (arquivos, processos), oferecendo serviços para que os aplicativos funcionem corretamente.
+      </p>
+      <div class="analogia">
+        <div class="analogia-label">💡 Analogia</div>
+        Pense no SO como o <strong>gerente de um hotel</strong>: ele organiza os quartos (memória), decide quem entra e sai (processos), cuida da manutenção (drivers) e garante que os hóspedes (aplicativos) não invadam o quarto uns dos outros.
+      </div>
     </div>
   </div>
 
   <!-- SLIDE 4: 4 RESPONSABILIDADES -->
   <div class="slide" data-chapter="1">
     <div class="slide-content">
-      <h3>Responsabilidades do SO</h3>
-      <h2>4 funções essenciais</h2>
+      <h3>Funções essenciais</h3>
+      <h2>As 4 responsabilidades do SO</h2>
       <div class="cards">
         <div class="card">
           <span class="card-icon">🔍</span>
-          <h4>Abstração</h4>
-          <p>Esconder a complexidade do hardware</p>
+          <h4>Abstração de Hardware</h4>
+          <p class="card-detail">Esconde a complexidade do hardware, fornecendo interfaces simples. Você não precisa saber como o disco grava bits para salvar um arquivo.</p>
         </div>
         <div class="card">
           <span class="card-icon">📊</span>
-          <h4>Gerenciamento</h4>
-          <p>Alocar e controlar recursos</p>
+          <h4>Gerenciamento de Recursos</h4>
+          <p class="card-detail">Decide como dividir CPU, memória e disco entre os programas em execução, evitando conflitos e desperdício.</p>
         </div>
         <div class="card">
           <span class="card-icon">▶️</span>
-          <h4>Execução</h4>
-          <p>Controlar a execução de programas</p>
+          <h4>Execução Controlada</h4>
+          <p class="card-detail">Controla o ciclo de vida dos programas: inicia, pausa, retoma e encerra processos de forma organizada.</p>
         </div>
         <div class="card">
           <span class="card-icon">🛡️</span>
-          <h4>Proteção</h4>
-          <p>Isolar processos entre si</p>
+          <h4>Proteção e Isolamento</h4>
+          <p class="card-detail">Impede que um programa acesse dados de outro ou cause falhas no sistema. Cada processo opera em seu próprio espaço protegido.</p>
         </div>
       </div>
     </div>
@@ -831,30 +620,42 @@ kbd {
   <!-- SLIDE 5: ABSTRAÇÃO -->
   <div class="slide" data-chapter="1">
     <div class="slide-content">
-      <h3>Abstração de Hardware</h3>
-      <h2>Esconder a <span class="destaque-texto">complexidade</span></h2>
-      <p class="subtitle" style="margin-bottom:20px;">O programador não precisa saber como o disco grava bits fisicamente</p>
+      <h3>Conceito fundamental</h3>
+      <h2>Abstração de Hardware</h2>
+      <p class="explicacao">
+        <strong>Abstração significa esconder a complexidade.</strong> Quando um programador escreve um comando para abrir um arquivo, ele não precisa saber como o disco rígido grava bits fisicamente (usando magnetismo, eletricidade ou laser). O SO faz toda essa tradução internamente.
+      </p>
       <div class="code-block">
-        <span class="sutil">// O que o programador faz:</span><br>
-        abrir("documento.txt")<br>
-        ler("documento.txt")<br>
-        salvar("documento.txt")<br><br>
-        <span class="sutil">// O SO traduz para operações elétricas e magnéticas ⚡</span>
+        <span class="sutil">// O que o programador escreve (simples):</span><br>
+        arquivo = abrir("relatorio.pdf")<br>
+        conteudo = ler(arquivo)<br>
+        salvar(arquivo)<br><br>
+        <span class="sutil">// O que o SO faz nos bastidores (complexo):</span><br>
+        <span style="color: var(--slide-texto-sutil);">→ Localizar setor no disco → Ativar cabeça de leitura</span><br>
+        <span style="color: var(--slide-texto-sutil);">→ Decodificar sinais magnéticos → Montar dados na RAM</span>
       </div>
+      <p class="explicacao sutil" style="font-size: 0.9rem; margin-top: 12px;">
+        Sem essa abstração, cada programador precisaria conhecer os detalhes elétricos de cada modelo de disco rígido — o que tornaria o desenvolvimento de software praticamente inviável.
+      </p>
     </div>
   </div>
+
+  <!-- ==================== CAPÍTULO 2: ARQUITETURA ==================== -->
 
   <!-- SLIDE 6: CAMADAS -->
   <div class="slide" data-chapter="2">
     <div class="slide-content">
       <h3>Arquitetura Interna</h3>
       <h2>Camadas do Sistema Operacional</h2>
+      <p class="explicacao text-center">
+        Um SO moderno é organizado em camadas, onde cada uma depende da anterior. Essa estrutura modular facilita a manutenção e aumenta a segurança, pois isola responsabilidades.
+      </p>
       <div class="layers">
-        <div class="layer">📱 Aplicações</div>
-        <div class="layer">🖥️ Interface do Usuário</div>
-        <div class="layer">⚙️ Serviços do Sistema</div>
-        <div class="layer">🧠 Kernel</div>
-        <div class="layer">🔧 Hardware</div>
+        <div class="layer">📱 Aplicações <span class="layer-desc">Chrome, Word, jogos...</span></div>
+        <div class="layer">🖥️ Interface do Usuário <span class="layer-desc">GUI ou CLI</span></div>
+        <div class="layer">⚙️ Serviços do Sistema <span class="layer-desc">Rede, áudio, impressão</span></div>
+        <div class="layer">🧠 Kernel <span class="layer-desc">Núcleo do SO</span></div>
+        <div class="layer">🔧 Hardware <span class="layer-desc">CPU, RAM, disco, placa de rede</span></div>
       </div>
     </div>
   </div>
@@ -862,19 +663,17 @@ kbd {
   <!-- SLIDE 7: KERNEL -->
   <div class="slide" data-chapter="2">
     <div class="slide-content">
-      <h3>O Núcleo</h3>
-      <h1>🧠 Kernel</h1>
-      <p style="margin: 20px 0;">Componente <strong class="verde">central</strong> do sistema operacional</p>
-      <div class="vs-grid" style="max-width:600px;">
-        <div class="vs-col" style="text-align:center;">
-          <h4 class="verde">Modo Kernel</h4>
-          <p style="font-size:1rem;">Acesso total ao hardware<br><span class="sutil" style="font-size:0.85rem;">Modo privilegiado</span></p>
-        </div>
-        <div class="vs-divider">⚡</div>
-        <div class="vs-col" style="text-align:center;">
-          <h4 class="vermelho">Modo Usuário</h4>
-          <p style="font-size:1rem;">Acesso restrito<br><span class="sutil" style="font-size:0.85rem;">Aplicações comuns</span></p>
-        </div>
+      <h3>O Núcleo do Sistema</h3>
+      <h2>🧠 O que é o Kernel?</h2>
+      <p class="explicacao">
+        O <strong>Kernel</strong> é o componente mais importante do sistema operacional. Ele é o primeiro programa carregado quando o computador liga e permanece na memória o tempo todo. O kernel opera em <strong class="verde">modo privilegiado</strong> (modo kernel), tendo acesso total ao hardware, enquanto os aplicativos comuns rodam em <strong class="vermelho">modo usuário</strong>, com acesso restrito.
+      </p>
+      <p class="explicacao">
+        Essa separação é uma <strong>medida de segurança essencial</strong>: se um aplicativo travar, ele não consegue derrubar o sistema inteiro, porque não tem permissão para acessar recursos críticos diretamente.
+      </p>
+      <div class="analogia">
+        <div class="analogia-label">💡 Analogia</div>
+        O kernel é como a <strong>sala de controle</strong> de uma usina de energia: apenas funcionários autorizados (processos do sistema) podem entrar. Os clientes (aplicativos) fazem pedidos pela recepção (chamadas de sistema), mas nunca tocam nos painéis diretamente.
       </div>
     </div>
   </div>
@@ -883,13 +682,13 @@ kbd {
   <div class="slide" data-chapter="2">
     <div class="slide-content">
       <h3>Kernel</h3>
-      <h2>Funções Principais</h2>
+      <h2>5 funções principais</h2>
       <div class="items-list">
-        <div class="item"><span class="item-icon">🔄</span><span>Escalonamento de processos</span></div>
-        <div class="item"><span class="item-icon">🧠</span><span>Gerenciamento de memória</span></div>
-        <div class="item"><span class="item-icon">🔌</span><span>Controle de dispositivos</span></div>
-        <div class="item"><span class="item-icon">⚡</span><span>Gerenciamento de interrupções</span></div>
-        <div class="item"><span class="item-icon">💬</span><span>Comunicação entre processos (IPC)</span></div>
+        <div class="item"><span class="item-icon">🔄</span><span><strong>Escalonamento de processos</strong> — Decide qual programa vai usar o processador a cada instante, alternando entre eles tão rápido que parece que todos rodam ao mesmo tempo.</span></div>
+        <div class="item"><span class="item-icon">🧠</span><span><strong>Gerenciamento de memória</strong> — Distribui a RAM entre os programas, garantindo que cada um tenha espaço suficiente sem invadir a área do outro.</span></div>
+        <div class="item"><span class="item-icon">🔌</span><span><strong>Controle de dispositivos</strong> — Comunica-se com impressoras, teclados, monitores e outros periféricos através dos drivers.</span></div>
+        <div class="item"><span class="item-icon">⚡</span><span><strong>Gerenciamento de interrupções</strong> — Responde a sinais urgentes do hardware, como uma tecla pressionada ou dados chegando pela rede.</span></div>
+        <div class="item"><span class="item-icon">💬</span><span><strong>Comunicação entre processos (IPC)</strong> — Permite que programas diferentes troquem informações entre si de forma segura.</span></div>
       </div>
     </div>
   </div>
@@ -897,61 +696,66 @@ kbd {
   <!-- SLIDE 9: TIPOS DE KERNEL -->
   <div class="slide" data-chapter="2">
     <div class="slide-content">
-      <h3>Tipos de Kernel</h3>
-      <h2>Monolítico vs Micro vs Híbrido</h2>
+      <h3>Arquiteturas</h3>
+      <h2>Tipos de Kernel</h2>
       <div class="three-col">
         <div class="card">
           <span class="card-icon">🐧</span>
           <h4>Monolítico</h4>
-          <p>Tudo dentro do núcleo</p>
+          <p class="card-detail"><strong>Todos os serviços</strong> (drivers, sistema de arquivos, rede) ficam dentro do núcleo, rodando em modo privilegiado.</p>
           <span class="tag tag-green">⚡ Alto desempenho</span><br>
-          <span class="tag tag-red">⚠️ Mais complexo</span>
-          <p style="margin-top:10px; font-size:0.85rem;" class="sutil">Ex: Linux</p>
+          <span class="tag tag-red">⚠️ Um bug pode travar tudo</span>
+          <p style="margin-top:10px; font-size:0.8rem;" class="sutil">Ex: Linux, Unix</p>
         </div>
         <div class="card">
           <span class="card-icon">🔬</span>
           <h4>Microkernel</h4>
-          <p>Só o essencial no núcleo</p>
-          <span class="tag tag-green">🛡️ Mais seguro</span><br>
-          <span class="tag tag-red">🐢 Menos veloz</span>
-          <p style="margin-top:10px; font-size:0.85rem;" class="sutil">Ex: MINIX</p>
+          <p class="card-detail">Apenas funções <strong>essenciais</strong> ficam no núcleo. Os demais serviços rodam como processos separados em modo usuário.</p>
+          <span class="tag tag-green">🛡️ Mais seguro e estável</span><br>
+          <span class="tag tag-red">🐢 Mais lento na comunicação</span>
+          <p style="margin-top:10px; font-size:0.8rem;" class="sutil">Ex: MINIX, QNX</p>
         </div>
         <div class="card">
           <span class="card-icon">🪟</span>
           <h4>Híbrido</h4>
-          <p>Mistura dos dois modelos</p>
-          <span class="tag tag-blue">⚖️ Equilíbrio</span>
-          <p style="margin-top:10px; font-size:0.85rem;" class="sutil">Ex: Windows</p>
+          <p class="card-detail">Combina as duas abordagens: mantém serviços críticos no núcleo por desempenho, mas isola outros para maior estabilidade.</p>
+          <span class="tag tag-blue">⚖️ Equilíbrio entre ambos</span>
+          <p style="margin-top:10px; font-size:0.8rem;" class="sutil">Ex: Windows, macOS</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 10: CONCEITO DE PROCESSO -->
+  <!-- ==================== CAPÍTULO 3: PROCESSOS ==================== -->
+
+  <!-- SLIDE 10: O QUE É PROCESSO -->
   <div class="slide" data-chapter="3">
     <div class="slide-content">
       <h3>Gerenciamento de Processos</h3>
-      <h1>Processo = Programa<br><span class="destaque-texto">em execução</span></h1>
-      <div class="cards" style="margin-top:30px;">
+      <h2>O que é um <span class="destaque-texto">Processo</span>?</h2>
+      <p class="explicacao">
+        Um <strong>processo</strong> é um programa em execução. Quando você abre o Chrome, o sistema cria um processo que contém tudo o que o programa precisa para funcionar. Importante: o programa em si é apenas um arquivo no disco; o <strong>processo</strong> é esse programa "vivo" na memória, consumindo CPU e recursos.
+      </p>
+      <div class="cards">
         <div class="card">
           <span class="card-icon">📝</span>
-          <h4>Código</h4>
-          <p>Executável</p>
+          <h4>Código executável</h4>
+          <p class="card-detail">As instruções do programa carregadas na memória.</p>
         </div>
         <div class="card">
           <span class="card-icon">📦</span>
           <h4>Dados</h4>
-          <p>Variáveis e valores</p>
+          <p class="card-detail">Variáveis, valores e informações que o programa manipula.</p>
         </div>
         <div class="card">
           <span class="card-icon">📍</span>
-          <h4>Estado</h4>
-          <p>Situação atual</p>
+          <h4>Estado atual</h4>
+          <p class="card-detail">Em qual ponto da execução o programa se encontra agora.</p>
         </div>
         <div class="card">
           <span class="card-icon">🔗</span>
-          <h4>Recursos</h4>
-          <p>Memória, arquivos</p>
+          <h4>Recursos associados</h4>
+          <p class="card-detail">Arquivos abertos, conexões de rede e memória alocada.</p>
         </div>
       </div>
     </div>
@@ -962,6 +766,9 @@ kbd {
     <div class="slide-content">
       <h3>Ciclo de Vida</h3>
       <h2>Estados de um Processo</h2>
+      <p class="explicacao text-center">
+        Todo processo passa por estados ao longo da sua existência. O SO controla essas transições de acordo com a disponibilidade de recursos e a prioridade de cada processo.
+      </p>
       <div class="lifecycle">
         <div class="state">🆕 Novo</div>
         <span class="arrow">→</span>
@@ -973,31 +780,36 @@ kbd {
         <span class="arrow">→</span>
         <div class="state" style="border-color: var(--slide-acento-verm);">🏁 Finalizado</div>
       </div>
-      <p class="sutil" style="margin-top:24px; font-size:1rem;">Cada transição depende de eventos internos ou externos</p>
+      <div class="explicacao" style="margin-top: 20px; font-size: 0.95rem;">
+        <strong>Novo:</strong> processo acabou de ser criado. <strong>Pronto:</strong> aguardando sua vez de usar a CPU. <strong>Executando:</strong> usando a CPU ativamente. <strong>Esperando:</strong> pausado, aguardando um evento (ex: leitura do disco terminar). <strong>Finalizado:</strong> terminou sua tarefa e será removido da memória.
+      </div>
     </div>
   </div>
 
   <!-- SLIDE 12: ESCALONAMENTO -->
   <div class="slide" data-chapter="3">
     <div class="slide-content">
-      <h3>Escalonamento</h3>
-      <h2>Quem usa a CPU agora?</h2>
-      <div class="cards">
+      <h3>Escalonamento de CPU</h3>
+      <h2>Quem usa o processador agora?</h2>
+      <p class="explicacao text-center">
+        O <strong>escalonador</strong> é o algoritmo do SO que decide qual processo vai usar a CPU a cada instante. Ele precisa ser justo (todos os processos devem receber tempo), eficiente (não desperdiçar CPU) e rápido (tempo de resposta curto).
+      </p>
+      <div class="two-col">
         <div class="card">
-          <h4>FIFO</h4>
-          <p>Primeiro a chegar, primeiro a executar</p>
+          <h4>📋 FIFO (First In, First Out)</h4>
+          <p class="card-detail">O primeiro processo a chegar é o primeiro a executar. Simples, mas um processo pesado pode atrasar todos os outros.</p>
         </div>
         <div class="card">
-          <h4>Round Robin</h4>
-          <p>Cada um recebe um tempo fixo (quantum)</p>
+          <h4>🔄 Round Robin</h4>
+          <p class="card-detail">Cada processo recebe um tempo fixo (quantum) para usar a CPU. Quando o tempo acaba, vai para o fim da fila. Garante justiça entre processos.</p>
         </div>
         <div class="card">
-          <h4>Prioridade</h4>
-          <p>Processos mais importantes primeiro</p>
+          <h4>⭐ Por Prioridade</h4>
+          <p class="card-detail">Processos mais importantes executam primeiro. Usado quando algumas tarefas são críticas (ex: driver de áudio não pode atrasar).</p>
         </div>
         <div class="card">
-          <h4>Multinível</h4>
-          <p>Múltiplas filas com realimentação</p>
+          <h4>📊 Multinível com Realimentação</h4>
+          <p class="card-detail">Múltiplas filas com prioridades diferentes. Processos podem subir ou descer de fila conforme seu comportamento. O mais usado em SOs modernos.</p>
         </div>
       </div>
     </div>
@@ -1007,50 +819,52 @@ kbd {
   <div class="slide" data-chapter="3">
     <div class="slide-content">
       <h3>Conceitos Fundamentais</h3>
+      <h2>Concorrência vs Paralelismo</h2>
       <div class="vs-grid">
         <div class="vs-col">
           <h4>🔄 Concorrência</h4>
           <ul>
-            <li>Vários processos disputam recursos</li>
-            <li>Alternância rápida na CPU</li>
-            <li>Possível com 1 núcleo</li>
-            <li><strong class="verde">Ilusão</strong> de simultaneidade</li>
+            <li><strong>Vários processos</strong> disputam o uso da CPU, alternando-se rapidamente</li>
+            <li>Possível com <strong>apenas 1 núcleo</strong> — o SO alterna tão rápido que parece simultâneo</li>
+            <li>É uma <strong>ilusão</strong> de simultaneidade</li>
           </ul>
         </div>
         <div class="vs-divider">VS</div>
         <div class="vs-col">
           <h4>⚡ Paralelismo</h4>
           <ul>
-            <li>Execução simultânea real</li>
-            <li>Múltiplos núcleos de CPU</li>
-            <li>Requer hardware multi-core</li>
-            <li>Simultaneidade <strong class="verde">real</strong></li>
+            <li>Dois ou mais processos executam <strong>ao mesmo tempo de verdade</strong></li>
+            <li>Requer hardware com <strong>múltiplos núcleos</strong> (multi-core)</li>
+            <li>Simultaneidade <strong>real</strong> e mensurável</li>
           </ul>
         </div>
       </div>
+      <div class="analogia">
+        <div class="analogia-label">💡 Analogia</div>
+        <strong>Concorrência:</strong> um cozinheiro alternando entre 3 panelas no fogão. <strong>Paralelismo:</strong> 3 cozinheiros, cada um cuidando de uma panela ao mesmo tempo.
+      </div>
     </div>
   </div>
+
+  <!-- ==================== CAPÍTULO 4: MEMÓRIA ==================== -->
 
   <!-- SLIDE 14: HIERARQUIA DE MEMÓRIA -->
   <div class="slide" data-chapter="4">
     <div class="slide-content">
       <h3>Gerenciamento de Memória</h3>
       <h2>Hierarquia de Memória</h2>
+      <p class="explicacao text-center">
+        O computador possui diferentes tipos de memória organizados em uma pirâmide. Quanto mais rápida a memória, menor a capacidade e maior o custo. O SO coordena essa hierarquia para maximizar o desempenho.
+      </p>
       <div class="pyramid">
-        <div class="pyramid-level">
-          ⚡ Registradores <span class="speed-tag">mais rápido</span>
-        </div>
-        <div class="pyramid-level">
-          🔥 Cache
-        </div>
-        <div class="pyramid-level">
-          🧠 RAM (Memória Principal)
-        </div>
-        <div class="pyramid-level">
-          💾 Disco (Armazenamento) <span class="speed-tag">mais lento</span>
-        </div>
+        <div class="pyramid-level">⚡ Registradores <span class="speed-tag">~1 ns • bytes</span></div>
+        <div class="pyramid-level">🔥 Cache (L1, L2, L3) <span class="speed-tag">~10 ns • MB</span></div>
+        <div class="pyramid-level">🧠 RAM (Memória Principal) <span class="speed-tag">~100 ns • GB</span></div>
+        <div class="pyramid-level">💾 Disco (SSD/HD) <span class="speed-tag">~ms • TB</span></div>
       </div>
-      <p class="sutil" style="margin-top:20px; font-size:1rem;">O SO coordena toda essa hierarquia automaticamente</p>
+      <p class="explicacao text-center sutil" style="font-size: 0.85rem; margin-top: 14px;">
+        O SO move dados automaticamente entre essas camadas para que os mais usados fiquem na memória mais rápida.
+      </p>
     </div>
   </div>
 
@@ -1058,61 +872,70 @@ kbd {
   <div class="slide" data-chapter="4">
     <div class="slide-content">
       <h3>Memória Virtual</h3>
-      <h2>Paginação</h2>
-      <p style="margin: 16px 0;">A memória é dividida em blocos chamados <strong class="verde">páginas</strong></p>
-      <div class="vs-grid" style="max-width:700px; grid-template-columns: 1fr auto 1fr;">
-        <div class="vs-col" style="text-align:center;">
-          <h4>RAM Cheia?</h4>
-          <p style="font-size:3rem;">🧠💨</p>
-          <p style="font-size:0.95rem;">Páginas menos usadas...</p>
-        </div>
-        <div class="vs-divider">→</div>
-        <div class="vs-col" style="text-align:center;">
-          <h4>Vai para o Disco</h4>
-          <p style="font-size:3rem;">💾</p>
-          <p style="font-size:0.95rem;">...são movidas para o disco</p>
-        </div>
+      <h2>O que é Paginação?</h2>
+      <p class="explicacao">
+        A <strong>paginação</strong> é uma técnica onde o SO divide a memória em blocos de tamanho fixo chamados <strong>páginas</strong> (geralmente 4 KB). Quando a RAM está cheia e um novo programa precisa de espaço, o SO identifica as páginas que estão sendo <strong>menos utilizadas</strong> e as move temporariamente para o disco rígido — essa área no disco é chamada de <strong>memória virtual</strong> (ou swap).
+      </p>
+      <p class="explicacao">
+        Quando o programa precisa desses dados novamente, o SO traz a página de volta do disco para a RAM. Esse processo é transparente para o usuário, mas tem um custo: acessar o disco é <strong class="vermelho">milhares de vezes mais lento</strong> que acessar a RAM, por isso um computador com pouca RAM fica "travando" quando muitos programas estão abertos.
+      </p>
+      <div class="analogia">
+        <div class="analogia-label">💡 Analogia</div>
+        Imagine sua <strong>mesa de trabalho</strong> (RAM) e um <strong>armário</strong> (disco). Quando a mesa lota, você guarda no armário os papéis que não está usando agora. Quando precisa deles, vai buscar no armário — mas isso leva mais tempo do que simplesmente pegar da mesa.
       </div>
-      <p class="sutil" style="margin-top:16px; font-size:0.95rem;">Esse processo é chamado de <strong>paginação</strong> (swap)</p>
     </div>
   </div>
 
   <!-- SLIDE 16: FRAGMENTAÇÃO -->
   <div class="slide" data-chapter="4">
     <div class="slide-content">
-      <h3>Problema</h3>
+      <h3>Problema comum</h3>
       <h2>Fragmentação de Memória</h2>
-      <p class="subtitle" style="margin-bottom: 24px;">Quando a memória é utilizada de forma desorganizada</p>
-      <div class="vs-grid" style="max-width:600px; grid-template-columns: 1fr 1fr;">
-        <div class="vs-col" style="text-align:center;">
-          <h4>Interna</h4>
-          <p style="font-size:3rem; margin:10px 0;">📦🔲</p>
-          <p style="font-size:0.95rem;">Espaço desperdiçado <em>dentro</em> dos blocos alocados</p>
+      <p class="explicacao text-center">
+        Fragmentação ocorre quando a memória é utilizada de forma desorganizada ao longo do tempo, reduzindo a eficiência do sistema.
+      </p>
+      <div class="two-col">
+        <div class="card">
+          <span class="card-icon">📦</span>
+          <h4>Fragmentação Interna</h4>
+          <p class="card-detail">Espaço desperdiçado <strong>dentro</strong> de um bloco alocado. Exemplo: o SO aloca um bloco de 4 KB, mas o programa só precisa de 3 KB. Aquele 1 KB restante é espaço perdido que ninguém pode usar.</p>
         </div>
-        <div class="vs-col" style="text-align:center;">
-          <h4>Externa</h4>
-          <p style="font-size:3rem; margin:10px 0;">🧩🧩</p>
-          <p style="font-size:0.95rem;">Espaços livres espalhados <em>entre</em> blocos</p>
+        <div class="card">
+          <span class="card-icon">🧩</span>
+          <h4>Fragmentação Externa</h4>
+          <p class="card-detail">Existem espaços livres na memória, mas estão <strong>espalhados</strong> em pedaços pequenos. Embora o total de espaço livre seja suficiente, nenhum pedaço individual é grande o bastante para o que o programa precisa.</p>
         </div>
       </div>
-      <p class="vermelho" style="margin-top:20px; font-size:1.1rem;"><strong>Impacto:</strong> Redução de eficiência do sistema</p>
+      <p class="explicacao text-center vermelho" style="font-size: 1rem; margin-top: 16px;">
+        <strong>Impacto prático:</strong> o computador tem memória sobrando, mas não consegue usá-la eficientemente — o desempenho cai.
+      </p>
     </div>
   </div>
 
-  <!-- SLIDE 17: SISTEMA DE ARQUIVOS -->
+  <!-- ==================== CAPÍTULO 5: SISTEMAS DE ARQUIVOS ==================== -->
+
+  <!-- SLIDE 17: CONCEITO -->
   <div class="slide" data-chapter="5">
     <div class="slide-content">
       <h3>Sistemas de Arquivos</h3>
-      <h1>📁 Como os dados são<br><span class="destaque-texto">organizados</span></h1>
-      <p class="subtitle" style="margin-top:16px;">Define como dados são armazenados, organizados e recuperados</p>
+      <h1>Como os dados são <span class="destaque-texto">organizados</span> no disco?</h1>
+      <p class="explicacao">
+        O <strong>sistema de arquivos</strong> é a estrutura que define como os dados são armazenados, nomeados, organizados e recuperados no disco. Sem ele, o disco seria apenas uma sequência gigante de 0s e 1s sem qualquer significado. É o sistema de arquivos que permite que você encontre seu documento pelo nome e pela pasta onde o salvou.
+      </p>
+      <p class="explicacao">
+        Exemplos de sistemas de arquivos: <strong class="verde">NTFS</strong> (Windows), <strong class="verde">ext4</strong> (Linux), <strong class="verde">APFS</strong> (macOS), <strong class="verde">FAT32</strong> (pendrives).
+      </p>
     </div>
   </div>
 
-  <!-- SLIDE 18: ESTRUTURA HIERÁRQUICA -->
+  <!-- SLIDE 18: ÁRVORE -->
   <div class="slide" data-chapter="5">
     <div class="slide-content">
-      <h3>Estrutura</h3>
-      <h2>Organização em Árvore</h2>
+      <h3>Organização</h3>
+      <h2>Estrutura Hierárquica em Árvore</h2>
+      <p class="explicacao text-center">
+        Os dados são organizados em forma de árvore invertida, partindo de um diretório raiz. Cada pasta pode conter subpastas e arquivos, criando uma hierarquia lógica.
+      </p>
       <div class="tree">
         <div class="tree-root">/ (Raiz)</div>
         <div class="tree-connector"></div>
@@ -1134,116 +957,141 @@ kbd {
           </div>
         </div>
       </div>
+      <p class="explicacao text-center sutil" style="font-size: 0.85rem; margin-top: 14px;">
+        No Windows, a raiz é representada por letras como <strong>C:\</strong>. No Linux e macOS, é simplesmente <strong>/</strong>.
+      </p>
     </div>
   </div>
 
-  <!-- SLIDE 19: METADADOS + JOURNALING -->
+  <!-- SLIDE 19: METADADOS -->
   <div class="slide" data-chapter="5">
     <div class="slide-content">
-      <h3>Conceitos Importantes</h3>
-      <div class="vs-grid" style="max-width:750px; grid-template-columns: 1fr 1fr;">
-        <div class="vs-col">
-          <h4>📋 Metadados</h4>
-          <ul>
-            <li>📝 Nome</li>
-            <li>📏 Tamanho</li>
-            <li>📅 Data de criação</li>
-            <li>🔒 Permissões</li>
-            <li>👤 Proprietário</li>
-          </ul>
-        </div>
-        <div class="vs-col">
-          <h4>📓 Journaling</h4>
-          <p style="font-size: 0.95rem; line-height: 1.6;">
-            Operações são <strong class="verde">registradas antes</strong> de serem executadas
-          </p>
-          <p style="font-size: 0.85rem; margin-top:12px; color: var(--slide-texto-sutil);">
-            ✅ Reduz risco de corrupção em caso de falha de energia
-          </p>
-        </div>
+      <h3>Mais do que conteúdo</h3>
+      <h2>Metadados de um Arquivo</h2>
+      <p class="explicacao">
+        Um arquivo não é apenas seu conteúdo. O sistema de arquivos armazena informações <strong>sobre</strong> o arquivo — chamadas <strong>metadados</strong>. Essas informações são essenciais para o SO organizar, proteger e gerenciar os dados.
+      </p>
+      <div class="items-list">
+        <div class="item"><span class="item-icon">📝</span><span><strong>Nome</strong> — Identificação legível do arquivo (ex: relatorio.pdf)</span></div>
+        <div class="item"><span class="item-icon">📏</span><span><strong>Tamanho</strong> — Espaço ocupado no disco em bytes</span></div>
+        <div class="item"><span class="item-icon">📅</span><span><strong>Datas</strong> — Quando foi criado, modificado pela última vez e acessado</span></div>
+        <div class="item"><span class="item-icon">🔒</span><span><strong>Permissões</strong> — Quem pode ler, escrever ou executar o arquivo</span></div>
+        <div class="item"><span class="item-icon">👤</span><span><strong>Proprietário</strong> — Qual usuário e grupo são donos do arquivo</span></div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 20: DISPOSITIVOS -->
+  <!-- SLIDE 20: JOURNALING -->
+  <div class="slide" data-chapter="5">
+    <div class="slide-content">
+      <h3>Segurança dos dados</h3>
+      <h2>O que é Journaling?</h2>
+      <p class="explicacao">
+        Imagine que o computador trava no meio de uma operação de salvar um arquivo. Sem proteção, os dados podem ficar <strong>corrompidos</strong> — meio salvos, meio perdidos. Para evitar isso, sistemas de arquivos modernos (como NTFS e ext4) utilizam uma técnica chamada <strong>journaling</strong>.
+      </p>
+      <p class="explicacao">
+        O journaling funciona como um <strong>diário de bordo</strong>: antes de executar qualquer operação no disco, o SO <strong>registra o que pretende fazer</strong> em um log especial (o journal). Se o sistema travar no meio da operação, ao reiniciar ele consulta o journal para saber exatamente o que estava acontecendo e pode desfazer ou completar a operação de forma segura.
+      </p>
+      <div class="analogia">
+        <div class="analogia-label">💡 Analogia</div>
+        É como um cirurgião que anota cada passo da cirurgia em um prontuário. Se houver uma emergência e outro médico precisar assumir, ele sabe exatamente o que foi feito e o que falta fazer.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CAPÍTULO 6: DISPOSITIVOS ==================== -->
+
+  <!-- SLIDE 21: INTERRUPÇÕES E DRIVERS -->
   <div class="slide" data-chapter="6">
     <div class="slide-content">
       <h3>Gerenciamento de Dispositivos</h3>
-      <h2>Interrupções + Drivers</h2>
-      <div class="vs-grid" style="max-width:700px; grid-template-columns: 1fr 1fr;">
-        <div class="vs-col" style="text-align:center;">
-          <h4>⚡ Interrupção</h4>
-          <p style="font-size:2.5rem; margin:10px 0;">⌨️ → 📡 → 🧠</p>
-          <p style="font-size:0.95rem;">Sinal enviado ao processador informando que um evento ocorreu</p>
+      <h2>Interrupções e Drivers</h2>
+      <div class="two-col">
+        <div class="card">
+          <span class="card-icon">⚡</span>
+          <h4>Interrupções</h4>
+          <p class="card-detail">Uma <strong>interrupção</strong> é um sinal urgente enviado ao processador informando que algo aconteceu no hardware. Quando você pressiona uma tecla, o teclado envia uma interrupção para que a CPU pare momentaneamente o que está fazendo e processe essa tecla.</p>
+          <p class="card-detail">Sem interrupções, a CPU teria que ficar verificando cada dispositivo constantemente ("alguém pressionou algo?"), desperdiçando tempo precioso.</p>
         </div>
-        <div class="vs-col" style="text-align:center;">
-          <h4>🔧 Driver</h4>
-          <p style="font-size:2.5rem; margin:10px 0;">💻 ↔ 🖨️</p>
-          <p style="font-size:0.95rem;">Traduz comandos do SO para o hardware específico</p>
+        <div class="card">
+          <span class="card-icon">🔧</span>
+          <h4>Drivers</h4>
+          <p class="card-detail">Um <strong>driver</strong> é um software que traduz os comandos genéricos do SO para a linguagem específica de cada hardware. Cada impressora, placa de vídeo ou mouse tem seu próprio driver.</p>
+          <p class="card-detail">É por isso que, ao conectar um dispositivo novo, às vezes o Windows pede para "instalar drivers" — ele precisa aprender a "falar" com aquele hardware específico.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 21: GUI vs CLI -->
+  <!-- ==================== CAPÍTULO 7: GUI vs CLI ==================== -->
+
+  <!-- SLIDE 22: GUI vs CLI -->
   <div class="slide" data-chapter="7">
     <div class="slide-content">
       <h3>Interfaces</h3>
-      <h2>GUI vs CLI</h2>
+      <h2>GUI vs CLI — Como interagimos com o SO</h2>
       <div class="vs-grid">
         <div class="vs-col">
-          <h4>🖱️ Interface Gráfica</h4>
+          <h4>🖱️ Interface Gráfica (GUI)</h4>
           <ul>
-            <li>✅ Intuitiva</li>
-            <li>✅ Acessível para iniciantes</li>
-            <li>❌ Consome mais recursos</li>
-            <li>❌ Menos controle técnico</li>
+            <li>✅ <strong>Intuitiva:</strong> ícones, janelas e menus tornam o uso acessível mesmo para iniciantes</li>
+            <li>✅ <strong>Visual:</strong> permite ver pastas, arrastar arquivos e clicar em botões</li>
+            <li>❌ <strong>Consome mais recursos:</strong> renderizar gráficos exige CPU, RAM e GPU</li>
+            <li>❌ <strong>Menos automatizável:</strong> difícil repetir tarefas complexas automaticamente</li>
           </ul>
         </div>
         <div class="vs-divider">VS</div>
         <div class="vs-col">
-          <h4>⌨️ Linha de Comando</h4>
+          <h4>⌨️ Linha de Comando (CLI)</h4>
           <ul>
-            <li>✅ Controle detalhado</li>
-            <li>✅ Automatização (scripts)</li>
-            <li>✅ Maior eficiência técnica</li>
-            <li>❌ Exige conhecimento</li>
+            <li>✅ <strong>Controle total:</strong> acesso a todas as funcionalidades do SO</li>
+            <li>✅ <strong>Automatizável:</strong> scripts podem executar centenas de comandos em sequência</li>
+            <li>✅ <strong>Leve:</strong> consome pouquíssimos recursos do sistema</li>
+            <li>❌ <strong>Curva de aprendizado:</strong> exige memorizar comandos e sintaxe</li>
           </ul>
         </div>
       </div>
+      <p class="explicacao text-center sutil" style="font-size: 0.9rem; margin-top: 14px;">
+        Na prática, profissionais de TI usam <strong>ambas</strong>: GUI para tarefas visuais e CLI para administração, automação e servidores.
+      </p>
     </div>
   </div>
 
-  <!-- SLIDE 22: UTILITÁRIOS -->
+  <!-- ==================== CAPÍTULO 8: UTILITÁRIOS E SEGURANÇA ==================== -->
+
+  <!-- SLIDE 23: UTILITÁRIOS -->
   <div class="slide" data-chapter="8">
     <div class="slide-content">
       <h3>Softwares Utilitários</h3>
-      <h2>Proteção e Manutenção</h2>
+      <h2>Ferramentas de proteção e manutenção</h2>
       <div class="three-col">
         <div class="card">
           <span class="card-icon">🦠</span>
           <h4>Antivírus</h4>
-          <p>Varredura por assinatura<br>Análise heurística<br>Monitoramento em tempo real</p>
+          <p class="card-detail"><strong>Varredura por assinatura:</strong> compara arquivos com um banco de vírus conhecidos. <strong>Análise heurística:</strong> detecta comportamentos suspeitos mesmo de vírus novos. <strong>Tempo real:</strong> monitora tudo que entra no sistema.</p>
         </div>
         <div class="card">
           <span class="card-icon">🧱</span>
           <h4>Firewall</h4>
-          <p>Controla tráfego de entrada e saída<br>Baseado em host ou rede</p>
+          <p class="card-detail">Controla todo o <strong>tráfego de rede</strong> que entra e sai do computador. Pode ser <strong>baseado em host</strong> (protege uma máquina) ou <strong>baseado em rede</strong> (protege toda uma rede corporativa).</p>
         </div>
         <div class="card">
           <span class="card-icon">💾</span>
           <h4>Backup</h4>
-          <p>Completo<br>Incremental<br>Diferencial</p>
+          <p class="card-detail"><strong>Completo:</strong> copia tudo. <strong>Incremental:</strong> copia apenas o que mudou desde o último backup. <strong>Diferencial:</strong> copia o que mudou desde o último backup completo.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 23: BACKUP 3-2-1 -->
+  <!-- SLIDE 24: BACKUP 3-2-1 -->
   <div class="slide" data-chapter="8">
     <div class="slide-content">
       <h3>Estratégia Profissional</h3>
       <h2>Política de Backup <span class="destaque-texto">3-2-1</span></h2>
+      <p class="explicacao text-center">
+        A regra 3-2-1 é considerada o <strong>padrão ouro</strong> para proteção de dados em ambientes profissionais. Ela garante que, mesmo em caso de desastre (incêndio, roubo, falha de hardware), seus dados sobrevivam.
+      </p>
       <div class="backup-strategy">
         <div class="backup-item">
           <div class="num">3</div>
@@ -1255,77 +1103,105 @@ kbd {
         </div>
         <div class="backup-item">
           <div class="num">1</div>
-          <div class="label">cópia externa</div>
+          <div class="label">cópia externa (offsite)</div>
         </div>
       </div>
-      <p class="sutil" style="margin-top:24px; font-size:1rem;">A regra de ouro da proteção de dados</p>
+      <div class="analogia">
+        <div class="analogia-label">💡 Exemplo prático</div>
+        Seus arquivos ficam no <strong>computador</strong> (cópia 1), em um <strong>HD externo</strong> (cópia 2, mídia diferente) e na <strong>nuvem</strong> como Google Drive (cópia 3, local externo). Se seu computador e HD queimarem, ainda há a cópia na nuvem.
+      </div>
     </div>
   </div>
 
-  <!-- SLIDE 24: SEGURANÇA -->
+  <!-- SLIDE 25: SEGURANÇA -->
   <div class="slide" data-chapter="8">
     <div class="slide-content">
-      <h3>Segurança no SO</h3>
-      <h2>Pilares da Proteção</h2>
+      <h3>Segurança no Sistema Operacional</h3>
+      <h2>3 pilares da proteção</h2>
       <div class="cards">
         <div class="card">
           <span class="card-icon">👥</span>
           <h4>Controle de Acesso</h4>
-          <p>Usuários, Grupos e Permissões</p>
+          <p class="card-detail">O SO gerencia <strong>quem pode fazer o quê</strong> através de um sistema de usuários, grupos e permissões. Cada arquivo e pasta tem regras definindo quem pode ler, escrever ou executar. Isso impede que um funcionário acesse dados de outro departamento, por exemplo.</p>
         </div>
         <div class="card">
           <span class="card-icon">🔐</span>
           <h4>Criptografia</h4>
-          <p>Protege dados contra acesso não autorizado</p>
+          <p class="card-detail">Transforma dados legíveis em <strong>código ilegível</strong> sem a chave correta. Mesmo que alguém roube o HD do seu notebook, não conseguirá ler os dados se estiverem criptografados. O Windows usa o BitLocker e o Linux usa o LUKS para isso.</p>
         </div>
         <div class="card">
           <span class="card-icon">🔄</span>
           <h4>Atualizações</h4>
-          <p>Sistema desatualizado = <span class="vermelho">vulnerável</span></p>
+          <p class="card-detail">Correções de segurança são liberadas constantemente para fechar vulnerabilidades descobertas. Um sistema <strong class="vermelho">desatualizado é um sistema vulnerável</strong> — hackers exploram falhas conhecidas que já foram corrigidas em atualizações.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 25: CONSIDERAÇÕES FINAIS -->
+  <!-- ==================== CAPÍTULO 9: CONCLUSÃO ==================== -->
+
+  <!-- SLIDE 26: CONSIDERAÇÕES FINAIS -->
   <div class="slide" data-chapter="9">
     <div class="slide-content">
       <h3>Considerações Finais</h3>
       <h1>O SO é a <span class="destaque-texto">base</span> de tudo</h1>
-      <p style="margin: 24px 0; font-size:1.2rem;">Este capítulo estabelece as bases para estudos futuros em:</p>
+      <p class="explicacao">
+        O sistema operacional é o alicerce de toda infraestrutura computacional moderna. Sem compreensão adequada do seu funcionamento, o profissional de informática limita gravemente sua capacidade técnica. Tudo o que estudamos aqui — kernel, processos, memória, arquivos, segurança — são os fundamentos que sustentam todas as outras disciplinas da área.
+      </p>
+      <p class="explicacao" style="margin-top:8px;">Este capítulo estabelece as bases para estudos futuros em:</p>
       <div class="cards">
         <div class="card">
           <span class="card-icon">🌐</span>
           <h4>Redes</h4>
+          <p class="card-detail">Protocolos, firewall e comunicação entre máquinas</p>
         </div>
         <div class="card">
           <span class="card-icon">🛡️</span>
           <h4>Segurança</h4>
+          <p class="card-detail">Criptografia, pentest e políticas de acesso</p>
         </div>
         <div class="card">
           <span class="card-icon">💻</span>
           <h4>Desenvolvimento</h4>
+          <p class="card-detail">Programação de sistemas e aplicações</p>
         </div>
         <div class="card">
           <span class="card-icon">🖥️</span>
           <h4>Administração</h4>
+          <p class="card-detail">Gerenciamento de servidores e infraestrutura</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 26: EXERCÍCIOS -->
+  <!-- SLIDE 27: REVISÃO RÁPIDA -->
   <div class="slide" data-chapter="9">
     <div class="slide-content">
-      <h3>Para Refletir</h3>
+      <h3>Resumo</h3>
+      <h2>O que aprendemos hoje</h2>
+      <div class="items-list">
+        <div class="item"><span class="item-icon verde">✅</span><span><strong>SO como intermediário</strong> — gerencia hardware e oferece abstração para os programas</span></div>
+        <div class="item"><span class="item-icon verde">✅</span><span><strong>Kernel</strong> — núcleo do sistema que opera em modo privilegiado (monolítico, micro ou híbrido)</span></div>
+        <div class="item"><span class="item-icon verde">✅</span><span><strong>Processos</strong> — programas em execução com ciclo de vida controlado pelo escalonador</span></div>
+        <div class="item"><span class="item-icon verde">✅</span><span><strong>Memória</strong> — hierarquia de velocidade, paginação e problemas de fragmentação</span></div>
+        <div class="item"><span class="item-icon verde">✅</span><span><strong>Sistema de arquivos</strong> — organização em árvore, metadados e journaling para segurança</span></div>
+        <div class="item"><span class="item-icon verde">✅</span><span><strong>Segurança</strong> — controle de acesso, criptografia, atualizações e política de backup 3-2-1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 28: EXERCÍCIOS -->
+  <div class="slide" data-chapter="9">
+    <div class="slide-content">
+      <h3>Para Refletir e Praticar</h3>
       <h2>Exercícios Discursivos</h2>
-      <div class="items-list" style="max-width:800px;">
-        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde);">01</span><span>Explique o conceito de abstração de hardware.</span></div>
-        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde);">02</span><span>Compare kernel monolítico e microkernel.</span></div>
-        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde);">03</span><span>Descreva detalhadamente o processo de paginação.</span></div>
-        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde);">04</span><span>Explique o papel das interrupções no gerenciamento de dispositivos.</span></div>
-        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde);">05</span><span>Analise vantagens e desvantagens da CLI em ambientes corporativos.</span></div>
-        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde);">06</span><span>Descreva uma política profissional de backup.</span></div>
+      <div class="items-list" style="max-width:820px;">
+        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde); font-weight:800;">01</span><span>Explique o conceito de abstração de hardware e por que ele é essencial para o desenvolvimento de software moderno.</span></div>
+        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde); font-weight:800;">02</span><span>Compare kernel monolítico e microkernel, apontando em quais situações cada um seria mais adequado.</span></div>
+        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde); font-weight:800;">03</span><span>Descreva detalhadamente o processo de paginação e explique por que um computador com pouca RAM fica lento.</span></div>
+        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde); font-weight:800;">04</span><span>Explique o papel das interrupções no gerenciamento de dispositivos e o que aconteceria sem elas.</span></div>
+        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde); font-weight:800;">05</span><span>Analise vantagens e desvantagens da CLI em ambientes corporativos, justificando por que servidores geralmente não usam interface gráfica.</span></div>
+        <div class="item"><span class="item-icon" style="color:var(--slide-acento-verde); font-weight:800;">06</span><span>Descreva a política de backup 3-2-1 e monte um exemplo prático para uma pequena empresa.</span></div>
       </div>
     </div>
   </div>
@@ -1344,61 +1220,35 @@ function updateSlide(index) {
   slides[current].classList.remove('active');
   current = index;
   slides[current].classList.add('active');
-
-  // Update counter
   counter.textContent = `${current + 1}/${slides.length}`;
-
-  // Update progress
-  const pct = ((current + 1) / slides.length) * 100;
-  progressFill.style.width = pct + '%';
-
-  // Update nav
+  progressFill.style.width = ((current + 1) / slides.length * 100) + '%';
   const chapter = slides[current].dataset.chapter;
   navItems.forEach(item => {
     item.classList.remove('active');
-    if (item.dataset.chapter === chapter) {
-      item.classList.add('active');
-    }
+    if (item.dataset.chapter === chapter) item.classList.add('active');
   });
 }
 
 function goToChapter(chapter) {
   for (let i = 0; i < slides.length; i++) {
-    if (parseInt(slides[i].dataset.chapter) === chapter) {
-      updateSlide(i);
-      return;
-    }
+    if (parseInt(slides[i].dataset.chapter) === chapter) { updateSlide(i); return; }
   }
 }
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-    e.preventDefault();
-    updateSlide(current + 1);
-  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-    e.preventDefault();
-    updateSlide(current - 1);
-  } else if (e.key === 'Home') {
-    e.preventDefault();
-    updateSlide(0);
-  } else if (e.key === 'End') {
-    e.preventDefault();
-    updateSlide(slides.length - 1);
-  }
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); updateSlide(current + 1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); updateSlide(current - 1); }
+  else if (e.key === 'Home') { e.preventDefault(); updateSlide(0); }
+  else if (e.key === 'End') { e.preventDefault(); updateSlide(slides.length - 1); }
 });
 
-// Touch support
 let touchStartX = 0;
 document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
 document.addEventListener('touchend', (e) => {
   const diff = e.changedTouches[0].screenX - touchStartX;
-  if (Math.abs(diff) > 50) {
-    if (diff < 0) updateSlide(current + 1);
-    else updateSlide(current - 1);
-  }
+  if (Math.abs(diff) > 50) { diff < 0 ? updateSlide(current + 1) : updateSlide(current - 1); }
 });
 
-// Init
 updateSlide(0);
 </script>
 </body>
