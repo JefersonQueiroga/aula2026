@@ -1,0 +1,20 @@
+# ========================
+# Arquivos privados - NÃO enviar ao GitHub
+# ========================
+
+# Configurações e prompts do Claude
+config/
+
+# Materiais de referência
+reference/
+
+# Assets locais de trabalho
+assets/
+
+# Arquivos fonte markdown (só os HTML vão para o GitHub)
+**/material-*.md
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+desktop.ini
