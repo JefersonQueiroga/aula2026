@@ -3,177 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ETD - Aula 01: Noções Básicas de Sistemas Operacionais e Utilitários</title>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<title>Aula 01 — Noções Básicas de Sistemas Operacionais e Utilitários | ETD — IFRN</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ifrn-verde: #539839;
-  --ifrn-verde-medio: #5AC45C;
-  --ifrn-verde-claro: #96D997;
-  --if-verde: #2f9e41;
-  --if-vermelho: #cd191e;
-  --slide-bg: #0a0a0a;
-  --slide-bg-sec: #111111;
-  --slide-bg-card: #1a1a1a;
-  --slide-bg-destaque: #1a2e1a;
-  --texto: #e8e8e8;
-  --texto-sutil: #888888;
-  --titulo: #ffffff;
-  --acento: #4CAF50;
-  --acento-verm: #E53935;
-  --acento-hover: #66BB6A;
-  --borda: #2a2a2a;
-  --borda-ativa: #4CAF50;
-  --fonte: 'Raleway', sans-serif;
-  --mono: 'Fira Code', monospace;
-  --sidebar-w: 260px;
-  --cab-h: 50px;
-  --radius: 12px;
-  --trans: 0.3s ease;
+  --if-verde:#2f9e41; --if-vermelho:#cd191e;
+  --ifrn-verde:#539839; --ifrn-vermelho:#b93120;
+  --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --bg-dest:#1a2e1a;
+  --txt:#e8e8e8; --txt2:#aaa; --txt3:#888; --tit:#fff;
+  --ac:#4CAF50; --ac2:#66BB6A; --verm:#E53935;
+  --brd:#2a2a2a; --rad:10px; --trans:0.3s ease;
+  --fonte:'Raleway',sans-serif; --mono:'Fira Code','Consolas',monospace;
+  --cab-h:50px; --sidebar-w:220px;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:var(--fonte); background:var(--slide-bg); color:var(--texto); overflow:hidden; height:100vh; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--fonte);background:var(--bg);color:var(--txt);overflow:hidden;height:100vh;}
+::selection{background:var(--ac);color:#000;}
 
-/* CABECALHO */
-.cab-bar { position:fixed; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--if-verde) 0%,var(--if-verde) 85%,var(--if-vermelho) 85%,var(--if-vermelho) 100%); z-index:200; }
-.cab { position:fixed; top:4px; left:0; right:0; display:flex; align-items:center; gap:12px; padding:6px 20px; background:var(--slide-bg-sec); border-bottom:1px solid var(--borda); z-index:200; height:calc(var(--cab-h) - 4px); }
-.cab img { height:26px; background:#fff; padding:2px 4px; border-radius:3px; }
-.cab-text { font-size:0.58rem; color:var(--texto-sutil); line-height:1.4; }
-.cab-text strong { color:var(--texto); font-size:0.62rem; }
+/* BARRA IFRN */
+.barra-if{position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--if-verde) 0%,var(--if-verde) 85%,var(--if-vermelho) 85%);z-index:300;}
+.cab{position:fixed;top:4px;left:0;right:0;display:flex;align-items:center;gap:12px;padding:6px 20px;background:var(--bg2);border-bottom:1px solid var(--brd);z-index:200;height:calc(var(--cab-h) - 4px);}
+.cab img{height:30px;background:#fff;padding:2px 4px;border-radius:3px;}
+.cab span{font-size:.7rem;color:var(--txt3);font-weight:500;}
+.cab .cnt{margin-left:auto;font-size:.75rem;color:var(--txt3);font-weight:600;}
 
 /* SIDEBAR */
-.sidebar { position:fixed; left:0; top:var(--cab-h); width:var(--sidebar-w); height:calc(100vh - var(--cab-h)); background:var(--slide-bg-sec); border-right:1px solid var(--borda); padding:12px 0; overflow-y:auto; z-index:100; }
-.sidebar-header { padding:6px 18px 14px; border-bottom:1px solid var(--borda); margin-bottom:6px; }
-.sidebar-header h3 { font-size:0.68rem; text-transform:uppercase; letter-spacing:2px; color:var(--acento); margin-bottom:3px; }
-.sidebar-header p { font-size:0.58rem; color:var(--texto-sutil); }
-.sidebar-header .back { display:inline-block; margin-top:6px; font-size:0.6rem; color:var(--texto-sutil); text-decoration:none; }
-.sidebar-header .back:hover { color:var(--acento); }
-.nav-item { padding:8px 18px; cursor:pointer; font-size:0.72rem; color:var(--texto-sutil); transition:all var(--trans); border-left:3px solid transparent; display:flex; align-items:center; gap:7px; }
-.nav-item:hover { background:rgba(76,175,80,0.08); color:var(--texto); }
-.nav-item.active { color:var(--acento); border-left-color:var(--borda-ativa); background:rgba(76,175,80,0.1); font-weight:600; }
+.sidebar{position:fixed;left:0;top:var(--cab-h);width:var(--sidebar-w);height:calc(100vh - var(--cab-h));background:var(--bg2);border-right:1px solid var(--brd);padding:12px 0;overflow-y:auto;z-index:100;}
+.sidebar::-webkit-scrollbar{width:3px;} .sidebar::-webkit-scrollbar-thumb{background:var(--brd);border-radius:3px;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:.72rem;color:var(--txt3);cursor:pointer;transition:all var(--trans);border-left:3px solid transparent;font-weight:500;line-height:1.3;}
+.nav-item:hover{background:rgba(76,175,80,.08);color:var(--txt);}
+.nav-item.active{color:var(--ac);border-left-color:var(--ac);background:rgba(76,175,80,.1);font-weight:700;}
+.nav-item span{font-size:.85rem;flex-shrink:0;}
 
-/* COUNTER */
-.counter { position:fixed; top:calc(var(--cab-h) + 8px); right:20px; font-size:0.8rem; color:var(--texto-sutil); z-index:100; font-family:var(--mono); }
-
-/* PROGRESS */
-.progress { position:fixed; bottom:0; left:var(--sidebar-w); right:0; height:3px; background:var(--borda); z-index:100; }
-.progress .fill { height:100%; background:linear-gradient(90deg,var(--acento),var(--ifrn-verde-medio)); transition:width 0.4s ease; }
-
-/* HINT */
-.hint { position:fixed; bottom:12px; right:20px; font-size:0.6rem; color:var(--texto-sutil); z-index:100; opacity:0.5; }
-kbd { background:var(--slide-bg-card); border:1px solid var(--borda); border-radius:3px; padding:1px 6px; font-family:var(--mono); font-size:0.55rem; }
+/* PROGRESS BAR */
+.progress{position:fixed;bottom:0;left:var(--sidebar-w);right:0;height:3px;background:var(--brd);z-index:200;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--ifrn-verde),var(--ac2));transition:width .4s ease;width:0%;}
 
 /* SLIDE AREA */
-.area { margin-left:var(--sidebar-w); margin-top:var(--cab-h); height:calc(100vh - var(--cab-h)); position:relative; }
-.slide { position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px 50px; opacity:0; transform:translateX(30px); transition:opacity 0.4s ease,transform 0.4s ease; pointer-events:none; overflow-y:auto; }
-.slide.active { opacity:1; transform:translateX(0); pointer-events:all; }
-.sc { max-width:920px; width:100%; }
+.slides-area{position:fixed;top:var(--cab-h);left:var(--sidebar-w);right:0;bottom:3px;overflow:hidden;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px 44px;opacity:0;transform:translateX(30px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;overflow-y:auto;}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all;}
+
+/* SCROLL STYLING */
+.slide::-webkit-scrollbar{width:5px;} .slide::-webkit-scrollbar-thumb{background:var(--brd);border-radius:4px;}
+
+/* CONTENT CONTAINER */
+.sc{max-width:860px;width:100%;}
 
 /* TYPOGRAPHY */
-h1 { font-size:2.4rem; font-weight:800; color:var(--titulo); margin-bottom:14px; line-height:1.15; text-align:center; }
-h2 { font-size:1.7rem; font-weight:700; color:var(--titulo); margin-bottom:12px; line-height:1.2; text-align:center; }
-h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom:8px; text-transform:uppercase; letter-spacing:2px; text-align:center; }
-.dest { background:linear-gradient(135deg,var(--ifrn-verde),var(--ifrn-verde-medio)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:700; }
-.verde { color:var(--acento); }
-.verm { color:var(--acento-verm); }
-.sutil { color:var(--texto-sutil); }
+h1{font-size:2.2rem;font-weight:800;color:var(--tit);line-height:1.2;margin-bottom:16px;}
+h2{font-size:1.65rem;font-weight:700;color:var(--tit);line-height:1.25;margin-bottom:14px;}
+h3.label{font-size:.7rem;text-transform:uppercase;letter-spacing:3px;color:var(--ac);font-weight:700;margin-bottom:10px;}
+h4{font-size:1rem;font-weight:700;color:var(--tit);margin-bottom:6px;}
 
-.exp { font-size:1rem; line-height:1.8; color:var(--texto); text-align:left; max-width:780px; margin:12px auto 0; }
-.exp strong { color:var(--titulo); }
-.exp-center { text-align:center; }
+/* LONG TEXT PARAGRAPHS - APOSTILA STYLE */
+.txt{font-size:.95rem;line-height:1.85;color:var(--txt);margin-bottom:14px;text-align:justify;}
+.txt strong{color:var(--tit);font-weight:700;}
+.txt-sm{font-size:.85rem;line-height:1.75;color:var(--txt2);margin-bottom:10px;text-align:justify;}
 
-.analogia { background:var(--slide-bg-destaque); border-left:3px solid var(--acento); border-radius:0 var(--radius) var(--radius) 0; padding:14px 18px; margin:14px auto 0; max-width:780px; font-size:0.95rem; line-height:1.7; }
-.analogia .al { font-size:0.7rem; text-transform:uppercase; letter-spacing:2px; color:var(--acento); font-weight:700; margin-bottom:5px; }
+.dest{background:linear-gradient(135deg,var(--ifrn-verde),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;}
+
+/* ANALOGIA BOX */
+.analogia{background:var(--bg-dest);border-left:3px solid var(--ac);border-radius:0 var(--rad) var(--rad) 0;padding:16px 20px;margin:16px 0;font-size:.9rem;line-height:1.8;color:var(--txt);}
+.analogia .al{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--ac);font-weight:700;margin-bottom:6px;}
+
+/* CURIOSIDADE BOX */
+.curiosidade{background:rgba(229,57,53,.08);border-left:3px solid var(--verm);border-radius:0 var(--rad) var(--rad) 0;padding:16px 20px;margin:16px 0;font-size:.9rem;line-height:1.8;color:var(--txt);}
+.curiosidade .cl{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--verm);font-weight:700;margin-bottom:6px;}
+
+/* DICA BOX */
+.dica{background:rgba(33,150,243,.08);border-left:3px solid #2196F3;border-radius:0 var(--rad) var(--rad) 0;padding:16px 20px;margin:16px 0;font-size:.9rem;line-height:1.8;color:var(--txt);}
+.dica .dl{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:#2196F3;font-weight:700;margin-bottom:6px;}
 
 /* CARDS */
-.cards { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
-.card { background:var(--slide-bg-card); border:1px solid var(--borda); border-radius:var(--radius); padding:20px 18px; flex:1; min-width:170px; max-width:260px; transition:all var(--trans); }
-.card:hover { border-color:var(--acento); transform:translateY(-3px); }
-.card-icon { font-size:1.8rem; margin-bottom:8px; display:block; text-align:center; }
-.card h4 { font-size:0.95rem; color:var(--titulo); margin-bottom:6px; font-weight:700; text-align:center; }
-.card p { font-size:0.85rem; color:var(--texto-sutil); line-height:1.6; text-align:left; }
-.card .cd { font-size:0.82rem; color:var(--texto); margin-top:6px; line-height:1.6; }
+.cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:16px 0;}
+.card{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--rad);padding:18px 16px;flex:1;min-width:180px;max-width:280px;transition:all var(--trans);}
+.card:hover{border-color:var(--ac);transform:translateY(-2px);}
+.card-icon{font-size:1.6rem;display:block;margin-bottom:8px;}
+.card p{font-size:.82rem;line-height:1.7;color:var(--txt2);}
 
-/* TWO/THREE COL */
-.two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; max-width:880px; margin-left:auto; margin-right:auto; }
-.three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; max-width:920px; }
-.two-col .card, .three-col .card { max-width:none; }
+/* TWO COLUMN */
+.two-col{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0;}
 
-/* VS */
-.vs { display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:start; margin-top:18px; max-width:860px; margin-left:auto; margin-right:auto; }
-.vs-col { background:var(--slide-bg-card); border:1px solid var(--borda); border-radius:var(--radius); padding:22px 18px; text-align:left; }
-.vs-col h4 { font-size:1.1rem; margin-bottom:12px; color:var(--titulo); text-align:center; }
-.vs-col ul { list-style:none; padding:0; }
-.vs-col ul li { padding:7px 0; font-size:0.9rem; color:var(--texto); border-bottom:1px solid var(--borda); line-height:1.5; }
-.vs-col ul li:last-child { border-bottom:none; }
-.vs-div { display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:800; color:var(--texto-sutil); align-self:center; }
+/* THREE COLUMN */
+.three-col{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:16px 0;}
 
-/* ITEMS */
-.items { text-align:left; max-width:750px; margin:14px auto 0; }
-.items .it { display:flex; align-items:flex-start; gap:11px; padding:10px 0; border-bottom:1px solid var(--borda); font-size:0.95rem; line-height:1.6; }
-.items .it:last-child { border-bottom:none; }
-.it-icon { font-size:1.1rem; flex-shrink:0; margin-top:2px; }
+/* VS COMPARISON */
+.vs{display:flex;gap:16px;align-items:stretch;margin:16px auto;max-width:760px;flex-wrap:wrap;}
+.vs-col{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--rad);padding:20px 18px;flex:1;min-width:200px;}
+.vs-col ul{list-style:none;padding:0;margin-top:8px;}
+.vs-col li{padding:5px 0;font-size:.85rem;line-height:1.6;color:var(--txt2);border-bottom:1px solid var(--brd);}
+.vs-col li:last-child{border:none;}
+.vs-div{display:flex;align-items:center;font-weight:800;font-size:1rem;color:var(--txt3);}
+
+/* ITEMS LIST */
+.items{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
+.it{display:flex;align-items:flex-start;gap:12px;background:var(--bg3);border:1px solid var(--brd);border-radius:var(--rad);padding:12px 16px;font-size:.88rem;line-height:1.7;color:var(--txt);}
+.it-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px;}
 
 /* TABLE */
-.tbl { width:100%; max-width:780px; margin:16px auto 0; border-collapse:collapse; }
-.tbl th { background:rgba(76,175,80,0.15); color:var(--acento); font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; padding:10px 14px; text-align:left; border-bottom:2px solid var(--acento); }
-.tbl td { padding:9px 14px; font-size:0.9rem; border-bottom:1px solid var(--borda); color:var(--texto); }
-.tbl tr:hover td { background:rgba(255,255,255,0.02); }
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:.85rem;}
+.tbl th{background:var(--bg-dest);color:var(--ac);padding:10px 14px;text-align:left;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--ac);}
+.tbl td{padding:9px 14px;border-bottom:1px solid var(--brd);color:var(--txt);line-height:1.6;}
+.tbl tr:hover td{background:rgba(76,175,80,.04);}
+.tbl td strong{color:var(--tit);}
 
-/* CODE */
-.code { background:var(--slide-bg-card); border:1px solid var(--borda); border-radius:var(--radius); padding:20px 26px; font-family:var(--mono); font-size:1rem; text-align:left; color:var(--acento); margin-top:14px; line-height:1.8; max-width:780px; margin-left:auto; margin-right:auto; }
-
-/* TAGS */
-.tag { display:inline-block; padding:3px 10px; border-radius:20px; font-size:0.72rem; font-weight:600; margin-top:6px; }
-.tag-g { background:rgba(76,175,80,0.15); color:var(--acento); }
-.tag-r { background:rgba(229,57,53,0.15); color:var(--acento-verm); }
-.tag-b { background:rgba(66,165,245,0.15); color:#42A5F5; }
-.tag-y { background:rgba(255,193,7,0.15); color:#FFC107; }
-
-/* TREE */
-.tree { text-align:center; margin-top:18px; }
-.tree-root { display:inline-block; background:var(--acento); color:#000; padding:10px 24px; border-radius:8px; font-weight:700; font-size:1rem; }
-.tree-conn { width:2px; height:20px; background:var(--borda); margin:0 auto; }
-.tree-branches { display:flex; justify-content:center; gap:14px; position:relative; }
-.tree-branches::before { content:''; position:absolute; top:0; left:22%; right:22%; height:2px; background:var(--borda); }
-.tree-branch { text-align:center; }
-.tree-bc { width:2px; height:14px; background:var(--borda); margin:0 auto; }
-.tree-node { background:var(--slide-bg-card); border:1px solid var(--borda); border-radius:8px; padding:7px 14px; font-size:0.85rem; }
-.tree-leaf { margin-top:5px; font-size:0.72rem; color:var(--texto-sutil); }
-
-/* LIFECYCLE */
-.lifecycle { display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin-top:18px; }
-.state { background:var(--slide-bg-card); border:2px solid var(--borda); border-radius:40px; padding:10px 18px; font-weight:600; font-size:0.85rem; }
-.state.hl { border-color:var(--acento); color:var(--acento); background:rgba(76,175,80,0.1); }
-.arrow { color:var(--acento); font-size:1.1rem; font-weight:700; }
+/* CODE / PATH BOX */
+.code{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--rad);padding:18px 24px;font-family:var(--mono);font-size:.9rem;text-align:left;color:var(--ac);margin:14px 0;line-height:1.8;max-width:800px;}
+.code .sutil{color:var(--txt3);font-style:italic;}
 
 /* TITLE SLIDE */
-.title-slide { text-align:center; }
-.title-slide .inst { font-size:0.8rem; text-transform:uppercase; letter-spacing:4px; color:var(--texto-sutil); margin-bottom:32px; }
-.title-slide h1 { font-size:2.8rem; margin-bottom:6px; }
-.title-slide .divider { width:70px; height:4px; background:linear-gradient(90deg,var(--acento),var(--ifrn-verde-medio)); border-radius:2px; margin:18px auto; }
-.title-slide .prof { font-size:0.9rem; color:var(--texto-sutil); margin-top:28px; }
-.title-slide .curso { font-size:0.8rem; color:var(--texto-sutil); margin-top:6px; }
+.title-slide{text-align:center;}
+.title-slide .inst{font-size:.78rem;text-transform:uppercase;letter-spacing:4px;color:var(--txt3);margin-bottom:30px;}
+.title-slide h1{font-size:2.8rem;margin-bottom:12px;}
+.title-slide .sub{font-size:1.1rem;color:var(--txt2);font-weight:300;margin-bottom:24px;}
+.title-slide .prof{font-size:.85rem;color:var(--txt3);margin-top:20px;}
+.title-slide .badge{display:inline-block;background:var(--bg-dest);border:1px solid var(--ac);color:var(--ac);padding:6px 18px;border-radius:20px;font-size:.75rem;font-weight:600;margin-top:14px;}
 
-::-webkit-scrollbar { width:4px; }
-::-webkit-scrollbar-track { background:transparent; }
-::-webkit-scrollbar-thumb { background:var(--borda); border-radius:2px; }
+/* SECTION TITLE SLIDE */
+.section-slide{text-align:center;}
+.section-slide .big-icon{font-size:3.5rem;margin-bottom:20px;}
+.section-slide h1{font-size:2.4rem;}
+.section-slide .sub{font-size:1rem;color:var(--txt2);font-weight:300;margin-top:10px;max-width:650px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+kbd{background:var(--bg3);border:1px solid var(--brd);border-radius:3px;padding:1px 6px;font-family:var(--mono);font-size:.75rem;}
+
+.verm{color:var(--verm);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sidebar{width:180px;} :root{--sidebar-w:180px;}
+  h1{font-size:1.8rem;} h2{font-size:1.4rem;}
+  .slide{padding:24px 20px;}
+}
+@media(max-width:640px){
+  .sidebar{display:none;} :root{--sidebar-w:0px;}
+  .slide{padding:20px 16px;}
+}
 </style>
 </head>
 <body>
 
-<div class="cab-bar"></div>
+<!-- BARRA IFRN -->
+<div class="barra-if"></div>
 <div class="cab">
   <img src="../../img/logo-ifrn.jpg" alt="IFRN">
-  <div class="cab-text"><strong>Instituto Federal de Educação, Ciência e Tecnologia</strong><br>Rio Grande do Norte</div>
+  <span>Educação em Tecnologias Digitais — Aula 01</span>
+  <span class="cnt" id="counter">1/42</span>
 </div>
 
+<!-- SIDEBAR -->
 <nav class="sidebar">
-  <div class="sidebar-header">
-    <h3>📚 ETD — Aula 01</h3>
-    <p>Sistemas Operacionais e Utilitários</p>
-    <a href="../" class="back">← Voltar ao portal ETD</a>
-  </div>
   <div class="nav-item active" data-chapter="0" onclick="goTo(0)"><span>🏠</span> Apresentação</div>
   <div class="nav-item" data-chapter="1" onclick="goTo(1)"><span>📖</span> Fundamentos do SO</div>
   <div class="nav-item" data-chapter="2" onclick="goTo(2)"><span>🖥️</span> Principais SOs</div>
@@ -182,90 +162,141 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
   <div class="nav-item" data-chapter="5" onclick="goTo(5)"><span>🎯</span> Atividades e Resumo</div>
 </nav>
 
-<div class="counter" id="counter">1/30</div>
-<div class="progress"><div class="fill" id="fill"></div></div>
-<div class="hint"><kbd>←</kbd> <kbd>→</kbd> navegar</div>
+<!-- PROGRESS -->
+<div class="progress"><div class="progress-fill" id="fill"></div></div>
 
-<div class="area">
+<!-- SLIDES -->
+<div class="slides-area">
 
-<!-- ===== CAP 0: APRESENTAÇÃO ===== -->
-
+<!-- ===== CAP 0: TÍTULO ===== -->
 <div class="slide active" data-chapter="0">
   <div class="sc title-slide">
     <p class="inst">Instituto Federal do Rio Grande do Norte</p>
-    <h3 class="label">Educação em Tecnologias Digitais</h3>
     <h1>Noções Básicas de<br><span class="dest">Sistemas Operacionais</span><br>e Utilitários</h1>
-    <div class="divider"></div>
+    <p class="sub">Educação em Tecnologias Digitais — Aula 01</p>
     <p class="prof">Prof. Jeferson Queiroga — IFRN — 2026.1</p>
-    <p class="curso">Técnico de Nível Médio em Informática — Forma Integrada</p>
+    <span class="badge">Técnico em Informática — Forma Integrada</span>
   </div>
 </div>
 
 <div class="slide" data-chapter="0">
   <div class="sc">
-    <h3 class="label">O que você vai aprender</h3>
-    <h2>Objetivos da Aula</h2>
-    <div class="cards">
-      <div class="card"><span class="card-icon">🖥️</span><h4>O que é um SO</h4><p class="cd">Entender o papel do sistema operacional como intermediário entre você e o hardware.</p></div>
-      <div class="card"><span class="card-icon">🪟</span><h4>Principais SOs</h4><p class="cd">Conhecer Windows, macOS, Linux, Android, iOS e ChromeOS — suas características e diferenças.</p></div>
-      <div class="card"><span class="card-icon">📁</span><h4>Arquivos e Pastas</h4><p class="cd">Dominar a organização, extensões, operações e caminhos de arquivos no computador.</p></div>
-      <div class="card"><span class="card-icon">🔧</span><h4>Utilitários</h4><p class="cd">Conhecer as ferramentas essenciais de manutenção, proteção e produtividade.</p></div>
+    <h3 class="label">Objetivos da aula</h3>
+    <h2>O que você vai aprender hoje</h2>
+    <p class="txt">Nesta aula, vamos explorar os <strong>fundamentos dos sistemas operacionais</strong>, que são os softwares mais importantes de qualquer computador, tablet ou smartphone. Você vai entender o que eles fazem, por que são indispensáveis e como interagimos com eles no dia a dia. Também vamos conhecer os principais sistemas operacionais do mercado — Windows, macOS, Linux, Android, iOS e ChromeOS — comparando suas características, vantagens e públicos-alvo.</p>
+    <p class="txt">Na segunda parte da aula, vamos aprender sobre <strong>gerenciamento de pastas e arquivos</strong>: como os dados são organizados no computador, quais são os tipos de arquivo mais comuns e como realizar operações básicas como copiar, mover, renomear e excluir. Por fim, conheceremos os <strong>softwares utilitários</strong> — ferramentas essenciais para manter o computador funcionando de forma eficiente e segura, incluindo antivírus, compactadores, gerenciadores de tarefas, ferramentas de backup, leitores de PDF, reprodutores de mídia e navegadores de internet.</p>
+    <div class="items">
+      <div class="it"><span class="it-icon">✅</span><span>Compreender o que é um sistema operacional e suas funções essenciais</span></div>
+      <div class="it"><span class="it-icon">✅</span><span>Conhecer os principais SOs do mercado (desktop e mobile)</span></div>
+      <div class="it"><span class="it-icon">✅</span><span>Dominar o gerenciamento de pastas, arquivos e caminhos</span></div>
+      <div class="it"><span class="it-icon">✅</span><span>Identificar e utilizar os principais softwares utilitários</span></div>
     </div>
   </div>
 </div>
 
-<!-- ===== CAP 1: FUNDAMENTOS ===== -->
+<!-- ===== CAP 1: FUNDAMENTOS DO SO ===== -->
+<div class="slide" data-chapter="1">
+  <div class="sc section-slide">
+    <span class="big-icon">📖</span>
+    <h1>Fundamentos e Funções do<br><span class="dest">Sistema Operacional</span></h1>
+    <p class="sub">Vamos entender o software mais importante do seu computador: o que ele faz, como funciona e por que sem ele o computador seria apenas um conjunto de peças sem utilidade.</p>
+  </div>
+</div>
 
 <div class="slide" data-chapter="1">
   <div class="sc">
-    <h3 class="label">Fundamentos</h3>
+    <h3 class="label">Conceito fundamental</h3>
     <h1>O que é um <span class="dest">Sistema Operacional</span>?</h1>
-    <p class="exp">O <strong>Sistema Operacional</strong> (SO) é o software mais importante de qualquer computador, tablet ou smartphone. Ele é o primeiro programa carregado quando você liga o aparelho e o último a ser encerrado. Sem ele, o computador seria apenas um conjunto de peças eletrônicas sem utilidade prática.</p>
-    <p class="exp">O SO é quem coordena o funcionamento do <strong>hardware</strong> (peças físicas) e do <strong>software</strong> (programas) para que tudo funcione de forma harmoniosa.</p>
+    <p class="txt">O <strong>Sistema Operacional</strong> (SO) é o software mais importante de qualquer computador, tablet ou smartphone. Ele é o primeiro programa a ser carregado quando você liga o aparelho e o último a ser encerrado quando você o desliga. Sem ele, o computador seria apenas um conjunto de peças eletrônicas sem utilidade prática — a tela ficaria preta, o teclado não responderia a nada e nenhum programa poderia ser executado.</p>
+    <p class="txt">O SO é quem faz a ponte entre o <strong>hardware</strong> (as peças físicas, como processador, memória, disco rígido) e o <strong>software</strong> (os programas que você usa, como navegador, editor de texto, jogos). Ele coordena o funcionamento de tudo isso para que o computador opere de forma harmoniosa. Sem o sistema operacional, seria impossível abrir um documento, acessar a internet ou até mesmo mover o cursor do mouse pela tela.</p>
     <div class="analogia">
       <div class="al">💡 Analogia</div>
-      O SO é como o <strong>gerente de um restaurante movimentado</strong>: há cozinheiros preparando pratos, garçons atendendo mesas, clientes chegando e saindo. O gerente coordena tudo — distribui tarefas, organiza o espaço, resolve conflitos e garante que cada um receba o que pediu.
+      Imagine um <strong>restaurante movimentado</strong>: há cozinheiros preparando pratos, garçons atendendo mesas, clientes chegando e saindo a todo momento. O <strong>gerente</strong> é quem coordena tudo isso — distribui as tarefas entre os funcionários, organiza o espaço, resolve conflitos quando dois garçons querem usar a mesma bandeja, e garante que cada cliente receba exatamente o que pediu. No computador, o sistema operacional faz exatamente esse papel de gerente: distribui os recursos da máquina entre os programas, organiza os dados e garante que tudo funcione sem conflitos.
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="1">
   <div class="sc">
-    <h3 class="label">Funções essenciais</h3>
-    <h2>O que o SO faz por você?</h2>
+    <h3 class="label">Funções essenciais — Parte 1</h3>
+    <h2>Gerenciamento de Processos e Memória</h2>
+    <p class="txt">O sistema operacional desempenha diversas funções essenciais que permitem o funcionamento do computador. Duas das mais importantes são o gerenciamento de processos e o gerenciamento de memória, que acontecem automaticamente, sem que o usuário precise se preocupar com isso.</p>
     <div class="two-col">
-      <div class="card"><span class="card-icon">⚙️</span><h4>Gerenciamento de Processos</h4><p class="cd">Quando você abre navegador, editor de texto e música ao mesmo tempo, o SO distribui o tempo do processador entre eles sem conflito. Cada programa em execução é um <strong>"processo"</strong>.</p></div>
-      <div class="card"><span class="card-icon">🧠</span><h4>Gerenciamento de Memória</h4><p class="cd">O SO decide quanto de RAM cada programa usa, aloca espaço ao abrir e libera ao fechar. Quando a RAM lota, usa parte do disco como extensão — a <strong>memória virtual</strong>.</p></div>
-      <div class="card"><span class="card-icon">📁</span><h4>Gerenciamento de Arquivos</h4><p class="cd">Organiza todos os dados em pastas e arquivos, controlando como são gravados e lidos no disco. Permite salvar, encontrar, copiar, mover e excluir documentos.</p></div>
-      <div class="card"><span class="card-icon">🔌</span><h4>Gerenciamento de Dispositivos</h4><p class="cd">Impressoras, teclados, pendrives e outros periféricos são reconhecidos e controlados pelo SO por meio de programas chamados <strong>drivers</strong>.</p></div>
+      <div class="card">
+        <span class="card-icon">⚙️</span>
+        <h4>Gerenciamento de Processos</h4>
+        <p>Quando você abre um navegador de internet, um editor de texto e um reprodutor de música ao mesmo tempo, é o sistema operacional que garante que todos esses programas funcionem simultaneamente sem conflito. Cada programa em execução é chamado de <strong>"processo"</strong>, e o SO distribui o tempo do processador entre eles de forma justa e eficiente. É como se o processador fosse um funcionário muito rápido que alterna entre diversas tarefas milhões de vezes por segundo, dando a impressão de que tudo roda ao mesmo tempo.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧠</span>
+        <h4>Gerenciamento de Memória</h4>
+        <p>O computador possui uma quantidade limitada de memória RAM (Random Access Memory), que é usada para manter os programas em execução. O sistema operacional decide quanto de memória cada programa pode usar, aloca espaço quando um novo programa é aberto e libera esse espaço quando o programa é encerrado. Quando a memória RAM fica cheia — por exemplo, quando você abre muitas abas no navegador — o SO pode usar parte do disco de armazenamento como uma extensão temporária da memória, em um mecanismo chamado <strong>memória virtual</strong>.</p>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="1">
   <div class="sc">
-    <h3 class="label">Funções essenciais</h3>
-    <h2>Interface e Segurança</h2>
+    <h3 class="label">Funções essenciais — Parte 2</h3>
+    <h2>Gerenciamento de Arquivos e Dispositivos</h2>
+    <p class="txt">Além de gerenciar processos e memória, o sistema operacional também é responsável por organizar todos os dados armazenados no computador e por fazer a comunicação com os dispositivos periféricos conectados a ele. Essas funções são fundamentais para que o usuário consiga salvar seus documentos e utilizar equipamentos como impressoras, pendrives e fones de ouvido.</p>
+    <div class="two-col">
+      <div class="card">
+        <span class="card-icon">📁</span>
+        <h4>Gerenciamento de Arquivos</h4>
+        <p>O SO organiza todos os dados gravados no disco do computador em uma estrutura de <strong>pastas e arquivos</strong>, permitindo que você salve, encontre, mova, copie e exclua seus documentos com facilidade. Ele controla como os dados são fisicamente gravados e lidos no disco rígido (HDD) ou no SSD. Sem essa organização, os dados seriam apenas uma sequência caótica de zeros e uns, impossível de ser interpretada pelo ser humano.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔌</span>
+        <h4>Gerenciamento de Dispositivos</h4>
+        <p>Impressoras, teclados, mouses, pendrives, monitores e qualquer outro dispositivo conectado ao computador precisam ser reconhecidos e controlados. O SO faz essa comunicação por meio de pequenos programas chamados <strong>drivers</strong> (ou controladores de dispositivo). Quando você conecta um pendrive USB, por exemplo, o sistema operacional reconhece o dispositivo automaticamente, carrega o driver adequado e torna o conteúdo do pendrive acessível pelo gerenciador de arquivos.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-chapter="1">
+  <div class="sc">
+    <h3 class="label">Funções essenciais — Parte 3</h3>
+    <h2>Interface com o Usuário: GUI vs CLI</h2>
+    <p class="txt">O sistema operacional oferece uma forma para que o ser humano interaja com o computador. Essa interação pode acontecer de duas maneiras principais: por meio de uma <strong>interface gráfica</strong> (GUI — Graphical User Interface) ou por meio de uma <strong>interface de linha de comando</strong> (CLI — Command Line Interface). Cada uma tem suas vantagens e é utilizada em diferentes contextos.</p>
     <div class="vs">
       <div class="vs-col">
         <h4>🖱️ Interface Gráfica (GUI)</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:10px;">É a forma mais comum e intuitiva de interagir com o computador. Utiliza <strong>janelas, ícones, menus e botões</strong> que podem ser manipulados com o mouse ou com toques na tela. Qualquer pessoa, mesmo sem conhecimento técnico, consegue usar um computador por meio da GUI. É o que vemos no Windows, no macOS e nas versões de desktop do Linux como Ubuntu e Linux Mint.</p>
         <ul>
-          <li>Janelas, ícones, menus e botões manipulados com mouse ou toque</li>
-          <li>Forma mais comum e intuitiva</li>
+          <li>Janelas, ícones, menus e botões</li>
+          <li>Manipulação com mouse ou toque</li>
+          <li>Intuitiva para iniciantes</li>
           <li>Windows, macOS, Ubuntu Desktop</li>
         </ul>
       </div>
       <div class="vs-div">VS</div>
       <div class="vs-col">
         <h4>⌨️ Linha de Comando (CLI)</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:10px;">O usuário digita comandos em texto para dar instruções ao computador. Apesar de parecer mais difícil para quem está começando, a linha de comando é uma ferramenta <strong>extremamente poderosa</strong> e amplamente utilizada por profissionais de tecnologia, administradores de sistemas e programadores, pois permite automatizar tarefas e ter controle total sobre o sistema.</p>
         <ul>
-          <li>Comandos digitados em texto para dar instruções ao computador</li>
-          <li>Poderosa e usada por profissionais de TI</li>
+          <li>Comandos digitados em texto</li>
+          <li>Poderosa e precisa</li>
+          <li>Usada por profissionais de TI</li>
           <li>Prompt de Comando, PowerShell, Terminal Linux</li>
         </ul>
       </div>
     </div>
-    <p class="exp exp-center" style="margin-top:16px;">🔒 <strong>Segurança:</strong> O SO gerencia contas de usuários, senhas e permissões. Em um computador compartilhado, cada pessoa tem sua conta e o sistema garante que arquivos de um usuário não sejam acessados por outro sem autorização.</p>
+  </div>
+</div>
+
+<div class="slide" data-chapter="1">
+  <div class="sc">
+    <h3 class="label">Funções essenciais — Parte 4</h3>
+    <h2>🔒 Segurança e Controle de Acesso</h2>
+    <p class="txt">Outra função fundamental do sistema operacional é a <strong>segurança e o controle de acesso</strong>. O SO gerencia contas de usuários, permissões de acesso a arquivos e configurações de segurança. Em um computador compartilhado — como os das escolas, bibliotecas ou empresas — cada pessoa pode ter sua própria conta com senha, e o sistema garante que os arquivos de um usuário não sejam acessados, modificados ou excluídos por outro sem a devida autorização.</p>
+    <p class="txt">Esse sistema de permissões funciona em diferentes níveis. Um <strong>administrador</strong> tem acesso total ao sistema: pode instalar e remover programas, alterar configurações e gerenciar contas de outros usuários. Já um <strong>usuário padrão</strong> tem acesso limitado, podendo usar os programas instalados e acessar apenas seus próprios arquivos. Essa separação é essencial para a segurança, pois evita que programas maliciosos (vírus) façam alterações profundas no sistema sem a permissão do administrador.</p>
+    <div class="curiosidade">
+      <div class="cl">🔐 Você sabia?</div>
+      No Windows, quando aparece aquela janela escura pedindo permissão para fazer uma alteração no sistema (a tela do <strong>UAC — User Account Control</strong>), isso é exatamente o sistema operacional exercendo sua função de segurança. Ele está verificando se você, o administrador, realmente autorizou aquela ação antes de permitir que ela aconteça.
+    </div>
   </div>
 </div>
 
@@ -273,57 +304,77 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
   <div class="sc">
     <h3 class="label">Processo de inicialização</h3>
     <h2>O que acontece quando você liga o PC?</h2>
-    <p class="exp exp-center">A sequência de eventos ao ligar o computador é chamada de <strong>boot</strong> (inicialização):</p>
+    <p class="txt">Quando você pressiona o botão de ligar o computador, acontece uma sequência de eventos chamada <strong>boot</strong> (ou inicialização). Esse processo dura apenas alguns segundos em computadores modernos com SSD, mas envolve várias etapas importantes que acontecem nos bastidores antes de você ver a tela de login ou a área de trabalho.</p>
     <div class="items">
-      <div class="it"><span class="it-icon">1️⃣</span><span><strong>Autoteste (POST)</strong> — O hardware verifica se os componentes essenciais (processador, memória, placa de vídeo) estão funcionando.</span></div>
-      <div class="it"><span class="it-icon">2️⃣</span><span><strong>Firmware (BIOS/UEFI)</strong> — Localiza o disco onde o sistema operacional está instalado.</span></div>
-      <div class="it"><span class="it-icon">3️⃣</span><span><strong>Carregamento do SO</strong> — O sistema operacional começa a ser copiado do disco para a memória RAM.</span></div>
-      <div class="it"><span class="it-icon">4️⃣</span><span><strong>Drivers e serviços</strong> — Programas essenciais para hardware e rede são inicializados.</span></div>
-      <div class="it"><span class="it-icon">5️⃣</span><span><strong>Tela de login</strong> — A área de trabalho é exibida. O computador está pronto para uso!</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">1️⃣</span><span><strong>Autoteste inicial (POST)</strong> — Ao ligar, o hardware realiza uma verificação automática para conferir se os componentes essenciais estão funcionando corretamente: processador, memória RAM, placa de vídeo e disco de armazenamento. Se algo estiver errado, o computador pode emitir bipes de alerta ou exibir uma mensagem de erro.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">2️⃣</span><span><strong>Firmware (BIOS/UEFI)</strong> — O firmware é um pequeno software gravado na placa-mãe do computador. Ele localiza o disco onde o sistema operacional está instalado e inicia o processo de carregamento. Em computadores mais antigos, esse firmware é chamado de BIOS; nos modernos, é o UEFI, que é mais rápido e tem interface gráfica.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">3️⃣</span><span><strong>Carregamento do SO</strong> — O sistema operacional começa a ser copiado do disco (HDD ou SSD) para a memória RAM, onde será executado. Quanto mais rápido for o disco e mais memória o computador tiver, mais rápido será esse carregamento.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">4️⃣</span><span><strong>Drivers e serviços</strong> — Programas essenciais para o funcionamento do hardware (drivers de vídeo, som, rede, etc.) e serviços do sistema (antivírus, atualizações, conexão de rede) são inicializados automaticamente.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">5️⃣</span><span><strong>Tela de login / Área de trabalho</strong> — Finalmente, a tela de login ou a área de trabalho é exibida, indicando que o computador está pronto para uso. A partir daqui, você pode abrir programas, acessar arquivos e navegar na internet.</span></div>
     </div>
   </div>
 </div>
 
 <!-- ===== CAP 2: PRINCIPAIS SOs ===== -->
+<div class="slide" data-chapter="2">
+  <div class="sc section-slide">
+    <span class="big-icon">🖥️</span>
+    <h1>Principais <span class="dest">Sistemas Operacionais</span></h1>
+    <p class="sub">Existem diversos sistemas operacionais no mercado, cada um com suas características, vantagens e públicos-alvo. Vamos conhecer os mais relevantes atualmente, tanto para computadores de mesa quanto para dispositivos móveis.</p>
+  </div>
+</div>
 
 <div class="slide" data-chapter="2">
   <div class="sc">
-    <h3 class="label">Sistemas Operacionais</h3>
+    <h3 class="label">Sistemas Operacionais para Desktop</h3>
     <h1>🪟 <span class="dest">Microsoft Windows</span></h1>
-    <p class="exp">O <strong>Windows</strong> é o SO para PCs mais utilizado no mundo. Criado pela Microsoft em 1985, sua interface é baseada no conceito de <strong>janelas</strong> que se abrem sobre a área de trabalho — podendo ser movidas, redimensionadas e fechadas. A versão mais recente é o <strong>Windows 11</strong>.</p>
+    <p class="txt">O <strong>Windows</strong> é o sistema operacional para computadores pessoais mais utilizado no mundo. Criado pela Microsoft, ele teve sua primeira versão lançada em <strong>1985</strong>, e desde então passou por diversas atualizações e evoluções que o tornaram cada vez mais intuitivo e poderoso.</p>
+    <p class="txt">A palavra "Windows" significa <strong>"janelas"</strong> em inglês, e isso não é por acaso: toda a interface do sistema é baseada no conceito de janelas que se abrem sobre a área de trabalho, podendo ser movidas, redimensionadas, minimizadas e fechadas. Essa abordagem tornou o uso do computador muito mais acessível para pessoas que não tinham conhecimento técnico em informática.</p>
+    <p class="txt">A versão mais recente para computadores pessoais é o <strong>Windows 11</strong>, lançado em 2021 e constantemente atualizado pela Microsoft. Ele trouxe uma interface visual modernizada, com cantos arredondados, um Menu Iniciar centralizado e melhor integração com serviços de nuvem. O Windows 10, sua versão anterior, ainda é amplamente utilizado em residências, escolas e empresas em todo o mundo.</p>
+  </div>
+</div>
+
+<div class="slide" data-chapter="2">
+  <div class="sc">
+    <h3 class="label">Características do Windows</h3>
+    <h2>Por que o Windows é tão popular?</h2>
+    <p class="txt">O Windows conquistou sua posição dominante no mercado de computadores pessoais por diversos fatores. Ele oferece a maior <strong>compatibilidade com programas e jogos</strong> de qualquer sistema operacional, conta com uma vasta base de suporte e tutoriais, e é o sistema que a maioria das pessoas aprende a usar primeiro. Veja as principais características que tornam o Windows a escolha mais comum:</p>
     <div class="cards">
-      <div class="card"><span class="card-icon">💰</span><h4>Proprietário</h4><p class="cd">Necessário adquirir uma licença para uso legal.</p></div>
-      <div class="card"><span class="card-icon">🎮</span><h4>Compatibilidade</h4><p class="cd">Maior oferta de programas e jogos do mercado.</p></div>
-      <div class="card"><span class="card-icon">🤖</span><h4>Copilot (IA)</h4><p class="cd">Assistente com inteligência artificial integrada ao sistema.</p></div>
-      <div class="card"><span class="card-icon">☁️</span><h4>Nuvem</h4><p class="cd">Integração nativa com OneDrive e Microsoft 365.</p></div>
+      <div class="card"><span class="card-icon">💰</span><h4>Software Proprietário</h4><p>É necessário adquirir uma <strong>licença</strong> para usá-lo legalmente. A licença geralmente já vem incluída no preço de computadores novos vendidos no varejo, por isso muitas pessoas nem percebem esse custo. Existem também versões para empresas e educação com preços diferenciados.</p></div>
+      <div class="card"><span class="card-icon">🎮</span><h4>Maior Compatibilidade</h4><p>Possui a <strong>maior oferta de programas e jogos</strong> disponíveis no mercado. A grande maioria dos softwares profissionais — como AutoCAD, Adobe Photoshop, Microsoft Office — é desenvolvida primeiro para Windows. Para jogos, é praticamente a única opção viável em desktop.</p></div>
+      <div class="card"><span class="card-icon">🤖</span><h4>Copilot (IA)</h4><p>Nas versões mais recentes, o Windows conta com o <strong>Copilot</strong>, um assistente com inteligência artificial integrado ao sistema. Ele pode ajudar a escrever textos, resumir documentos, gerar imagens e responder perguntas diretamente na área de trabalho.</p></div>
+      <div class="card"><span class="card-icon">☁️</span><h4>Integração com Nuvem</h4><p>Integração nativa com o <strong>OneDrive</strong> (armazenamento em nuvem) e o <strong>Microsoft 365</strong> (Word, Excel, PowerPoint online). Seus arquivos podem ser sincronizados automaticamente e acessados de qualquer dispositivo.</p></div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="2">
   <div class="sc">
-    <h3 class="label">Sistemas Operacionais</h3>
+    <h3 class="label">Sistemas Operacionais para Desktop</h3>
     <h1>🍎 <span class="dest">macOS</span></h1>
-    <p class="exp">O <strong>macOS</strong> é o sistema desenvolvido pela Apple exclusivamente para seus computadores Mac. Foi pioneiro na interface gráfica com ícones, pastas e a metáfora da "área de trabalho". É conhecido por sua <strong>estabilidade</strong>, <strong>fluidez</strong> e <strong>integração com o ecossistema Apple</strong> — você pode copiar texto no iPhone e colar no Mac, ou atender ligações pelo computador.</p>
+    <p class="txt">O <strong>macOS</strong> é o sistema operacional desenvolvido pela Apple exclusivamente para seus computadores da linha Mac (MacBook, iMac, Mac Mini, Mac Pro). Diferentemente do Windows, que pode ser instalado em computadores de diversos fabricantes, o macOS está <strong>vinculado ao hardware da Apple</strong> — não é possível instalá-lo legalmente em computadores de outras marcas.</p>
+    <p class="txt">Historicamente, o macOS foi um dos <strong>pioneiros na utilização de interface gráfica</strong> com ícones, pastas e a metáfora da "área de trabalho" (desktop) — conceitos que mais tarde foram adotados por praticamente todos os sistemas operacionais. O Mac original, lançado em 1984, foi o primeiro computador pessoal de sucesso a oferecer uma interface gráfica completa com mouse.</p>
+    <p class="txt">O macOS é conhecido por sua <strong>estabilidade, fluidez e integração com o ecossistema Apple</strong>. Se você possui um iPhone, iPad ou Apple Watch, o macOS permite que todos esses dispositivos trabalhem juntos de forma extremamente integrada — por exemplo, é possível copiar um texto no celular e colar diretamente no computador, atender ligações telefônicas pelo Mac, ou iniciar a edição de um documento no iPad e continuar no MacBook exatamente de onde parou.</p>
     <div class="cards">
-      <div class="card"><span class="card-icon">🎨</span><h4>Design e Criação</h4><p class="cd">Amplamente usado em design gráfico, edição de vídeo e produção musical.</p></div>
-      <div class="card"><span class="card-icon">🔗</span><h4>Ecossistema</h4><p class="cd">Integração total com iPhone, iPad e Apple Watch.</p></div>
-      <div class="card"><span class="card-icon">🔒</span><h4>Proprietário</h4><p class="cd">Vinculado ao hardware da Apple — não pode ser instalado em outros PCs.</p></div>
+      <div class="card"><span class="card-icon">🎨</span><h4>Design e Criação</h4><p>Amplamente utilizado nas áreas de <strong>design gráfico, edição de vídeo, produção musical</strong> e desenvolvimento de software para iOS. Programas como Final Cut Pro, Logic Pro e Xcode são exclusivos do macOS.</p></div>
+      <div class="card"><span class="card-icon">🔗</span><h4>Ecossistema Apple</h4><p>Integração total com iPhone, iPad e Apple Watch por meio de recursos como <strong>AirDrop, Handoff, Continuidade</strong> e sincronização via iCloud.</p></div>
+      <div class="card"><span class="card-icon">🔒</span><h4>Proprietário e Exclusivo</h4><p>Software proprietário vinculado ao hardware Apple. Não pode ser instalado em PCs de outras marcas. Os computadores Mac tendem a ter <strong>preços mais elevados</strong> que PCs equivalentes.</p></div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="2">
   <div class="sc">
-    <h3 class="label">Sistemas Operacionais</h3>
+    <h3 class="label">Sistemas Operacionais para Desktop</h3>
     <h1>🐧 <span class="dest">Linux</span></h1>
-    <p class="exp">O <strong>Linux</strong> é um SO de <strong>código aberto</strong> (open source): qualquer pessoa pode acessar seu código, estudá-lo, modificá-lo e distribuí-lo livremente. Na prática, existem diversas <strong>distribuições</strong> (versões) criadas por comunidades e empresas.</p>
+    <p class="txt">O <strong>Linux</strong> é um sistema operacional de <strong>código aberto</strong> (open source), o que significa que qualquer pessoa pode acessar seu código-fonte, estudá-lo, modificá-lo e distribuí-lo livremente. Essa característica é a essência do conceito de <strong>software livre</strong>, que se baseia em quatro liberdades fundamentais definidas pela Free Software Foundation:</p>
     <div class="items">
-      <div class="it"><span class="it-icon" style="color:var(--acento);">✅</span><span><strong>Executar</strong> — Liberdade de usar o programa para qualquer propósito.</span></div>
-      <div class="it"><span class="it-icon" style="color:var(--acento);">✅</span><span><strong>Estudar</strong> — Liberdade de ver como funciona e adaptar às suas necessidades.</span></div>
-      <div class="it"><span class="it-icon" style="color:var(--acento);">✅</span><span><strong>Redistribuir</strong> — Liberdade de compartilhar cópias do programa.</span></div>
-      <div class="it"><span class="it-icon" style="color:var(--acento);">✅</span><span><strong>Aperfeiçoar</strong> — Liberdade de melhorar e liberar para a comunidade.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span><strong>Liberdade de Executar</strong> — A liberdade de usar o programa para qualquer propósito, seja pessoal, educacional, comercial ou governamental, sem restrições.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span><strong>Liberdade de Estudar</strong> — A liberdade de ver como o programa funciona internamente (acessar o código-fonte) e adaptá-lo às suas necessidades específicas.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span><strong>Liberdade de Redistribuir</strong> — A liberdade de compartilhar cópias do programa com outras pessoas, ajudando a comunidade.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span><strong>Liberdade de Aperfeiçoar</strong> — A liberdade de melhorar o programa e liberar essas melhorias para que toda a comunidade se beneficie.</span></div>
     </div>
+    <p class="txt">Na prática, o Linux não é um único sistema operacional, mas sim um <strong>núcleo</strong> (kernel) sobre o qual diversas organizações e comunidades constroem suas próprias versões completas, chamadas de <strong>distribuições</strong> (ou "distros"). Cada distribuição tem sua própria interface visual, seus próprios programas pré-instalados e seu público-alvo específico.</p>
   </div>
 </div>
 
@@ -331,45 +382,79 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
   <div class="sc">
     <h3 class="label">Distribuições Linux</h3>
     <h2>Cada distro tem seu público-alvo</h2>
-    <div class="two-col">
-      <div class="card"><span class="card-icon">🟠</span><h4>Ubuntu</h4><p class="cd">A mais conhecida e amigável para iniciantes. Interface moderna e grande comunidade de suporte.</p></div>
-      <div class="card"><span class="card-icon">🟢</span><h4>Linux Mint</h4><p class="cd">Ideal para quem vem do Windows — interface com barra de tarefas e menu iniciar semelhantes.</p></div>
-      <div class="card"><span class="card-icon">🔵</span><h4>Fedora</h4><p class="cd">Voltada para tecnologias recentes. Patrocinada pela Red Hat.</p></div>
-      <div class="card"><span class="card-icon">🔴</span><h4>Debian</h4><p class="cd">Uma das mais antigas e estáveis. Muito utilizada em servidores.</p></div>
+    <p class="txt">Como o Linux é de código aberto, qualquer pessoa ou organização pode criar sua própria versão (distribuição). Existem centenas de distribuições disponíveis, cada uma com foco em um tipo diferente de usuário. Abaixo estão as mais populares e recomendadas para iniciantes:</p>
+    <div class="cards">
+      <div class="card"><span class="card-icon">🟠</span><h4>Ubuntu</h4><p>Uma das distribuições mais conhecidas e <strong>amigáveis para iniciantes</strong>. Possui interface gráfica moderna (GNOME), grande comunidade de suporte online, e é uma excelente porta de entrada para quem quer conhecer o mundo Linux.</p></div>
+      <div class="card"><span class="card-icon">🟢</span><h4>Linux Mint</h4><p>Muito recomendada para quem está <strong>migrando do Windows</strong>, pois possui uma interface semelhante, com barra de tarefas na parte inferior e menu iniciar. É estável, leve e funciona bem em computadores mais antigos.</p></div>
+      <div class="card"><span class="card-icon">🔵</span><h4>Fedora</h4><p>Voltada para quem deseja utilizar <strong>tecnologias mais recentes</strong>. É patrocinada pela empresa Red Hat e costuma ser uma das primeiras a receber novidades do mundo Linux.</p></div>
+      <div class="card"><span class="card-icon">🔴</span><h4>Debian</h4><p>Uma das distribuições <strong>mais antigas e estáveis</strong>. É a base do Ubuntu e é bastante utilizada em servidores de internet e ambientes que exigem alta confiabilidade.</p></div>
     </div>
-    <p class="exp exp-center sutil" style="font-size:0.85rem; margin-top:14px;">O Linux é a base do <strong>Android</strong>, está em servidores de internet, supercomputadores e smart TVs. Em escolas e órgãos públicos brasileiros, sua presença é significativa por ser <strong>gratuito</strong>.</p>
+    <div class="dica">
+      <div class="dl">💡 Onde o Linux está?</div>
+      O Linux é amplamente utilizado em <strong>servidores de internet</strong> (a maioria dos sites do mundo roda em Linux), <strong>supercomputadores</strong>, <strong>sistemas embarcados</strong> (como roteadores e smart TVs) e é a base do sistema <strong>Android</strong>. Nas escolas e órgãos públicos brasileiros, o Linux tem presença significativa por ser gratuito e eliminar custos de licenciamento.
+    </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="2">
   <div class="sc">
-    <h3 class="label">Sistemas Móveis</h3>
-    <h2>Android, iOS e ChromeOS</h2>
-    <div class="three-col">
-      <div class="card"><span class="card-icon">🤖</span><h4>Android</h4><p class="cd">Desenvolvido pelo Google, baseado no kernel Linux. O SO móvel <strong>mais usado no mundo</strong>. Presente em Samsung, Motorola, Xiaomi e outros. Código aberto e personalizável.</p></div>
-      <div class="card"><span class="card-icon">📱</span><h4>iOS / iPadOS</h4><p class="cd">Desenvolvido pela Apple, exclusivo para iPhones e iPads. Conhecido pela <strong>segurança e fluidez</strong>. Integração total com o ecossistema Apple.</p></div>
-      <div class="card"><span class="card-icon">💻</span><h4>ChromeOS</h4><p class="cd">SO do Google para Chromebooks. Interface baseada no navegador Chrome. Leve, rápido e muito usado em <strong>escolas e instituições</strong> educacionais.</p></div>
+    <h3 class="label">Sistemas Operacionais Móveis</h3>
+    <h2>📱 Android e iOS</h2>
+    <p class="txt">Além dos sistemas operacionais para computadores de mesa e notebooks, é fundamental conhecer os sistemas voltados para <strong>dispositivos móveis</strong> — smartphones e tablets — que fazem parte do nosso dia a dia e são os dispositivos mais utilizados pela maioria das pessoas para acessar a internet, redes sociais e serviços digitais.</p>
+    <div class="vs">
+      <div class="vs-col">
+        <h4>🤖 Android (Google)</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:10px;">Desenvolvido pelo Google e baseado no kernel Linux, o <strong>Android</strong> é o sistema operacional móvel <strong>mais utilizado no mundo</strong>, presente em mais de 70% dos smartphones globalmente. Está presente na grande maioria dos celulares e tablets de fabricantes como Samsung, Motorola, Xiaomi, entre outros. É um sistema de <strong>código aberto</strong>, o que permite que cada fabricante o personalize com sua própria interface e aplicativos exclusivos. A loja oficial de aplicativos é a <strong>Google Play Store</strong>, com milhões de apps disponíveis.</p>
+      </div>
+      <div class="vs-div">VS</div>
+      <div class="vs-col">
+        <h4>🍎 iOS (Apple)</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:10px;">Desenvolvido pela Apple, o <strong>iOS</strong> é o sistema operacional exclusivo dos iPhones. É conhecido por sua <strong>segurança, fluidez e integração perfeita</strong> com o ecossistema Apple (Mac, iPad, Apple Watch, AirPods). O iPadOS, derivado do iOS, é a versão dedicada aos iPads. Os aplicativos são distribuídos exclusivamente pela <strong>App Store</strong>, que possui um rigoroso processo de revisão antes de qualquer app ser publicado, o que contribui para a segurança da plataforma.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-chapter="2">
+  <div class="sc">
+    <h3 class="label">Outros Sistemas</h3>
+    <h2>💻 ChromeOS — O sistema do Google para educação</h2>
+    <p class="txt">O <strong>ChromeOS</strong> é o sistema operacional desenvolvido pelo Google voltado para os <strong>Chromebooks</strong> — computadores portáteis pensados para uso predominantemente online. Toda a interface gira em torno do navegador <strong>Google Chrome</strong>, e a maioria dos aplicativos funciona pela internet (aplicativos web) ou pode ser baixada pela <strong>Google Play Store</strong> (os mesmos aplicativos Android funcionam nos Chromebooks).</p>
+    <p class="txt">O ChromeOS é um sistema <strong>leve e rápido na inicialização</strong> — um Chromebook pode ligar em menos de 8 segundos. Por ser baseado na nuvem, ele exige menos hardware potente, o que torna os Chromebooks significativamente mais baratos que notebooks tradicionais. Isso o torna muito popular em <strong>escolas e instituições educacionais</strong> em diversos países, incluindo os Estados Unidos, onde é o sistema mais utilizado em salas de aula.</p>
+    <div class="analogia">
+      <div class="al">💡 Resumindo os SOs</div>
+      Para escolher um sistema operacional, considere: o <strong>Windows</strong> é ideal para quem precisa de compatibilidade máxima com programas e jogos; o <strong>macOS</strong> é excelente para criadores de conteúdo e quem já usa produtos Apple; o <strong>Linux</strong> é perfeito para quem busca liberdade, gratuidade e controle total sobre o sistema; o <strong>ChromeOS</strong> é ótimo para uso básico e educacional com foco na internet.
     </div>
   </div>
 </div>
 
 <!-- ===== CAP 3: PASTAS E ARQUIVOS ===== -->
+<div class="slide" data-chapter="3">
+  <div class="sc section-slide">
+    <span class="big-icon">📁</span>
+    <h1>Gerenciamento de<br><span class="dest">Pastas e Arquivos</span></h1>
+    <p class="sub">Aprenda como os dados são organizados no computador, quais são os tipos de arquivo mais comuns, como navegar pela estrutura de pastas e como realizar as operações básicas do dia a dia.</p>
+  </div>
+</div>
 
 <div class="slide" data-chapter="3">
   <div class="sc">
-    <h3 class="label">Gerenciamento de Arquivos</h3>
+    <h3 class="label">Conceitos fundamentais</h3>
     <h1>📄 O que é um <span class="dest">Arquivo</span>?</h1>
-    <p class="exp">Um <strong>arquivo</strong> é qualquer conjunto de dados armazenado no computador com um <strong>nome</strong> e uma <strong>extensão</strong>. A extensão é a parte final do nome, precedida por um ponto, e indica o tipo de conteúdo.</p>
+    <p class="txt">Um <strong>arquivo</strong> é qualquer conjunto de dados armazenado no computador com um <strong>nome</strong> e uma <strong>extensão</strong>. A extensão é a parte final do nome do arquivo, precedida por um ponto, e indica o tipo de conteúdo que ele possui. Por exemplo, no arquivo "trabalho.docx", "trabalho" é o nome e ".docx" é a extensão, que indica se tratar de um documento de texto do Microsoft Word.</p>
+    <p class="txt">Conhecer as extensões mais comuns é importante para saber qual programa usar para abrir cada tipo de arquivo e também para identificar possíveis ameaças — por exemplo, um arquivo com extensão ".exe" é um programa executável que pode conter vírus se baixado de fontes não confiáveis.</p>
     <table class="tbl">
-      <thead><tr><th>Extensão</th><th>Tipo</th><th>Exemplo de uso</th></tr></thead>
+      <thead><tr><th>Extensão</th><th>Tipo de arquivo</th><th>Exemplo de uso</th></tr></thead>
       <tbody>
-        <tr><td><strong>.docx</strong></td><td>Documento de texto</td><td>Trabalhos, relatórios</td></tr>
-        <tr><td><strong>.pdf</strong></td><td>Documento portátil</td><td>Boletos, apostilas</td></tr>
-        <tr><td><strong>.xlsx</strong></td><td>Planilha</td><td>Tabelas, cálculos</td></tr>
-        <tr><td><strong>.jpg / .png</strong></td><td>Imagem</td><td>Fotos, capturas de tela</td></tr>
-        <tr><td><strong>.mp4</strong></td><td>Vídeo</td><td>Filmes, aulas gravadas</td></tr>
-        <tr><td><strong>.exe</strong></td><td>Programa executável</td><td>Instaladores (Windows)</td></tr>
-        <tr><td><strong>.zip / .rar</strong></td><td>Arquivo compactado</td><td>Pastas comprimidas</td></tr>
+        <tr><td><strong>.docx</strong></td><td>Documento de texto</td><td>Trabalhos escolares, relatórios, redações</td></tr>
+        <tr><td><strong>.pdf</strong></td><td>Documento portátil</td><td>Boletos, apostilas, certificados, e-books</td></tr>
+        <tr><td><strong>.xlsx</strong></td><td>Planilha eletrônica</td><td>Tabelas, cálculos, orçamentos, notas</td></tr>
+        <tr><td><strong>.pptx</strong></td><td>Apresentação de slides</td><td>Slides para aulas, seminários, reuniões</td></tr>
+        <tr><td><strong>.jpg / .png</strong></td><td>Imagem</td><td>Fotos, capturas de tela, ilustrações</td></tr>
+        <tr><td><strong>.mp3</strong></td><td>Áudio</td><td>Músicas, podcasts, gravações de voz</td></tr>
+        <tr><td><strong>.mp4</strong></td><td>Vídeo</td><td>Filmes, aulas gravadas, tutoriais</td></tr>
+        <tr><td><strong>.exe</strong></td><td>Programa executável</td><td>Instaladores de software (Windows)</td></tr>
+        <tr><td><strong>.zip / .rar</strong></td><td>Arquivo compactado</td><td>Pastas e arquivos comprimidos para envio</td></tr>
       </tbody>
     </table>
   </div>
@@ -377,11 +462,12 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
 
 <div class="slide" data-chapter="3">
   <div class="sc">
-    <h3 class="label">Organização</h3>
+    <h3 class="label">Organização de dados</h3>
     <h2>📂 Pastas (Diretórios)</h2>
-    <p class="exp exp-center">As <strong>pastas</strong> organizam arquivos em hierarquia — como pastas físicas de um escritório. Você pode criar pastas dentro de outras pastas.</p>
+    <p class="txt">As <strong>pastas</strong> (também chamadas de <strong>diretórios</strong>) são estruturas usadas para organizar os arquivos no computador. Funcionam exatamente como as pastas físicas de um escritório ou arquivo: você pode criar pastas dentro de outras pastas, formando uma <strong>hierarquia</strong> (estrutura em árvore) que facilita enormemente a organização e a localização dos seus documentos.</p>
+    <p class="txt">Uma boa organização de pastas é essencial para qualquer estudante ou profissional. Sem ela, encontrar um arquivo específico entre centenas ou milhares de documentos se torna uma tarefa frustrante e demorada. A recomendação é criar uma estrutura lógica que reflita as áreas da sua vida — estudo, trabalho, pessoal — e manter os arquivos sempre nos lugares corretos.</p>
     <div class="code">
-      <span class="sutil">// Exemplo de organização de um estudante:</span><br><br>
+      <span class="sutil">// Exemplo de organização de um estudante do IFRN:</span><br><br>
       📁 Documentos<br>
       &nbsp;&nbsp;&nbsp;📁 IFRN<br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 1º Ano<br>
@@ -390,6 +476,7 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📄 anotações_aula_03.pdf<br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 Matemática<br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📄 lista_exercicios_01.pdf<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 2º Ano<br>
       &nbsp;&nbsp;&nbsp;📁 Pessoal<br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 Fotos<br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 Currículos
@@ -399,30 +486,43 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
 
 <div class="slide" data-chapter="3">
   <div class="sc">
-    <h3 class="label">Operações básicas</h3>
-    <h2>O que você pode fazer com arquivos?</h2>
-    <div class="two-col">
-      <div class="card"><h4>📝 Criar</h4><p class="cd">"Novo documento" em um programa, ou botão direito → "Nova pasta" no gerenciador.</p></div>
-      <div class="card"><h4>✏️ Renomear</h4><p class="cd">Botão direito → "Renomear" ou selecionar e pressionar <strong>F2</strong>.</p></div>
-      <div class="card"><h4>📋 Copiar e Colar</h4><p class="cd"><strong>Ctrl+C</strong> (copiar) e <strong>Ctrl+V</strong> (colar). Cria uma cópia, mantendo o original.</p></div>
-      <div class="card"><h4>✂️ Recortar e Colar</h4><p class="cd"><strong>Ctrl+X</strong> (recortar) e <strong>Ctrl+V</strong> (colar). Move o arquivo — remove da origem.</p></div>
-      <div class="card"><h4>🗑️ Excluir</h4><p class="cd"><strong>Delete</strong> → vai para a Lixeira. <strong>Shift+Delete</strong> → exclui permanentemente.</p></div>
-      <div class="card"><h4>📦 Compactar</h4><p class="cd">Reduz o tamanho juntando vários arquivos em um só (.zip ou .rar). Útil para envio por e-mail.</p></div>
+    <h3 class="label">Operações básicas — Parte 1</h3>
+    <h2>Criar, Renomear e Copiar</h2>
+    <p class="txt">No dia a dia de uso do computador, realizamos diversas operações com arquivos e pastas. Essas operações são simples, mas é importante dominá-las bem, pois são a base de toda a interação com o computador. Veja as operações mais comuns e como realizá-las:</p>
+    <div class="items">
+      <div class="it"><span class="it-icon">📝</span><span><strong>Criar</strong> — Você pode criar novos arquivos diretamente dentro de programas (por exemplo, ao abrir o editor de texto e clicar em "Novo documento") ou criar novas pastas pelo gerenciador de arquivos, geralmente clicando com o <strong>botão direito do mouse</strong> sobre uma área vazia e escolhendo <strong>"Nova pasta"</strong>. No Windows 11, também é possível clicar no botão "Novo" na barra superior do Explorador de Arquivos.</span></div>
+      <div class="it"><span class="it-icon">✏️</span><span><strong>Renomear</strong> — Para dar um novo nome a um arquivo ou pasta. No Windows, basta clicar com o botão direito sobre o item e escolher <strong>"Renomear"</strong>, ou então selecionar o arquivo e pressionar a tecla <kbd>F2</kbd>. Ao renomear, tome cuidado para não alterar a extensão do arquivo (a parte depois do ponto), pois isso pode fazer com que o sistema não saiba qual programa usar para abri-lo.</span></div>
+      <div class="it"><span class="it-icon">📋</span><span><strong>Copiar e Colar</strong> — Cria uma <strong>cópia</strong> do arquivo ou pasta em outro local, mantendo o original intacto no lugar de origem. Os atalhos de teclado universais são <kbd>Ctrl+C</kbd> (copiar) seguido de <kbd>Ctrl+V</kbd> (colar no destino). Essa operação é útil quando você quer ter o mesmo arquivo em dois lugares diferentes, como no computador e no pendrive.</span></div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="3">
   <div class="sc">
-    <h3 class="label">Ferramentas</h3>
-    <h2>O Explorador de Arquivos</h2>
-    <p class="exp exp-center">Cada SO tem seu próprio gerenciador de arquivos para navegar pastas e manipular documentos:</p>
-    <div class="three-col">
-      <div class="card"><span class="card-icon">🪟</span><h4>Windows</h4><p class="cd"><strong>Explorador de Arquivos</strong><br>Atalho: <strong>Windows + E</strong></p></div>
-      <div class="card"><span class="card-icon">🍎</span><h4>macOS</h4><p class="cd"><strong>Finder</strong><br>Sempre visível na barra Dock</p></div>
-      <div class="card"><span class="card-icon">🐧</span><h4>Linux</h4><p class="cd"><strong>Nautilus</strong> (Ubuntu) ou equivalente conforme a distribuição</p></div>
+    <h3 class="label">Operações básicas — Parte 2</h3>
+    <h2>Recortar, Excluir e Compactar</h2>
+    <div class="items">
+      <div class="it"><span class="it-icon">✂️</span><span><strong>Recortar e Colar (Mover)</strong> — Diferente de copiar, o recortar <strong>move</strong> o arquivo ou pasta de um local para outro, removendo-o da origem. O atalho é <kbd>Ctrl+X</kbd> (recortar) seguido de <kbd>Ctrl+V</kbd> (colar). Use quando quiser reorganizar seus arquivos — por exemplo, mover um documento da Área de Trabalho para dentro da pasta "IFRN". Após a operação, o arquivo existirá apenas no novo local.</span></div>
+      <div class="it"><span class="it-icon">🗑️</span><span><strong>Excluir</strong> — Remove o arquivo ou pasta. Na maioria dos sistemas, o item vai primeiro para a <strong>Lixeira</strong>, onde pode ser recuperado caso a exclusão tenha sido acidental. Para excluir <strong>definitivamente</strong> sem passar pela Lixeira, usa-se a combinação <kbd>Shift+Delete</kbd>. A Lixeira funciona como uma "rede de segurança" — enquanto ela não for esvaziada, é possível restaurar os arquivos excluídos.</span></div>
+      <div class="it"><span class="it-icon">📦</span><span><strong>Compactar e Descompactar</strong> — A compactação reduz o tamanho dos arquivos, juntando vários em um só (por exemplo, no formato <strong>.zip</strong> ou <strong>.rar</strong>). Isso é especialmente útil para enviar diversos arquivos por e-mail (em vez de anexar 10 arquivos separados, você envia um único .zip) ou para economizar espaço em disco. Para descompactar, basta clicar com o botão direito sobre o arquivo compactado e escolher "Extrair".</span></div>
     </div>
-    <p class="exp exp-center sutil" style="font-size:0.85rem; margin-top:14px;">Permitem visualizar por ícones, lista ou detalhes; ordenar por nome, data, tamanho; e buscar arquivos rapidamente.</p>
+    <div class="dica">
+      <div class="dl">⌨️ Atalhos essenciais</div>
+      <kbd>Ctrl+C</kbd> = Copiar &nbsp;&nbsp; <kbd>Ctrl+X</kbd> = Recortar &nbsp;&nbsp; <kbd>Ctrl+V</kbd> = Colar &nbsp;&nbsp; <kbd>Ctrl+Z</kbd> = Desfazer &nbsp;&nbsp; <kbd>F2</kbd> = Renomear &nbsp;&nbsp; <kbd>Delete</kbd> = Lixeira &nbsp;&nbsp; <kbd>Shift+Delete</kbd> = Excluir permanentemente
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-chapter="3">
+  <div class="sc">
+    <h3 class="label">Ferramentas do sistema</h3>
+    <h2>O Explorador de Arquivos</h2>
+    <p class="txt">Cada sistema operacional possui seu próprio <strong>gerenciador de arquivos</strong>, que é o programa utilizado para navegar pela estrutura de pastas e manipular os arquivos visualmente. Esses gerenciadores permitem visualizar os arquivos de diferentes formas (ícones grandes, ícones pequenos, lista, detalhes), ordenar por nome, data, tamanho ou tipo, além de oferecer uma barra de busca para encontrar arquivos rapidamente.</p>
+    <div class="three-col">
+      <div class="card"><span class="card-icon">🪟</span><h4>Windows</h4><p><strong>Explorador de Arquivos</strong> (File Explorer). Pode ser aberto rapidamente pelo atalho <kbd>Windows + E</kbd>. Possui barra lateral com acesso rápido às pastas mais usadas, barra de endereço mostrando o caminho atual, e recurso de busca integrado.</p></div>
+      <div class="card"><span class="card-icon">🍎</span><h4>macOS</h4><p><strong>Finder</strong>. É o aplicativo que está sempre visível na barra inferior (Dock) do Mac. Possui interface limpa, visualização em colunas que facilita navegar por pastas aninhadas, e integração com o iCloud.</p></div>
+      <div class="card"><span class="card-icon">🐧</span><h4>Linux</h4><p>Varia conforme a distribuição. No Ubuntu, o gerenciador padrão é o <strong>Nautilus</strong> (também chamado de "Arquivos"). No Linux Mint, é o <strong>Nemo</strong>. Todos oferecem funcionalidades similares ao Explorador do Windows.</p></div>
+    </div>
   </div>
 </div>
 
@@ -430,7 +530,8 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
   <div class="sc">
     <h3 class="label">Conceito importante</h3>
     <h2>Caminhos de Arquivo (Path)</h2>
-    <p class="exp">Todo arquivo possui um <strong>caminho</strong> que descreve exatamente sua localização — como um endereço postal. Ele indica qual disco, quais pastas e qual o nome do arquivo.</p>
+    <p class="txt">Todo arquivo no computador possui um <strong>caminho</strong> (path) que descreve exatamente onde ele está localizado na estrutura de pastas. O caminho funciona como um <strong>endereço postal</strong> — assim como você precisa informar país, estado, cidade, rua e número para localizar uma casa, no computador você informa o disco, as pastas e o nome do arquivo para localizar um documento.</p>
+    <p class="txt">Observe que no Windows utiliza-se a <strong>barra invertida</strong> (<code>\</code>) para separar as pastas, enquanto no Linux e no macOS utiliza-se a <strong>barra normal</strong> (<code>/</code>). Essa diferença é importante especialmente para quem vai trabalhar com programação ou administração de sistemas.</p>
     <div class="code">
       <span class="sutil">// No Windows (usa barra invertida \):</span><br>
       C:\Usuários\João\Documentos\IFRN\trabalho.docx<br><br>
@@ -438,22 +539,30 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
       /home/joao/Documentos/IFRN/trabalho.docx
     </div>
     <div class="analogia">
-      <div class="al">💡 Dica</div>
-      Pense no caminho como: <strong>País → Estado → Cidade → Rua → Número da casa</strong>. Cada nível de pasta é um nível mais específico do endereço até chegar ao arquivo final.
+      <div class="al">💡 Analogia</div>
+      Pense no caminho como um endereço: <strong>País → Estado → Cidade → Rua → Número da casa</strong>. Cada nível de pasta é como um nível mais específico do endereço, até chegar ao arquivo final. Assim como dois endereços podem ter o mesmo número de casa mas em ruas diferentes, dois arquivos podem ter o mesmo nome mas estar em pastas diferentes.
     </div>
   </div>
 </div>
 
 <!-- ===== CAP 4: UTILITÁRIOS ===== -->
+<div class="slide" data-chapter="4">
+  <div class="sc section-slide">
+    <span class="big-icon">🔧</span>
+    <h1>Softwares <span class="dest">Utilitários</span></h1>
+    <p class="sub">Conheça as ferramentas essenciais que mantêm seu computador funcionando de forma eficiente, segura e organizada — desde antivírus até ferramentas de backup.</p>
+  </div>
+</div>
 
 <div class="slide" data-chapter="4">
   <div class="sc">
-    <h3 class="label">Softwares Utilitários</h3>
-    <h1>🔧 Ferramentas que <span class="dest">mantêm tudo funcionando</span></h1>
-    <p class="exp">Os <strong>softwares utilitários</strong> são programas que auxiliam no funcionamento, manutenção e otimização do computador. Não criam conteúdo diretamente (como um editor de texto), mas mantêm o sistema saudável e eficiente.</p>
+    <h3 class="label">Conceito</h3>
+    <h1>🔧 O que são <span class="dest">Softwares Utilitários</span>?</h1>
+    <p class="txt">Os <strong>softwares utilitários</strong> são programas que auxiliam no funcionamento, na manutenção e na otimização do computador. Diferentemente de um editor de texto ou uma planilha — que são usados para criar conteúdo —, os utilitários trabalham nos bastidores para manter o sistema funcionando de forma saudável e eficiente. Sem eles, o computador ficaria vulnerável a vírus, lento com o acúmulo de arquivos temporários e sem proteção contra perda de dados.</p>
+    <p class="txt">É importante destacar que os sistemas operacionais modernos já vêm com diversos utilitários <strong>integrados (nativos)</strong>. No Windows 11, por exemplo, já temos antivírus (Windows Defender), gerenciador de tarefas, ferramenta de captura de tela, calculadora, bloco de notas e editor de fotos. Porém, em muitos casos, softwares de terceiros oferecem funcionalidades mais avançadas e completas.</p>
     <div class="analogia">
       <div class="al">💡 Analogia</div>
-      São como as <strong>ferramentas de manutenção de uma casa</strong>: você não mora na chave de fenda, mas sem ela fica difícil manter tudo em ordem.
+      Os softwares utilitários são como as <strong>ferramentas de manutenção de uma casa</strong>: chave de fenda, martelo, desentupidor, vassoura. Você não mora nessas ferramentas, mas sem elas fica muito difícil manter tudo em ordem. Da mesma forma, você não usa o antivírus para escrever um texto, mas sem ele o computador ficaria vulnerável a ameaças que poderiam destruir todos os seus documentos.
     </div>
   </div>
 </div>
@@ -461,66 +570,68 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
 <div class="slide" data-chapter="4">
   <div class="sc">
     <h3 class="label">Proteção</h3>
-    <h2>Antivírus e Compactadores</h2>
-    <div class="two-col">
-      <div class="card">
-        <span class="card-icon">🛡️</span>
-        <h4>Antivírus / Antimalware</h4>
-        <p class="cd">Protegem contra vírus, trojans, ransomware e spyware. Monitoram em <strong>tempo real</strong>, analisam downloads e alertam sobre ameaças.</p>
-        <p class="cd sutil" style="font-size:0.78rem; margin-top:8px;">Ex: <strong>Windows Defender</strong> (nativo), Kaspersky, Bitdefender, Malwarebytes</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">📦</span>
-        <h4>Compactadores</h4>
-        <p class="cd">Comprimem arquivos e pastas, reduzindo tamanho para envio e armazenamento. O formato <strong>.zip</strong> é o mais universal.</p>
-        <p class="cd sutil" style="font-size:0.78rem; margin-top:8px;">Ex: <strong>7-Zip</strong> (gratuito), WinRAR, ferramenta nativa do SO</p>
-      </div>
+    <h2>🛡️ Antivírus e Antimalware</h2>
+    <p class="txt">Os <strong>antivírus e antimalware</strong> são programas essenciais para proteger o computador contra <strong>vírus, trojans, ransomware, spywares</strong> e outras ameaças digitais que podem danificar seus arquivos, roubar suas informações pessoais ou até sequestrar seus dados (no caso do ransomware, que criptografa seus arquivos e exige pagamento para liberá-los).</p>
+    <p class="txt">Esses programas monitoram os arquivos do computador em <strong>tempo real</strong>, analisam downloads e e-mails antes de você abri-los, e alertam o usuário caso algo suspeito seja detectado. Eles também fazem varreduras completas periódicas no disco para encontrar ameaças que possam ter passado despercebidas. Manter o antivírus sempre <strong>atualizado</strong> é fundamental, pois novas ameaças surgem todos os dias.</p>
+    <div class="cards">
+      <div class="card"><span class="card-icon">🪟</span><h4>Windows Defender</h4><p>Já vem <strong>integrado ao Windows 11</strong> e oferece proteção completa e gratuita. Para a maioria dos usuários, é suficiente. Ele é atualizado automaticamente junto com o Windows Update.</p></div>
+      <div class="card"><span class="card-icon">🔵</span><h4>Kaspersky</h4><p>Um dos antivírus mais conceituados do mercado, conhecido pela alta taxa de detecção de ameaças. Possui versões gratuitas e pagas com recursos adicionais.</p></div>
+      <div class="card"><span class="card-icon">🔴</span><h4>Bitdefender</h4><p>Consistentemente apontado como um dos melhores em testes independentes. Leve e eficiente, com proteção em tempo real avançada.</p></div>
+      <div class="card"><span class="card-icon">🟢</span><h4>Malwarebytes</h4><p>Excelente como <strong>segunda opinião</strong>, especializado em detectar malwares que outros antivírus podem não encontrar. Pode ser usado junto com o Windows Defender.</p></div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="4">
   <div class="sc">
-    <h3 class="label">Manutenção</h3>
-    <h2>Gerenciador de Tarefas e Limpeza</h2>
-    <div class="two-col">
-      <div class="card">
-        <span class="card-icon">📊</span>
-        <h4>Gerenciador de Tarefas</h4>
-        <p class="cd">Mostra quais programas estão rodando, quanto de CPU e memória cada um consome, e permite <strong>encerrar programas travados</strong>.</p>
-        <p class="cd sutil" style="font-size:0.78rem; margin-top:8px;">Windows: <strong>Ctrl+Shift+Esc</strong> · Linux: <strong>htop</strong> no terminal</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">🧹</span>
-        <h4>Limpeza de Disco</h4>
-        <p class="cd">Remove arquivos temporários, caches e logs que se acumulam com o uso diário e ocupam espaço sem necessidade.</p>
-        <p class="cd sutil" style="font-size:0.78rem; margin-top:8px;">Windows: <strong>Sensor de Armazenamento</strong> (automático)</p>
-      </div>
+    <h3 class="label">Compactação</h3>
+    <h2>📦 Compactadores de Arquivos</h2>
+    <p class="txt">Os <strong>compactadores de arquivos</strong> permitem comprimir arquivos e pastas, reduzindo significativamente seu tamanho para facilitar o armazenamento e o envio pela internet. Imagine que você precisa enviar por e-mail uma pasta com 50 fotos de uma viagem: sem compactar, o envio seria lento ou até impossível dependendo do tamanho. Com a compactação, essas 50 fotos podem ser reunidas em um único arquivo .zip muito menor.</p>
+    <p class="txt">O formato mais universal é o <strong>.zip</strong>, que pode ser criado e aberto nativamente pelo Windows, macOS e Linux, sem necessidade de instalar nenhum programa adicional. Outros formatos populares são <strong>.rar</strong> (que geralmente oferece melhor compressão) e <strong>.7z</strong> (formato do 7-Zip, que é gratuito e de código aberto). Os compactadores também são úteis para <strong>criar backups</strong> de pastas importantes, ocupando menos espaço no disco.</p>
+    <div class="cards">
+      <div class="card"><span class="card-icon">7️⃣</span><h4>7-Zip</h4><p><strong>Gratuito e de código aberto.</strong> Suporta todos os formatos populares (.zip, .rar, .7z, .tar.gz) e oferece excelentes taxas de compressão. É a escolha recomendada para a maioria dos usuários.</p></div>
+      <div class="card"><span class="card-icon">📦</span><h4>WinRAR</h4><p>Um dos compactadores mais conhecidos. Cria e abre arquivos .rar e .zip. É pago, mas funciona em modo de avaliação indefinidamente (embora exiba um aviso para comprar).</p></div>
+      <div class="card"><span class="card-icon">🪟</span><h4>Ferramenta nativa do SO</h4><p>O Windows, macOS e Linux já possuem suporte nativo para criar e extrair arquivos <strong>.zip</strong> sem instalar nada. Basta clicar com o botão direito e escolher "Compactar" ou "Extrair".</p></div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="4">
   <div class="sc">
-    <h3 class="label">Disco</h3>
-    <h2>Desfragmentação: HDD vs SSD</h2>
-    <p class="exp">Em <strong>discos rígidos (HDD)</strong>, os arquivos podem ser gravados de forma fragmentada — espalhados em partes diferentes do disco, tornando o acesso mais lento. O <strong>desfragmentador</strong> reorganiza esses fragmentos.</p>
-    <div class="vs" style="max-width:650px;">
-      <div class="vs-col" style="text-align:center;">
-        <h4>💿 HDD</h4>
+    <h3 class="label">Manutenção do sistema</h3>
+    <h2>📊 Gerenciador de Tarefas</h2>
+    <p class="txt">O <strong>Gerenciador de Tarefas</strong> é uma ferramenta fundamental que permite visualizar quais programas e processos estão em execução no computador, quanto de <strong>processador (CPU)</strong> e <strong>memória RAM</strong> cada um está consumindo, e <strong>encerrar programas que não estejam respondendo</strong> (travados). Quando um programa trava e para de responder aos cliques, o Gerenciador de Tarefas é a forma mais rápida de forçar seu encerramento sem precisar reiniciar o computador inteiro.</p>
+    <p class="txt">Além de gerenciar programas, essa ferramenta também mostra informações sobre o <strong>desempenho do sistema</strong> — uso da CPU, memória, disco e rede em tempo real —, os <strong>programas que iniciam automaticamente com o Windows</strong> (e que podem ser desativados para acelerar a inicialização) e os serviços do sistema em execução.</p>
+    <div class="items">
+      <div class="it"><span class="it-icon">🪟</span><span><strong>Windows:</strong> Abra com <kbd>Ctrl+Shift+Esc</kbd> ou clicando com o botão direito na barra de tarefas e escolhendo "Gerenciador de Tarefas". Na aba "Processos", você vê todos os programas em execução e o consumo de recursos de cada um.</span></div>
+      <div class="it"><span class="it-icon">🐧</span><span><strong>Linux:</strong> O equivalente gráfico é o <strong>Monitor do Sistema</strong> (nas distribuições com interface gráfica). No terminal, os comandos <code>top</code> ou <code>htop</code> mostram os processos em tempo real com informações detalhadas de consumo de recursos.</span></div>
+      <div class="it"><span class="it-icon">🍎</span><span><strong>macOS:</strong> O equivalente é o <strong>Monitor de Atividade</strong>, acessível pela pasta Utilitários ou pelo Spotlight (Cmd+Espaço e digitar "Monitor de Atividade").</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-chapter="4">
+  <div class="sc">
+    <h3 class="label">Manutenção do sistema</h3>
+    <h2>🧹 Limpeza de Disco e Desfragmentação</h2>
+    <p class="txt">Com o uso diário, o computador acumula <strong>arquivos temporários, caches de navegação, logs de programas</strong> e outros dados que ocupam espaço em disco sem necessidade. Essas "sobras" se acumulam ao longo dos meses e podem ocupar vários gigabytes. Ferramentas de limpeza ajudam a identificar e remover esses arquivos, liberando espaço e melhorando o desempenho.</p>
+    <p class="txt">O Windows possui a ferramenta nativa <strong>Limpeza de Disco</strong> e, nas versões mais recentes, o recurso <strong>Sensor de Armazenamento</strong>, que pode realizar limpezas automáticas periodicamente sem que o usuário precise se preocupar com isso.</p>
+    <div class="vs">
+      <div class="vs-col">
+        <h4>💿 HDD — Precisa de desfragmentação</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:8px;">Em discos rígidos tradicionais (HDDs), que possuem partes mecânicas giratórias, os arquivos podem ser gravados de forma <strong>fragmentada</strong> — ou seja, espalhados em diferentes partes do disco. Isso torna o acesso mais lento com o tempo, pois o braço de leitura precisa se mover para diversas posições. O <strong>desfragmentador</strong> reorganiza esses fragmentos para que cada arquivo fique armazenado de forma contígua.</p>
         <ul>
-          <li>Precisa de desfragmentação periódica</li>
-          <li>Windows: "Otimizar Unidades"</li>
-          <li>Melhora desempenho com o tempo</li>
+          <li>Desfragmentação periódica melhora desempenho</li>
+          <li>Windows: ferramenta "Otimizar Unidades"</li>
         </ul>
       </div>
       <div class="vs-div">⚡</div>
-      <div class="vs-col" style="text-align:center;">
-        <h4>💾 SSD</h4>
+      <div class="vs-col">
+        <h4>💾 SSD — NÃO desfragmentar!</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:8px;">Os SSDs (Solid State Drives) não possuem partes mecânicas — os dados são armazenados em chips de memória flash, semelhantes aos pendrives. Por isso, a desfragmentação <strong class="verm">não é necessária</strong> e pode inclusive <strong class="verm">reduzir a vida útil</strong> do componente, pois cada operação de escrita contribui para o desgaste dos chips.</p>
         <ul>
-          <li><strong class="verm">NÃO desfragmentar!</strong></li>
-          <li>Não tem partes mecânicas</li>
-          <li>Desfragmentação reduz a vida útil</li>
+          <li><strong class="verm">NUNCA desfragmente um SSD</strong></li>
+          <li>O Windows reconhece SSDs e faz apenas o TRIM</li>
         </ul>
       </div>
     </div>
@@ -529,81 +640,203 @@ h3.label { font-size:0.9rem; font-weight:600; color:var(--acento); margin-bottom
 
 <div class="slide" data-chapter="4">
   <div class="sc">
-    <h3 class="label">Dia a dia</h3>
-    <h2>Outros Utilitários Essenciais</h2>
+    <h3 class="label">Leitura e mídia</h3>
+    <h2>📄 Leitores de PDF e Reprodutores de Mídia</h2>
+    <p class="txt">O formato <strong>PDF</strong> (Portable Document Format) é o padrão mundial para distribuição de documentos que devem manter a <strong>mesma aparência em qualquer dispositivo</strong> — independentemente do sistema operacional, do tamanho da tela ou da impressora utilizada. Boletos bancários, apostilas, certificados, contratos e documentos oficiais são quase sempre distribuídos em PDF. Leitores de PDF permitem abrir, visualizar, imprimir e, em alguns casos, anotar e preencher formulários.</p>
     <div class="two-col">
-      <div class="card"><span class="card-icon">📕</span><h4>Leitores de PDF</h4><p class="cd">Abrem documentos que mantêm a mesma aparência em qualquer dispositivo. Ex: <strong>Adobe Reader</strong>, Foxit, ou o próprio navegador.</p></div>
-      <div class="card"><span class="card-icon">🎬</span><h4>Reprodutores de Mídia</h4><p class="cd">Reproduzem áudio e vídeo. O <strong>VLC Media Player</strong> é gratuito e toca praticamente qualquer formato.</p></div>
-      <div class="card"><span class="card-icon">🌐</span><h4>Navegadores</h4><p class="cd">Chrome, Firefox, Edge, Safari, Opera. Ferramentas fundamentais para acessar sites, pesquisar e usar serviços online.</p></div>
-      <div class="card"><span class="card-icon">💾</span><h4>Ferramentas de Backup</h4><p class="cd">Cópias de segurança dos seus arquivos. Windows: <strong>Histórico de Arquivos</strong>. macOS: <strong>Time Machine</strong>. Ou use Google Drive, OneDrive.</p></div>
+      <div class="card">
+        <span class="card-icon">📄</span>
+        <h4>Leitores de PDF</h4>
+        <p><strong>Adobe Acrobat Reader</strong> é o mais conhecido e completo (gratuito para leitura). <strong>Foxit Reader</strong> e <strong>Sumatra PDF</strong> são alternativas mais leves. Os navegadores modernos (<strong>Chrome, Edge, Firefox</strong>) também conseguem abrir PDFs diretamente, sem necessidade de programa adicional — basta arrastar o arquivo para a janela do navegador.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎬</span>
+        <h4>Reprodutores de Mídia</h4>
+        <p>São programas para reproduzir <strong>áudio e vídeo</strong>. O <strong>VLC Media Player</strong> é o mais popular: gratuito, de código aberto e reproduz praticamente qualquer formato sem instalar codecs adicionais (AVI, MKV, MP4, MP3, FLAC e dezenas de outros). O Windows possui os reprodutores nativos <strong>Filmes e TV</strong> e <strong>Windows Media Player</strong>.</p>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="4">
   <div class="sc">
-    <h3 class="label">Dica importante</h3>
-    <h2>Nativos vs. de Terceiros</h2>
-    <p class="exp">Os SOs modernos já vêm com <strong>diversos utilitários integrados</strong>. No Windows 11, por exemplo, já temos: antivírus (Defender), gerenciador de tarefas, ferramenta de captura de tela, calculadora, bloco de notas, editor de fotos e muito mais.</p>
-    <div class="analogia">
-      <div class="al">💡 Dica</div>
-      <strong>Conheça bem os utilitários nativos</strong> do seu sistema antes de instalar programas adicionais. Muitas vezes, o que você precisa já está disponível no próprio computador — sem baixar nada!
+    <h3 class="label">Internet e navegação</h3>
+    <h2>🌐 Navegadores de Internet</h2>
+    <p class="txt">Embora possam ser classificados como aplicativos de uso geral, os <strong>navegadores de internet</strong> são ferramentas utilitárias absolutamente fundamentais para o uso do computador moderno. Eles permitem acessar sites, fazer pesquisas, utilizar webmails (Gmail, Outlook), assistir a vídeos, acessar redes sociais, fazer compras online, utilizar serviços bancários e muito mais. Sem um navegador, a internet seria inacessível.</p>
+    <p class="txt">É importante manter o navegador sempre <strong>atualizado</strong>, pois as atualizações corrigem falhas de segurança e melhoram o desempenho. Também é recomendável instalar um <strong>bloqueador de anúncios</strong> (como uBlock Origin) para melhorar a experiência de navegação e reduzir riscos de segurança.</p>
+    <div class="cards">
+      <div class="card"><span class="card-icon">🔵</span><h4>Google Chrome</h4><p>O navegador <strong>mais utilizado no mundo</strong> (mais de 65% do mercado). Rápido, com vasta biblioteca de extensões e sincronização com conta Google. Consome bastante memória RAM.</p></div>
+      <div class="card"><span class="card-icon">🦊</span><h4>Mozilla Firefox</h4><p>Navegador de <strong>código aberto</strong>, focado em privacidade e personalização. Boa alternativa ao Chrome, com menor consumo de memória e forte compromisso com a privacidade do usuário.</p></div>
+      <div class="card"><span class="card-icon">🌊</span><h4>Microsoft Edge</h4><p>Navegador nativo do <strong>Windows 11</strong>, baseado no mesmo motor do Chrome (Chromium). Rápido, leve e com recursos exclusivos como coleções e leitura imersiva.</p></div>
+      <div class="card"><span class="card-icon">🧭</span><h4>Safari</h4><p>Navegador exclusivo da Apple para <strong>macOS e iOS</strong>. Otimizado para economia de bateria em MacBooks e iPhones, com foco em privacidade.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-chapter="4">
+  <div class="sc">
+    <h3 class="label">Segurança de dados</h3>
+    <h2>💾 Ferramentas de Backup</h2>
+    <p class="txt">O <strong>backup</strong> é a <strong>cópia de segurança</strong> dos seus arquivos importantes. Ter uma rotina de backup é absolutamente fundamental para evitar a perda irreversível de dados em caso de falha do disco rígido, ataque de ransomware, roubo do computador ou exclusão acidental. Imagine perder todos os seus trabalhos escolares, fotos e documentos pessoais de anos — isso pode acontecer a qualquer momento se você não tiver backups.</p>
+    <p class="txt">A regra de ouro do backup é a <strong>regra 3-2-1</strong>: mantenha pelo menos <strong>3 cópias</strong> dos seus dados, em <strong>2 tipos de mídia diferentes</strong>, com <strong>1 cópia fora do local</strong> (na nuvem, por exemplo). Os sistemas operacionais modernos oferecem ferramentas nativas para facilitar esse processo:</p>
+    <div class="items">
+      <div class="it"><span class="it-icon">🪟</span><span><strong>Windows:</strong> Possui o <strong>Histórico de Arquivos</strong> (que cria cópias automáticas das suas pastas pessoais em um disco externo) e o <strong>Backup do Windows</strong> (que sincroniza configurações e arquivos com o OneDrive).</span></div>
+      <div class="it"><span class="it-icon">🍎</span><span><strong>macOS:</strong> Possui o <strong>Time Machine</strong>, uma ferramenta elegante que cria backups completos e incrementais automaticamente em um disco externo, permitindo "viajar no tempo" e restaurar qualquer versão de qualquer arquivo.</span></div>
+      <div class="it"><span class="it-icon">🐧</span><span><strong>Linux:</strong> Há diversas opções como o <strong>Deja Dup</strong> (backup simples e visual) e o <strong>Timeshift</strong> (focado em restaurar o sistema inteiro, similar ao Time Machine).</span></div>
+      <div class="it"><span class="it-icon">☁️</span><span><strong>Nuvem:</strong> Serviços como <strong>Google Drive, OneDrive e Dropbox</strong> funcionam como formas complementares de backup, sincronizando seus arquivos automaticamente com servidores na internet. Assim, mesmo que seu computador seja roubado ou danificado, seus dados estarão seguros na nuvem.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-chapter="4">
+  <div class="sc">
+    <h3 class="label">Edição e captura</h3>
+    <h2>🖼️ Editores de Imagem e Captura de Tela</h2>
+    <p class="txt">No dia a dia, frequentemente precisamos fazer <strong>ajustes rápidos em imagens</strong> — recortar uma foto, redimensionar uma imagem para caber em um documento, ajustar o brilho de uma captura de tela ou remover o fundo de uma foto. Para essas tarefas, não é necessário usar programas profissionais como o Adobe Photoshop; os editores simples nativos do sistema operacional ou ferramentas gratuitas dão conta do recado.</p>
+    <div class="cards">
+      <div class="card"><span class="card-icon">🎨</span><h4>Paint (Windows)</h4><p>Editor básico que já vem com o Windows. Permite desenhar, recortar, redimensionar e adicionar texto às imagens. A versão mais recente inclui até remoção de fundo com IA.</p></div>
+      <div class="card"><span class="card-icon">📷</span><h4>Fotos (Windows)</h4><p>Aplicativo nativo para organização e <strong>edição de fotos</strong>: ajuste de brilho, contraste, saturação, filtros, recorte e rotação.</p></div>
+      <div class="card"><span class="card-icon">✂️</span><h4>Ferramenta de Recorte</h4><p>Permite <strong>capturar telas</strong> (screenshots) de forma precisa: tela inteira, janela, área retangular ou forma livre. Atalho: <kbd>Windows + Shift + S</kbd>.</p></div>
+      <div class="card"><span class="card-icon">🖌️</span><h4>GIMP (Gratuito)</h4><p>Alternativa <strong>gratuita e de código aberto</strong> ao Adobe Photoshop. Extremamente poderoso, com suporte a camadas, filtros avançados e edição profissional de imagens. Disponível para Windows, macOS e Linux.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-chapter="4">
+  <div class="sc">
+    <h3 class="label">Nativos vs. Terceiros</h3>
+    <h2>Qual programa usar?</h2>
+    <p class="txt">Uma dúvida comum é: <strong>devo instalar programas de terceiros ou usar os que já vêm no sistema operacional?</strong> A resposta é: depende da sua necessidade. Os utilitários nativos do Windows 11, por exemplo, já são bastante completos para o uso cotidiano da maioria dos usuários. Porém, em cenários mais exigentes, softwares de terceiros podem oferecer funcionalidades mais avançadas.</p>
+    <table class="tbl">
+      <thead><tr><th>Necessidade</th><th>Utilitário Nativo (Windows)</th><th>Alternativa de Terceiros</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Antivírus</strong></td><td>Windows Defender</td><td>Kaspersky, Bitdefender</td></tr>
+        <tr><td><strong>Compactação</strong></td><td>Suporte nativo a .zip</td><td>7-Zip, WinRAR</td></tr>
+        <tr><td><strong>Leitor de PDF</strong></td><td>Microsoft Edge</td><td>Adobe Reader, Foxit</td></tr>
+        <tr><td><strong>Reprodutor de mídia</strong></td><td>Filmes e TV</td><td>VLC Media Player</td></tr>
+        <tr><td><strong>Backup</strong></td><td>Histórico de Arquivos</td><td>Google Drive, Dropbox</td></tr>
+        <tr><td><strong>Editor de imagem</strong></td><td>Paint / Fotos</td><td>GIMP, Canva</td></tr>
+        <tr><td><strong>Captura de tela</strong></td><td>Ferramenta de Recorte</td><td>ShareX, Lightshot</td></tr>
+      </tbody>
+    </table>
+    <div class="dica">
+      <div class="dl">💡 Dica importante</div>
+      Conheça bem os utilitários nativos do seu sistema operacional <strong>antes de sair instalando programas adicionais</strong>. Muitas vezes, o que você precisa já está disponível no próprio computador. Instalar programas desnecessários pode deixar o sistema mais lento e aumentar riscos de segurança.
     </div>
   </div>
 </div>
 
 <!-- ===== CAP 5: ATIVIDADES E RESUMO ===== -->
+<div class="slide" data-chapter="5">
+  <div class="sc section-slide">
+    <span class="big-icon">🎯</span>
+    <h1><span class="dest">Atividades Práticas</span><br>e Resumo</h1>
+    <p class="sub">Hora de colocar em prática o que aprendemos! Realize as atividades no seu computador e revise os conceitos mais importantes da aula.</p>
+  </div>
+</div>
 
 <div class="slide" data-chapter="5">
   <div class="sc">
-    <h3 class="label">Mão na massa</h3>
-    <h2>Atividades Práticas</h2>
+    <h3 class="label">Atividade Prática 1</h3>
+    <h2>🔍 Explorando o Sistema Operacional</h2>
+    <p class="txt">Para fixar o conteúdo estudado, vamos começar identificando o sistema operacional do computador que você utiliza. Saber qual SO está instalado e qual sua versão é uma informação básica mas fundamental para qualquer usuário de computador — ela é necessária, por exemplo, quando você precisa baixar um programa ou pedir suporte técnico.</p>
     <div class="items">
-      <div class="it"><span class="it-icon" style="color:var(--acento); font-weight:800;">01</span><span><strong>Explorando o SO:</strong> Identifique qual sistema operacional está no seu computador e sua versão exata. No Windows: botão direito em "Este Computador" → Propriedades. No Linux: terminal → <code style="color:var(--acento);">lsb_release -a</code></span></div>
-      <div class="it"><span class="it-icon" style="color:var(--acento); font-weight:800;">02</span><span><strong>Organizando arquivos:</strong> Dentro de "Documentos", crie uma pasta com o nome da disciplina, e dentro dela uma subpasta para cada unidade. Salve um documento de texto.</span></div>
-      <div class="it"><span class="it-icon" style="color:var(--acento); font-weight:800;">03</span><span><strong>Gerenciador de Tarefas:</strong> Abra com <strong>Ctrl+Shift+Esc</strong> e observe: qual programa consome mais memória RAM? Qual usa mais processador?</span></div>
-      <div class="it"><span class="it-icon" style="color:var(--acento); font-weight:800;">04</span><span><strong>Compactação:</strong> Selecione 3 arquivos, compacte em .zip e compare o tamanho dos originais com o compactado.</span></div>
+      <div class="it"><span class="it-icon">🪟</span><span><strong>No Windows:</strong> Clique com o botão direito em <strong>"Este Computador"</strong> (na Área de Trabalho ou no Explorador de Arquivos) e selecione <strong>"Propriedades"</strong>. Anote a versão do Windows (ex: Windows 11 versão 23H2), a edição (Home, Pro, Education) e a quantidade de RAM instalada.</span></div>
+      <div class="it"><span class="it-icon">🐧</span><span><strong>No Linux:</strong> Abra o <strong>Terminal</strong> e digite o comando <code>lsb_release -a</code> seguido de Enter. Esse comando exibirá o nome da distribuição, a versão e o codinome. Também é possível consultar as informações em <strong>Configurações → Sobre</strong>.</span></div>
+    </div>
+    <div class="curiosidade">
+      <div class="cl">📝 O que anotar</div>
+      Identifique e anote: 1) Nome do sistema operacional, 2) Versão exata, 3) Quantidade de memória RAM, 4) Tipo do processador, 5) Se o disco é HDD ou SSD.
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="5">
   <div class="sc">
-    <h3 class="label">Revisão</h3>
-    <h2>O que aprendemos hoje</h2>
+    <h3 class="label">Atividade Prática 2</h3>
+    <h2>📁 Organizando Arquivos e Pastas</h2>
+    <p class="txt">Nesta atividade, você vai praticar a criação e organização de uma estrutura de pastas, uma habilidade essencial para manter seus documentos organizados durante todo o curso no IFRN. Uma boa organização desde o início do curso vai poupar muito tempo e frustração no futuro.</p>
     <div class="items">
-      <div class="it"><span class="it-icon verde">✅</span><span><strong>Sistema Operacional</strong> — Software fundamental que gerencia hardware, programas e a interação com o usuário.</span></div>
-      <div class="it"><span class="it-icon verde">✅</span><span><strong>Funções do SO</strong> — Gerenciamento de processos, memória, arquivos, dispositivos, interface e segurança.</span></div>
-      <div class="it"><span class="it-icon verde">✅</span><span><strong>Principais SOs</strong> — Windows (PCs), macOS (Apple), Linux (código aberto), Android/iOS (mobile), ChromeOS (Chromebooks).</span></div>
-      <div class="it"><span class="it-icon verde">✅</span><span><strong>Arquivos e pastas</strong> — Nomes, extensões, estrutura hierárquica, operações (copiar, mover, excluir, compactar) e caminhos.</span></div>
-      <div class="it"><span class="it-icon verde">✅</span><span><strong>Softwares utilitários</strong> — Antivírus, compactadores, gerenciador de tarefas, limpeza de disco, backup, leitores de PDF e navegadores.</span></div>
+      <div class="it"><span class="it-icon">1️⃣</span><span>Abra o <strong>Explorador de Arquivos</strong> (<kbd>Windows + E</kbd>) e navegue até a pasta <strong>"Documentos"</strong>.</span></div>
+      <div class="it"><span class="it-icon">2️⃣</span><span>Crie uma pasta chamada <strong>"IFRN"</strong> (botão direito → Nova pasta).</span></div>
+      <div class="it"><span class="it-icon">3️⃣</span><span>Dentro de "IFRN", crie uma subpasta para cada disciplina que você cursa (ex: "ETD", "Matemática", "Português").</span></div>
+      <div class="it"><span class="it-icon">4️⃣</span><span>Dentro da pasta "ETD", crie subpastas para cada unidade (ex: "Unidade 1", "Unidade 2").</span></div>
+      <div class="it"><span class="it-icon">5️⃣</span><span>Abra o <strong>Bloco de Notas</strong>, escreva "Meu primeiro arquivo organizado" e salve dentro de uma das subpastas que você criou, com o nome "teste_organizacao.txt".</span></div>
     </div>
   </div>
 </div>
 
 <div class="slide" data-chapter="5">
   <div class="sc">
-    <h3 class="label">Referências</h3>
-    <h2>Para saber mais</h2>
-    <div class="items">
-      <div class="it"><span class="it-icon">📘</span><span>LAMBERT, J. <strong>Windows 10</strong>. Porto Alegre: Bookman, 2016.</span></div>
-      <div class="it"><span class="it-icon">📗</span><span>VELLOSO, F. <strong>Informática: Conceitos Básicos</strong>. Rio de Janeiro: Elsevier Academic, 2017.</span></div>
-      <div class="it"><span class="it-icon">🌐</span><span>MICROSOFT. <strong>Treinamento do Microsoft 365</strong>. support.microsoft.com/pt-br/training</span></div>
-      <div class="it"><span class="it-icon">🌐</span><span>LIBREOFFICE. <strong>Guia de Introdução</strong>. documentation.libreoffice.org</span></div>
-      <div class="it"><span class="it-icon">🐧</span><span>THE LINUX FOUNDATION. <strong>What is Linux?</strong> linuxfoundation.org</span></div>
+    <h3 class="label">Atividades Práticas 3 e 4</h3>
+    <h2>📊 Gerenciador de Tarefas e Compactação</h2>
+    <div class="vs">
+      <div class="vs-col">
+        <h4>Atividade 3 — Gerenciador de Tarefas</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:10px;">Abra o <strong>Gerenciador de Tarefas</strong> com <kbd>Ctrl+Shift+Esc</kbd> e observe quais programas estão em execução. Responda:</p>
+        <ul>
+          <li>Qual programa está consumindo mais <strong>memória RAM</strong>?</li>
+          <li>Qual processo usa mais <strong>CPU (processador)</strong>?</li>
+          <li>Quantos processos estão em execução no total?</li>
+          <li>Na aba "Inicializar", quantos programas iniciam automaticamente com o Windows?</li>
+        </ul>
+      </div>
+      <div class="vs-col">
+        <h4>Atividade 4 — Compactação</h4>
+        <p style="font-size:.85rem;line-height:1.7;color:var(--txt2);margin-bottom:10px;">Pratique a compactação e descompactação de arquivos:</p>
+        <ul>
+          <li>Selecione <strong>3 arquivos quaisquer</strong> no seu computador</li>
+          <li>Clique com o botão direito → <strong>"Compactar para arquivo ZIP"</strong></li>
+          <li>Compare o tamanho: some o tamanho dos 3 originais e compare com o tamanho do .zip</li>
+          <li>Extraia o arquivo .zip em outra pasta e verifique se os arquivos estão intactos</li>
+          <li>Qual foi a <strong>porcentagem de redução</strong> do tamanho?</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
+<div class="slide" data-chapter="5">
+  <div class="sc">
+    <h3 class="label">Resumo da aula</h3>
+    <h2>📝 O que aprendemos hoje</h2>
+    <p class="txt">Nesta aula, percorremos os fundamentos mais importantes da informática no que diz respeito aos sistemas operacionais, à organização de dados e às ferramentas de manutenção. Veja os pontos-chave para revisar:</p>
+    <div class="items">
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span>O <strong>sistema operacional</strong> é o software fundamental que gerencia todo o funcionamento do computador, atuando como intermediário entre o hardware, os programas e o usuário.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span>As <strong>principais funções</strong> de um SO incluem: gerenciamento de processos, memória, arquivos, dispositivos, interface com o usuário e segurança.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span>Os <strong>principais SOs</strong> do mercado são: Windows (mais usado em PCs), macOS (Apple), Linux (código aberto), Android e iOS (mobile), e ChromeOS (educação).</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span>Os <strong>arquivos</strong> são identificados por nomes e extensões (.docx, .pdf, .jpg...) e são organizados em <strong>pastas</strong> formando uma estrutura hierárquica.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span>As <strong>operações fundamentais</strong> com arquivos são: criar, renomear, copiar, recortar, colar, excluir e compactar.</span></div>
+      <div class="it"><span class="it-icon" style="color:var(--ac);">✅</span><span>Os <strong>softwares utilitários</strong> mantêm o sistema eficiente: antivírus, compactadores, gerenciador de tarefas, limpeza de disco, leitores de PDF, reprodutores de mídia, navegadores e ferramentas de backup.</span></div>
+    </div>
+  </div>
 </div>
+
+<div class="slide" data-chapter="5">
+  <div class="sc">
+    <h3 class="label">Referências bibliográficas</h3>
+    <h2>📚 Para saber mais</h2>
+    <p class="txt">Os conteúdos desta aula foram baseados nas seguintes referências. Consulte-as para aprofundar seus estudos sobre sistemas operacionais, gerenciamento de arquivos e softwares utilitários:</p>
+    <div class="items">
+      <div class="it"><span class="it-icon">📖</span><span>LAMBERT, J. <strong>Windows 10</strong>. Porto Alegre: Bookman, 2016.</span></div>
+      <div class="it"><span class="it-icon">📖</span><span>VELLOSO, F. <strong>Informática: Conceitos Básicos</strong>. Rio de Janeiro: Elsevier Academic, 2017.</span></div>
+      <div class="it"><span class="it-icon">🌐</span><span>MICROSOFT. <strong>Treinamento do Microsoft 365</strong>. Disponível em: support.microsoft.com/pt-br/training</span></div>
+      <div class="it"><span class="it-icon">🌐</span><span>LIBREOFFICE. <strong>Guia de Introdução do LibreOffice</strong>. Disponível em: documentation.libreoffice.org</span></div>
+      <div class="it"><span class="it-icon">🌐</span><span>THE LINUX FOUNDATION. <strong>What is Linux?</strong> Disponível em: linuxfoundation.org</span></div>
+    </div>
+    <p class="txt" style="text-align:center;margin-top:20px;color:var(--txt3);font-size:.85rem;">Prof. Jeferson Queiroga — IFRN — Educação em Tecnologias Digitais — 2026.1</p>
+  </div>
+</div>
+
+</div><!-- /slides-area -->
 
 <script>
 const slides=document.querySelectorAll('.slide'),navs=document.querySelectorAll('.nav-item'),ctr=document.getElementById('counter'),fill=document.getElementById('fill');
-let cur=0;
-function go(i){if(i<0||i>=slides.length)return;slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');ctr.textContent=`${cur+1}/${slides.length}`;fill.style.width=((cur+1)/slides.length*100)+'%';const ch=slides[cur].dataset.chapter;navs.forEach(n=>{n.classList.remove('active');if(n.dataset.chapter===ch)n.classList.add('active');});}
-function goTo(ch){for(let i=0;i<slides.length;i++)if(parseInt(slides[i].dataset.chapter)===ch){go(i);return;}}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();go(cur+1);}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1);}else if(e.key==='Home'){e.preventDefault();go(0);}else if(e.key==='End'){e.preventDefault();go(slides.length-1);}});
-let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX;});document.addEventListener('touchend',e=>{const d=e.changedTouches[0].screenX-tx;if(Math.abs(d)>50){d<0?go(cur+1):go(cur-1);}});
+let cur=0;const total=slides.length;
+function go(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');ctr.textContent=(cur+1)+'/'+total;fill.style.width=((cur+1)/total*100)+'%';const ch=slides[cur].dataset.chapter;navs.forEach(v=>{v.classList.toggle('active',v.dataset.chapter===ch);});slides[cur].scrollTop=0;}
+function goTo(ch){for(let i=0;i<total;i++){if(slides[i].dataset.chapter==ch){go(i);return;}}}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);if(e.key==='Home')go(0);if(e.key==='End')go(total-1);});
+let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});document.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)go(cur+1);if(d>50)go(cur-1);});
 go(0);
 </script>
 </body>
