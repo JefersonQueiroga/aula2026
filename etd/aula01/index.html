@@ -42,12 +42,47 @@ body {
   height: 100vh;
 }
 
+/* CABECALHO IFRN */
+.cabecalho-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2f9e41 0%, #2f9e41 85%, #cd191e 85%, #cd191e 100%);
+  z-index: 200;
+}
+
+.cabecalho {
+  position: fixed;
+  top: 4px; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 24px;
+  background: var(--slide-bg-secundario);
+  border-bottom: 1px solid var(--slide-borda);
+  z-index: 200;
+  height: 46px;
+}
+
+.cabecalho img { height: 28px; width: auto; }
+
+.cabecalho-text {
+  font-size: 0.6rem;
+  color: var(--slide-texto-sutil);
+  line-height: 1.4;
+}
+
+.cabecalho-text strong {
+  color: var(--slide-texto);
+  font-size: 0.65rem;
+}
+
 /* SIDEBAR */
 .sidebar {
   position: fixed;
-  left: 0; top: 0;
+  left: 0; top: 50px;
   width: var(--sidebar-largura);
-  height: 100vh;
+  height: calc(100vh - 50px);
   background: var(--slide-bg-secundario);
   border-right: 1px solid var(--slide-borda);
   padding: 16px 0;
@@ -114,7 +149,7 @@ body {
 /* SLIDE COUNTER */
 .slide-counter {
   position: fixed;
-  top: 16px;
+  top: 60px;
   right: 24px;
   font-size: 0.85rem;
   color: var(--slide-texto-sutil);
@@ -125,7 +160,8 @@ body {
 /* SLIDE AREA */
 .slide-area {
   margin-left: var(--sidebar-largura);
-  height: 100vh;
+  margin-top: 50px;
+  height: calc(100vh - 50px);
   position: relative;
 }
 
@@ -500,6 +536,16 @@ kbd { background: var(--slide-bg-card); border: 1px solid var(--slide-borda); bo
 </style>
 </head>
 <body>
+
+<!-- CABECALHO IFRN -->
+<div class="cabecalho-bar"></div>
+<div class="cabecalho">
+  <img src="../../img/logo-ifrn.jpg" alt="Logo IFRN">
+  <div class="cabecalho-text">
+    <strong>Instituto Federal de Educação, Ciência e Tecnologia</strong><br>
+    Rio Grande do Norte
+  </div>
+</div>
 
 <!-- SIDEBAR -->
 <nav class="sidebar">

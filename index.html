@@ -37,10 +37,41 @@ body {
   flex-direction: column;
 }
 
+/* ========== CABECALHO IFRN ========== */
+.cabecalho-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--if-verde) 0%, var(--if-verde) 85%, #cd191e 85%, #cd191e 100%);
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 30px;
+  background: var(--bg-secundario);
+  border-bottom: 1px solid var(--borda);
+}
+
+.cabecalho img {
+  height: 40px;
+  width: auto;
+}
+
+.cabecalho-text {
+  font-size: 0.7rem;
+  color: var(--texto-sutil);
+  line-height: 1.5;
+}
+
+.cabecalho-text strong {
+  color: var(--texto);
+  font-size: 0.75rem;
+}
+
 /* ========== HERO ========== */
 .hero {
   text-align: center;
-  padding: 80px 24px 60px;
+  padding: 60px 24px 50px;
   position: relative;
   overflow: hidden;
 }
@@ -358,6 +389,16 @@ body {
 </style>
 </head>
 <body>
+
+<!-- CABECALHO IFRN -->
+<div class="cabecalho-bar"></div>
+<div class="cabecalho">
+  <img src="img/logo-ifrn.jpg" alt="Logo IFRN">
+  <div class="cabecalho-text">
+    <strong>Instituto Federal de Educação, Ciência e Tecnologia</strong><br>
+    Rio Grande do Norte
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero">
